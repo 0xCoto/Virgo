@@ -8,7 +8,9 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 
 ## GRC Data Acquisition Flowgraph
 **VIRGO** is a [**polyphase filterbank** spectrometer](https://arxiv.org/abs/1607.03579). The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
+
 ![alt text](https://i.imgur.com/2Xp8qnZ.png "Data Acquisition Flowgraph")
 
-One of the advantages of polyphase filterbanks is reduced spectral leakage. The following figure is a comparison between ACS (dotted line), FTF (dashed line) and H PFB with a Hann FFT window (solid line):
+## Spectral leakage
+One of the advantages of polyphase filterbanks is **reduced spectral leakage**. The following figure compares the spectral leakage produced by an autocorrelation spectrometer (ACS), a Fourier transform filterbank spectrometer (FTF) and a polyphase filterbank spectrometer (PFB) with a Hann FFT window:
 ![alt text](https://i.imgur.com/e5TwE3w.png "Spectrometer comparison regarding spectral leakage")
