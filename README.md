@@ -14,3 +14,5 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 ## Spectral leakage
 One of the advantages of polyphase filterbanks is **reduced spectral leakage**. The following figure compares the spectral leakage produced by an autocorrelation spectrometer (ACS), a Fourier transform filterbank spectrometer (FTF) and a polyphase filterbank spectrometer (PFB) with a Hann FFT window:
 ![alt text](https://i.imgur.com/e5TwE3w.png "Spectrometer comparison regarding spectral leakage")
+Source: [Danny C. Price (2018)](https://arxiv.org/abs/1607.03579)
+
