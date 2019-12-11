@@ -2,7 +2,7 @@
 ![alt text](https://i.imgur.com/PR2wpse.png "VIRGO Spectrometer")
 
 ## About VIRGO
-**VIRGO** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio Companion](https://wiki.gnuradio.org/index.php/GNURadioCompanion) (GRC) that is conveniently applicable to any radio telescope working with a GRC-supported software-defined radio (SDR). Apart from data acquisition, VIRGO carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum** and a **power vs time** plot.
+**VIRGO** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio Companion](https://wiki.gnuradio.org/index.php/GNURadioCompanion) (GRC) that is conveniently applicable to any radio telescope working with a GRC-supported software-defined radio (SDR). In addition ta data acquisition, VIRGO also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)** and a **time series (power vs time)** plot.
 
 A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
@@ -37,3 +37,22 @@ Similarly, if we average with respect to the frequency channels (`zmean = np.mea
 
 ### Calibrated spectrum derivation
 To get the <ins>calibrated spectrum</ins>, we could simply subtract the ***OFF*** spectrum (obtained from an observation of e.g. the cold sky) from the ***ON*** spectrum (Z<sub>ON<sub>mean</sub></sub> − Z<sub>OFF<sub>mean</sub></sub>). However, because the system temperature of a radio telescope (T<sub>sys</sub>) is generally variable with time and temperature, the noise floor will not be at a constant level. For this reason, it is more appropriate to choose division over subtraction (Z<sub>ON<sub>mean</sub></sub> / Z<sub>OFF<sub>mean</sub></sub>), in order to account for the variability of thse noise floor. The calibrated spectrum is computed at [line 85](https://github.com/0xCoto/VIRGO/blob/master/plot_hi.py#L85) of `plot_hi.py`.
+
+## Installation
+To use **VIRGO**, make sure [Python](https://www.python.org/) and [GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR) are installed on your machine.
+
+Once Python and GNU Radio are installed on your system, navigate to a directory of your choice (e.g. `cd Desktop`) and run:
+
+```git clone https://github.com/0xCoto/VIRGO```
+
+#### If you do not use an RTL-SDR
+Once the repository has been cloned, open `pfb.grc` using GNU Radio Companion and replace the `RTL-SDR Source` block with the  source block of your SDR (e.g. `UHD: USRP Source`). After modifying the properties of the new SDR Source block (optional), click the little button next to the **Play** button to generate the new and updated version of `top_block.py` that is compatible with your SDR:
+
+![alt text](https://i.imgur.com/F16haLm.png)
+
+(You only need to do this once.)
+
+## Usage
+Once **VIRGO** is downloaded on your system and the SDR Source block has been replaced (unless you use an RTL-SDR where you shouldn't need to change anything), you can begin observing with **VIRGO** by running:
+
+```python observe.py```
