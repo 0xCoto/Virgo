@@ -66,7 +66,7 @@ From there, the interactive software should ask you for the parameters of your o
 ## Credits
 **VIRGO** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
 
-**Contact**: [0xcoto@protonmail.com](mailto:0xcoto@protonmail.com)
+**Contact:** [0xcoto@protonmail.com](mailto:0xcoto@protonmail.com)
 
 ---
 
