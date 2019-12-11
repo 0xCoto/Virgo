@@ -19,7 +19,7 @@ bandwidth = str(input('Bandwidth [MHz]: '))
 bandwidth = str(float(bandwidth)*10**6)
 channels = str(input('Number of channels (FFT size): '))
 t_int = str(input('Integration time per FFT sample [sec]: '))
-nbins = str(float(t_int) * float(bandwidth)/float(channels))
+nbins = str(int(float(t_int) * float(bandwidth)/float(channels)))
 duration = str(input('Observing duration [sec]: '))
 
 #Calibration option
