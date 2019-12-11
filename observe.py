@@ -19,11 +19,11 @@ bandwidth = str(input('Bandwidth [MHz]: '))
 bandwidth = str(float(bandwidth)*10**6)
 channels = str(input('Number of channels (FFT size): '))
 t_int = str(input('Integration time per FFT sample [sec]: '))
-nbins = str(float(t_int) * float(bandwidth)/float(nchan))
+nbins = str(float(t_int) * float(bandwidth)/float(channels))
 duration = str(input('Observing duration [sec]: '))
 
 #Calibration option
-cal = str(input('\nWould you like to produce a calibrated spectrum at the end of your observation (requires off_nchan.dat calibration reference file in directory)? [y/N]: '))
+cal = str(raw_input('\nWould you like to produce a calibrated spectrum at the end of your observation (requires off_nchan.dat calibration reference file in directory)? [y/N]: '))
 yes = {'y', 'ye', 'yes'}
 if cal.lower() in yes:
     cal = True
@@ -57,5 +57,5 @@ else:
     execfile('plot.py')
 
 print('\n======================================================================================')
-prin('[+] The observation data has been plotted and saved as plot.png.')
+print('[+] The observation data has been plotted and saved as plot.png.')
 print('======================================================================================')
