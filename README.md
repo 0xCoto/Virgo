@@ -71,7 +71,7 @@ From there, the interactive software should ask you for the parameters of your o
 ## To do
 - [ ] Implement additional horizontal axis on the calibrated spectrum to display relative velocity (derived from Δf = f<sub>rest</sub> − f<sub>obs</sub>)
 - [ ] Improve the UI by adding **bold text** and *colors*
-- [ ] Add list of radio telescopes with software based on **VIRGO**
+- [ ] Add list of radio telescopes using software based on **VIRGO**
 
 ## Credits
 **VIRGO** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
