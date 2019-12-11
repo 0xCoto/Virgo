@@ -21,7 +21,7 @@ Source: [Danny C. Price (2018)](https://arxiv.org/abs/1607.03579)
 Source: [Danny C. Price (2018)](https://arxiv.org/abs/1607.03579)
 
 ## Data analysis
-Once a submitted observation is finished and the data has been acquired and stored to `observation.dat`, the FFT data (interpreted as a [numpy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) in `plot.py` and `plot_hi.py`) constitutes the **dynamic spectrum (waterfall)**, from which the **averaged spectrum** and **time series (power vs time)** of the observation can be derived.
+Once a submitted observation is finished and the data has been acquired and stored to `observation.dat`, the FFT samples (interpreted as a [numpy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) in `plot.py` and `plot_hi.py`) constitute the **dynamic spectrum (waterfall)**, from which the **averaged spectrum** and **time series (power vs time)** of the observation can be derived.
 
 We can mathematically interpret the dynamic spectrum as a two-dimensional matrix with ***m*** rows and ***2<sup>n</sup>*** columns, where *m* ∈ ℕ\* is the total number of FFT samples (integrations) and *2<sup>n</sup>*, *n* ∈ ℕ is the number of frequency channels (FFT size).
 
@@ -68,5 +68,6 @@ From there, the interactive software should ask you for the parameters of your o
 
 Contact: [0xcoto@protonmail.com](mailto:0xcoto@protonmail.com)
 
+---
 
 Special thanks to **Dr. Cees Bassa** and **Dr. Cameron Van Eck**.
