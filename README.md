@@ -70,4 +70,4 @@ From there, the interactive software should ask you for the parameters of your o
 
 ---
 
-Special thanks to **Dr. Cees Bassa** and **Dr. Cameron Van Eck**.
+Special thanks to **Dr. Cees Bassa** and **Dr. Cameron Van Eck** for their significant contributions.
