@@ -43,7 +43,9 @@ To use **VIRGO**, make sure [Python](https://www.python.org/) and [GNU Radio](ht
 
 Once Python and GNU Radio are installed on your system, navigate to a directory of your choice (e.g. `cd Desktop`) and run:
 
-```git clone https://github.com/0xCoto/VIRGO```
+```
+git clone https://github.com/0xCoto/VIRGO
+```
 
 #### If you do not use an RTL-SDR
 Once the repository has been cloned, open `pfb.grc` using GNU Radio Companion and replace the `RTL-SDR Source` block with the  source block of your SDR (e.g. `UHD: USRP Source`). After modifying the properties of the new SDR Source block (optional), click the little button next to the **Play** button to generate the new and updated version of `top_block.py` that is compatible with your SDR:
@@ -55,4 +57,12 @@ Once the repository has been cloned, open `pfb.grc` using GNU Radio Companion an
 ## Usage
 Once **VIRGO** is downloaded on your system and the SDR Source block has been replaced (unless you use an RTL-SDR where you shouldn't need to change anything), you can begin observing with **VIRGO** by running:
 
-```python observe.py```
+```
+python observe.py
+```
+
+From there, the interactive software should ask you for the parameters of your observation, which you can simple enter in and let **VIRGO** do its magic! Once the observation is finished, your data will be processed, analyzed and saved as `plot.png` (in the same directory as `observe.py`).
+
+## Credits
+**VIRGO** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
+Contact: [0xcoto@protonmail.com](mailto:0xcoto@protonmail.com)
