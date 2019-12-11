@@ -69,7 +69,7 @@ python observe.py
 From there, the interactive software should ask you for the parameters of your observation, which you can simple enter in and let **VIRGO** do its magic! Once the observation is finished, your data will be processed, analyzed and saved as `plot.png` (in the same directory as `observe.py`).
 
 ## To do
-- [ ] Implement additional horizontal axis on the calibrated spectrum to display relative velocity (derived from Δf = f<ins>rest</ins> − f<ins>obs</ins>)
+- [ ] Implement additional horizontal axis on the calibrated spectrum to display relative velocity (derived from Δf = f<sub>rest</sub> − f<sub>obs</sub>)
 - [ ] Improve the UI by adding **bold text** and *colors*
 - [ ] Add list of radio telescopes with software based on **VIRGO**
 
