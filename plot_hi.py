@@ -12,7 +12,6 @@ parser.add_argument('freq')
 parser.add_argument('samp_rate')
 parser.add_argument('nchan')
 parser.add_argument('nbin')
-parser.add_argument('nbin_off')
 args = parser.parse_args()
 
 def decibel(x):
@@ -52,7 +51,6 @@ exec(args.freq)
 exec(args.samp_rate)
 exec(args.nchan)
 exec(args.nbin)
-exec(args.nbin_off)
 obs_on = "observation.dat"
 obs_off = "off"+str(nchan)+".dat"
 
@@ -66,7 +64,7 @@ z = z*10000
 zmean = np.nanmean(z,axis=0)
 
 #Load OFF data
-z_off = np.fromfile(obs_off, dtype="float32").reshape(-1, nchan)/nbin_off
+z_off = np.fromfile(obs_off, dtype="float32").reshape(-1, nchan)/nbin
 z_off = z_off*10000
 z_offmean = np.nanmean(z_off,axis=0)
 
