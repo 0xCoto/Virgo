@@ -50,7 +50,7 @@ print('[!] Observation finished! Plotting data...')
 
 #Execute plotter
 if cal:
-    sys.argv = ['plot_cal.py', 'freq='+f_center, 'samp_rate='+bandwidth, 'nchan='+channels, 'nbin='+nbins]
+    sys.argv = ['plot_hi.py', 'freq='+f_center, 'samp_rate='+bandwidth, 'nchan='+channels, 'nbin='+nbins]
     execfile('plot_hi.py')
 else:
     sys.argv = ['plot.py', 'freq='+f_center, 'samp_rate='+bandwidth, 'nchan='+channels, 'nbin='+nbins]
