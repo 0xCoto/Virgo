@@ -8,6 +8,14 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 
 ![alt text](https://i.imgur.com/zS5ZjK0.png)
 
+## Telescopes based on the VIRGO Spectrometer
+- ISEC TLM-18 Telescope (18m)
+- SALSA Vale Telescope (2.3m)
+- SALSA Brage Telescope (2.3m)
+- PICTOR Telescope (1.5m)
+- NanoRT Telescope (15cm)
+- and others!
+
 ## Example Observation
 ![alt text](https://i.imgur.com/rReMOdM.png "Example Observation")
 
@@ -69,9 +77,9 @@ python observe.py
 From there, the interactive software should ask you for the parameters of your observation, which you can simple enter in and let **VIRGO** do its magic! Once the observation is finished, your data will be processed, analyzed and saved as `plot.png` (in the same directory as `observe.py`).
 
 ## To do
+- [x] Add list of radio telescopes using software based on **VIRGO**
 - [ ] Implement additional horizontal axis on the calibrated spectrum to display relative velocity (derived from Δf = f<sub>rest</sub> − f<sub>obs</sub>)
 - [ ] Improve the UI by adding **bold text** and *colors*
-- [ ] Add list of radio telescopes using software based on **VIRGO**
 
 ## Credits
 **VIRGO** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
