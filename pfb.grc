@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.11'?>
+<?grc format='1' created='3.7.13'?>
 <flow_graph>
   <timestamp>Fri Apr 26 15:43:14 2019</timestamp>
   <block>
@@ -73,12 +73,20 @@
       <value>True</value>
     </param>
     <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value></value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -1458,7 +1466,7 @@
     </param>
     <param>
       <key>args</key>
-      <value></value>
+      <value>device</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1640,7 +1648,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 444)</value>
+      <value>(584, 508)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1661,6 +1669,214 @@
     <param>
       <key>vlen</key>
       <value>nchan</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_complex_to_mag_squared</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(584, 756)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_complex_to_mag_squared_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>nchan</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_copy</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>enabled</key>
+      <value>True if pfb != 0 else False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(240, 188)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_copy_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>showports</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_copy</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>enabled</key>
+      <value>True if pfb != 0 else False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1088, 412)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_copy_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>showports</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>nchan</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_copy</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>enabled</key>
+      <value>True if pfb == 0 else False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(296, 388)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_copy_0_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>showports</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1852,11 +2068,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>observation.dat</value>
+      <value>"observation.dat" if pfb == 0 else "dummy.dat"</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(960, 420)</value>
+      <value>(960, 488)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1865,6 +2081,57 @@
     <param>
       <key>id</key>
       <value>blocks_file_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>nchan</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>"observation.dat" if pfb != 0 else "dummy.dat"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(976, 736)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -1899,7 +2166,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 84)</value>
+      <value>(232, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1954,7 +2221,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(784, 436)</value>
+      <value>(784, 500)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1963,6 +2230,57 @@
     <param>
       <key>id</key>
       <value>blocks_integrate_xx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>nchan</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_integrate_xx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>nbin</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(792, 748)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_integrate_xx_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -2205,7 +2523,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 84)</value>
+      <value>(544, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2390,6 +2708,57 @@
     </param>
   </block>
   <block>
+    <key>blocks_stream_to_vector</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(496, 388)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_vector_0_3</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>nchan</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -2424,12 +2793,63 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
       <value>1420000000</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 532)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>device</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"rtl=0"</value>
     </param>
   </block>
   <block>
@@ -2460,7 +2880,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 412)</value>
+      <value>(312, 504)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2469,6 +2889,69 @@
     <param>
       <key>id</key>
       <value>fft_vxx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nthreads</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>shift</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>window</key>
+      <value>window.blackmanharris(nchan)</value>
+    </param>
+  </block>
+  <block>
+    <key>fft_vxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>fft_size</key>
+      <value>nchan</value>
+    </param>
+    <param>
+      <key>forward</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(296, 728)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fft_vxx_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -2561,6 +3044,10 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
@@ -2602,6 +3089,10 @@
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -2647,12 +3138,63 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
       <value>60</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(104, 244)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -2690,6 +3232,10 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>eng_float</value>
     </param>
@@ -2706,13 +3252,55 @@
   </connection>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
-    <sink_block_id>fft_vxx_0</sink_block_id>
+    <sink_block_id>blocks_copy_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
     <sink_block_id>blocks_integrate_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_complex_to_mag_squared_0_0</source_block_id>
+    <sink_block_id>blocks_integrate_xx_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0</source_block_id>
+    <sink_block_id>blocks_delay_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0</source_block_id>
+    <sink_block_id>blocks_delay_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0</source_block_id>
+    <sink_block_id>blocks_delay_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0_0</source_block_id>
+    <sink_block_id>fft_vxx_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_copy_0_1</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0_3</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2736,31 +3324,25 @@
   </connection>
   <connection>
     <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>blocks_delay_0</sink_block_id>
+    <sink_block_id>blocks_copy_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>blocks_delay_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>blocks_delay_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <sink_block_id>blocks_copy_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_integrate_xx_0</source_block_id>
     <sink_block_id>blocks_file_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_integrate_xx_0_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2813,8 +3395,20 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_stream_to_vector_0_3</source_block_id>
+    <sink_block_id>fft_vxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>fft_vxx_0</source_block_id>
     <sink_block_id>blocks_complex_to_mag_squared_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>fft_vxx_0_0</source_block_id>
+    <sink_block_id>blocks_complex_to_mag_squared_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
