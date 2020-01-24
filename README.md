@@ -12,8 +12,8 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 
 ## Telescopes based on the VIRGO Spectrometer
 - ISEC TLM-18 Telescope (18m)
-- SALSA Vale Telescope (2.3m)
-- SALSA Brage Telescope (2.3m)
+- SALSA Vale Telescope (2.3m) [soon]
+- SALSA Brage Telescope (2.3m) [soon]
 - PICTOR Telescope (1.5m)
 - NanoRT Telescope (15cm)
 - and others!
