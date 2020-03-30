@@ -8,7 +8,9 @@
 
 A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
-![alt text](https://i.imgur.com/zS5ZjK0.png)
+<p align="center">
+  <img src="https://i.imgur.com/zS5ZjK0.png"/>
+</p>
 
 ## Telescopes based on the VIRGO Spectrometer
 - ISEC TLM-18 Telescope (18m)
@@ -21,7 +23,7 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 
 ## Example Observation
 <p align="center">
-  <img src="https://i.imgur.com/K8g0wVd.png alt="Example Observation"/>
+  <img src="https://i.imgur.com/K8g0wVd.png" alt="Example Observation"/>
 </p>                                                                     
 
 ## GRC Data Acquisition Flowgraph
