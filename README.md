@@ -20,7 +20,9 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 - and others!
 
 ## Example Observation
-![alt text](https://i.imgur.com/K8g0wVd.png "Example Observation")
+<p align="center">
+  <img src="https://i.imgur.com/K8g0wVd.png alt="Example Observation"/>
+</p>                                                                     
 
 ## GRC Data Acquisition Flowgraph
 **VIRGO** is a [**polyphase filterbank** spectrometer](https://arxiv.org/abs/1607.03579). The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
