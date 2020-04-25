@@ -30,8 +30,9 @@ if cal.lower() in yes:
 else:
     cal = False
 
-schedule_duration = '0'
 schedule_duration = str(input('Start observation in [sec]: '))
+if schedule_duration == '':
+    schedule_duration = '0'
 sleep(float(schedule_duration))
 if schedule_duration != '0':
     print('\nThe observation will begin in '+schedule_duration+' sec automatically. Please wait...\n')
