@@ -21,7 +21,7 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 - PICTOR Telescope (1.5m)
 - HSRT (12-turn helix)
 - NanoRT Telescope (15cm)
-- and others
+- and more!
 
 ## Example Observation
 <p align="center">
