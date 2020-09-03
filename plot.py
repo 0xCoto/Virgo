@@ -14,15 +14,16 @@ parser.add_argument('nchan')
 parser.add_argument('nbin')
 args = parser.parse_args()
 
-def decibel(x):
-    #return 10.0*np.log10(x) #Uncomment for dB-scaled Power axes
-    return x
-
 #Observation parameters
 exec(args.freq)
 exec(args.samp_rate)
 exec(args.nchan)
 exec(args.nbin)
+
+def decibel(x):
+    #return 10.0*np.log10(x) #Uncomment for dB-scaled Power
+    return x
+
 fname = "observation.dat"
 
 #Load data
