@@ -33,7 +33,7 @@ def observe(dev_args='', frequency=1420e6, bandwidth=2e6, rf_gain=10, if_gain=20
 	observation.wait()
 	print('\n[!] Data acquisition complete. Observation saved as: '+out_file)
 
-def plot(frequency, bandwidth, channels, t_sample, n=0, m=0, f_rest=0, dB=False, in_file='observation.dat', cal_file='', plot_file='plot.png'):
+def plot(obs_parameters, n=0, m=0, f_rest=0, dB=False, in_file='observation.dat', cal_file='', plot_file='plot.png'):
 	import matplotlib
 	import matplotlib.pyplot as plt
 	from matplotlib.gridspec import GridSpec
@@ -60,6 +60,12 @@ def plot(frequency, bandwidth, channels, t_sample, n=0, m=0, f_rest=0, dB=False,
 	def decibel(x):
 		if dB: return 10.0*np.log10(x)
 		return x
+
+	frequency = obs_parameters['frequency']
+	bandwidth = obs_parameters['bandwidth']
+	channels = obs_parameters['channels']
+	t_sample = obs_parameters['t_sample']
+
 
 	left_velocity_edge = -299792.458*(bandwidth-2*frequency+2*f_rest)/(bandwidth-2*frequency)
 	right_velocity_edge = 299792.458*(-bandwidth-2*frequency+2*f_rest)/(bandwidth+2*frequency)
