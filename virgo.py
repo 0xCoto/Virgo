@@ -33,7 +33,7 @@ def observe(dev_args='', frequency=1420e6, bandwidth=2e6, rf_gain=10, if_gain=20
 	observation.wait()
 	print('\n[!] Data acquisition complete. Observation saved as: '+out_file)
 
-def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='observation.dat', cal_file='', plot_file='plot.png'):
+def plot(frequency, bandwidth, channels, t_sample, n=0, m=0, f_rest=0, dB=False, in_file='observation.dat', cal_file='', plot_file='plot.png'):
 	import matplotlib
 	import matplotlib.pyplot as plt
 	from matplotlib.gridspec import GridSpec
@@ -104,19 +104,19 @@ def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='
 			spectrum = avg_spectrum/avg_spectrum_cal
 
 		# Mitigate RFI (Frequency Domain)
-		n = 10
-		spectrum_clean = SNR(spectrum.copy(), mask)
-		for i in range(0, int(channels)):
-			spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
+		if n != 0:
+			spectrum_clean = SNR(spectrum.copy(), mask)
+			for i in range(0, int(channels)):
+				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
 
-		# Apply text_offset
+		# Apply offset for the Spectral Line label
 		text_offset = 70
-		### ADD (dB) on axes labels
+
 	# Mitigate RFI (Time Domain)
-	m = 20
-	power_clean = power.copy()
-	for i in range(0, int(subs)):
-		power_clean[i] = np.median(power_clean[i:i+m])
+	if m != 0:
+		power_clean = power.copy()
+		for i in range(0, int(subs)):
+			power_clean[i] = np.median(power_clean[i:i+m])
 
 	# Initialize plot
 	if cal_file != '':
@@ -155,7 +155,8 @@ def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='
 	if cal_file != '':
 		ax2 = fig.add_subplot(gs[0,1])
 		ax2.plot(frequency, SNR(spectrum, mask), label='Raw Spectrum')
-		ax2.plot(frequency, spectrum_clean, label='Median (n = '+str(n)+')')
+		if n != 0:
+			ax2.plot(frequency, spectrum_clean, label='Median (n = '+str(n)+')')
 		ax2.set_xlim(np.min(frequency), np.max(frequency))
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
@@ -164,7 +165,8 @@ def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='
 			ax2.set_title('Calibrated Spectrum\n')
 		else:
 			ax2.set_title('Calibrated Spectrum')
-		ax2.legend(bbox_to_anchor=(0.002, 0.96), loc='upper left')
+		if n != 0:
+			ax2.legend(bbox_to_anchor=(0.002, 0.96), loc='upper left')
 		ax2.grid()
 
 		if f_rest != 0:
@@ -197,7 +199,8 @@ def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='
 	# Plot Time Series (Power vs Time)
 	ax4 = fig.add_subplot(gs[1,0])
 	ax4.plot(t, power, label='Raw Time Series')
-	ax4.plot(t, power_clean, label='Median (n = '+str(m)+')')
+	if m != 0:
+		ax4.plot(t, power_clean, label='Median (n = '+str(m)+')')
 	ax4.set_xlim(0, np.max(t))
 	ax4.set_xlabel('Time (s)')
 	if dB:
@@ -205,7 +208,8 @@ def plot(frequency, bandwidth, channels, t_sample, f_rest=0, dB=False, in_file='
 	else:
 		ax4.set_ylabel('Relative Power')
 	ax4.set_title('Average Power vs Time')
-	ax4.legend(bbox_to_anchor=(1,1), loc='upper right')
+	if m != 0:
+		ax4.legend(bbox_to_anchor=(1,1), loc='upper right')
 	ax4.grid()
 
 	# Plot Time Series Histogram
