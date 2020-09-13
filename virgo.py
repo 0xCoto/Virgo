@@ -362,7 +362,7 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 
 	parser.add_argument('-da', '--dev_args', dest='dev_args',
-                        help='SDR Device Arguments (osmosdr Source)', type=str, default='""')
+                        help='SDR Device Arguments (osmocom Source)', type=str, default='""')
 	parser.add_argument('-rf', '--rf_gain', dest='rf_gain',
                         help='SDR RF Gain (dB)', type=float, default=10)
 	parser.add_argument('-if', '--if_gain', dest='if_gain',
