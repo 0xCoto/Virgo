@@ -177,7 +177,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
 
 		# Apply position offset for Spectral Line label
-		text_offset = 70
+		text_offset = 60
 
 	# Mitigate RFI (Time Domain)
 	if m != 0:
@@ -263,7 +263,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 		ax1_secondary = ax1.twiny()
 		ax1_secondary.set_xlabel('Relative Velocity (km/s)', labelpad=5)
 		ax1_secondary.axvline(x=0, color='brown', linestyle='--', linewidth=2, zorder=0)
-		ax1_secondary.annotate('Spectral Line\nRest Frequency', xy=(470-text_offset, 5),
+		ax1_secondary.annotate('Spectral Line\nRest Frequency', xy=(460-text_offset, 5),
                                xycoords='axes points', size=14, ha='left', va='bottom', color='brown')
 		ax1_secondary.set_xlim(left_velocity_edge, right_velocity_edge)
 		ax1_secondary.tick_params(axis='x', direction='in', pad=-22)
@@ -271,9 +271,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	#Plot Calibrated Spectrum
 	if cal_file != '':
 		ax2 = fig.add_subplot(gs[0, 1])
-		ax2.plot(frequency, spectrum, label='Raw Spectrum')
 		if n != 0:
 			ax2.plot(frequency, spectrum_clean, color='orangered', label='Median (n = '+str(n)+')')
+			ax2.set_ylim()
+		ax2.plot(frequency, spectrum, label='Raw Spectrum', zorder=0)
 		ax2.set_xlim(np.min(frequency), np.max(frequency))
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
@@ -319,9 +320,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 	# Plot Time Series (Power vs Time)
 	ax4 = fig.add_subplot(gs[1, 0])
-	ax4.plot(t, power, label='Raw Time Series')
 	if m != 0:
 		ax4.plot(t, power_clean, color='orangered', label='Median (n = '+str(m)+')')
+		ax4.set_ylim()
+	ax4.plot(t, power, label='Raw Time Series', zorder=0)
 	ax4.set_xlim(0, np.max(t))
 	ax4.set_xlabel('Relative Time (s)')
 	if dB:
@@ -341,10 +343,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 	ax5 = fig.add_subplot(gs[1, 1])
 
-	ax5.hist(power, np.size(power)/20, density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
+	ax5.hist(power, np.size(power)/50, density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
 	ax5.plot(best_fit(power)[1], best_fit(power)[0], '--', color='blue', label='Best fit (Raw)', zorder=20)
 	if m != 0:
-		ax5.hist(power_clean, np.size(power_clean)/20, density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
+		ax5.hist(power_clean, np.size(power_clean)/50, density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
 		ax5.plot(best_fit(power_clean)[1], best_fit(power)[0], '--', color='red', label='Best fit (Median)', zorder=20)
 	ax5.get_shared_x_axes().join(ax5, ax4)
 	ax5.set_yticklabels([])
@@ -380,7 +382,7 @@ if __name__ == '__main__':
 	parser.add_argument('-d', '--duration', dest='duration',
                         help='Observing Duration (s)', type=float, default=60)
 	parser.add_argument('-s', '--start_in', dest='start_in',
-                        help='Schedule Observation (s)', type=float)
+                        help='Schedule Observation (s)', type=float, default=0)
 	parser.add_argument('-o', '--obs_file', dest='obs_file',
                         help='Observation Filename', type=str, default='observation.dat')
 	parser.add_argument('-C', '--cal_file', dest='cal_file',
