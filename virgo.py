@@ -418,7 +418,7 @@ if __name__ == '__main__':
 	}
 
 	# Acquire data from SDR
-	observe(obs_parameters=args.observation, obs_file=args.obs_file, start_in=args.start_in)
+	observe(obs_parameters=observation, obs_file=args.obs_file, start_in=args.start_in)
 
 	# Plot data
 	plot(obs_parameters=observation, n=args.n, m=args.m, f_rest=args.f_rest,
