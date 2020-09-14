@@ -61,10 +61,10 @@ duration='''+str(duration))
 
 def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.dat',
          cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
+	import matplotlib
+	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
 	import matplotlib.pyplot as plt
 	from matplotlib.gridspec import GridSpec
-
-	#import matplotlib; matplotlib.use('Agg') # If you run into display/rendering errors, please try uncommenting this line
 
 	plt.rcParams['legend.fontsize'] = 14
 	plt.rcParams['axes.labelsize'] = 14
