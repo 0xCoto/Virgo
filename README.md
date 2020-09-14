@@ -1,4 +1,4 @@
-# VIRGO: An open-source Spectrometer for Radio Astronomy
+# VIRGO: A Versatile Spectrometer for Radio Astronomy
 <p align="center">
   <img src="https://i.imgur.com/lH2OOTd.png?raw=true" alt="VIRGO Spectrometer"/>
 </p>
