@@ -8,9 +8,32 @@
 
 A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
-<p align="center">
-  <img src="https://i.imgur.com/zS5ZjK0.png"/>
-</p>
+## Example Usage
+
+```python
+import virgo
+
+# Define observation parameters
+observation = {
+    'dev_args': '',
+    'rf_gain': 10,
+    'if_gain': 20,
+    'bb_gain': 20,
+    'frequency': 1420e6,
+    'bandwidth': 5e6,
+    'channels': 2048,
+    't_sample': 1,
+    'duration': 60
+}
+
+# Data acquisition
+virgo.observe(obs_parameters=observation, obs_file='observation.dat', start_in=0)
+
+# Data analysis
+virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
+           dB=False, obs_file='observation.dat', cal_file='calibration.dat', waterfall_fits='obs.fits',
+           spectra_csv='spectra.csv', power_csv='pwr.csv', plot_file='plot.png')
+```
 
 ## Telescopes based on the VIRGO Spectrometer
 - ISEC TLM-18 Telescope (18m)
@@ -68,26 +91,23 @@ Once Python and GNU Radio are installed on your system, navigate to a directory 
 git clone https://github.com/0xCoto/VIRGO
 ```
 
-#### If you do not use an RTL-SDR
-Once the repository has been cloned, open `pfb.grc` using GNU Radio Companion and replace the `RTL-SDR Source` block with the  source block of your SDR (e.g. `UHD: USRP Source`). After modifying the properties of the new SDR Source block (optional), click the little button next to the **Play** button to generate the new and updated version of `top_block.py` that is compatible with your SDR:
+#### If you do not use an osmocom-supported SDR (unlikely)
+Once the repository has been cloned, open `pfb.grc` using GNU Radio Companion and replace the `osmocom Source` block with the source block of your SDR (e.g. `UHD: USRP Source`). After modifying the properties of the new SDR Source block (optional), click the little button next to the **Play** button to generate the new and updated version of `run_observation.py` that is compatible with your SDR:
 
 ![alt text](https://i.imgur.com/F16haLm.png)
 
 (You only need to do this once.)
 
 ## Usage
-Once **VIRGO** is downloaded on your system and the SDR Source block has been replaced (unless you use an RTL-SDR where you shouldn't need to change anything), you can begin observing with **VIRGO** by running:
+Once **VIRGO** is downloaded on your system and the SDR Source block has been replaced (unless you use an osmocom-supported SDR where you shouldn't need to change anything), you can begin observing with **VIRGO** by running:
 
 ```
-python observe.py
+python virgo.py [arguments]
 ```
 
-From there, the interactive software should ask you for the parameters of your observation, which you can simple enter in and let **VIRGO** do its magic! Once the observation is finished, your data will be processed, analyzed and saved as `plot.png` (in the same directory as `observe.py`).
+(Run `python virgo.py -h` to see all the available arguments)
 
-## To do
-- [x] Add list of radio telescopes using software based on **VIRGO**
-- [ ] Implement additional horizontal axis on the calibrated spectrum to display relative velocity (derived from Δf = f<sub>rest</sub> − f<sub>obs</sub>)
-- [ ] Improve the UI by adding **bold text** and *colors*
+Alternatively, you can import **VIRGO** as a Python module (see **Example Usage** section above).
 
 ## Credits
 **VIRGO** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
@@ -96,4 +116,4 @@ From there, the interactive software should ask you for the parameters of your o
 
 ---
 
-Special thanks to **Dr. Cees Bassa** and **Dr. Cameron Van Eck** for their valuable contributions.
+Special thanks to **Dr. Cameron Van Eck** and **Dr. Cees Bassa** for their valuable contributions.
