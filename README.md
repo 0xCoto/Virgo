@@ -9,7 +9,7 @@
 A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
 <p align="center">
-  <img src="https://i.imgur.com/zS5ZjK0.png"/>
+  <img src="https://i.imgur.com/VBxFBs6.png"/>
 </p>
 
 ## Telescopes based on the VIRGO Spectrometer
