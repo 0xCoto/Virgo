@@ -15,11 +15,10 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 ## Telescopes based on the VIRGO Spectrometer
 - ISEC TLM-18 Telescope (18m)
 - ACRO RT-320 (3.2m)
-- SALSA Vale Telescope (2.3m) [soon]
-- SALSA Brage Telescope (2.3m) [soon]
+- SALSA Vale Telescope (2.3m) [potentially soon, but already tested]
+- SALSA Brage Telescope (2.3m) [potentially soon, but already tested]
 - JRT (1.9m)
 - PICTOR Telescope (1.5m)
-- HSRT (12-turn helix)
 - NanoRT Telescope (15cm)
 - and more!
 
@@ -31,7 +30,7 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 ## GRC Data Acquisition Flowgraph
 **VIRGO** is a [**polyphase filterbank** spectrometer](https://arxiv.org/abs/1607.03579). The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
 
-![alt text](https://i.imgur.com/2Xp8qnZ.png "Data Acquisition Flowgraph")
+![alt text](https://i.imgur.com/5tR7WjL.png "Data Acquisition Flowgraph")
 
 ## Spectral leakage: a comparison between ACS, FTF and PFB spectrometers
 The noteworthy advantage of polyphase filterbanks is **reduced spectral leakage**, with a slight increase in computational requirements. The following figure compares the spectral leakage produced by an autocorrelation spectrometer (ACS), a Fourier transform filterbank spectrometer (FTF) and a polyphase filterbank spectrometer (PFB) with a Hann FFT window:
