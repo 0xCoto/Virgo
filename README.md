@@ -31,6 +31,7 @@ A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index
 - Continuum support
 - - Supports median operation for time-varying RFI mitigation (adjustable *n*-factor)
 - - Total power distribution (histogram) displayed, both for raw and clean data
+- - - Best Gaussian fits computed automatically
 - - Prevention against strong short-duration RFI rescaling subplot
 - - Time series optionally saved as a `csv` file for further analysis
 - Dynamic spectrum (waterfall)
