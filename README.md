@@ -8,6 +8,38 @@
 
 A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
+### Key Features
+
+- Polyphase filterbank-based data acquisition
+- - Reduced FFT sidelobes
+- Adjustable SDR parameters
+- - Device arguments
+- - RF Gain
+- - IF Gain
+- - BB Gain
+- Header file
+- - Observation parameters automatically passed to corresponding `.header` file
+- - Includes logged MJD (at observation *t<sub>0</sub>*)
+- Spectral line support
+- - Spectrum calibration
+- - - *y* axis is automatically transformed to S:N units with line masking
+- - Supports median operation for RFI mitigation on the frequency-domain (adjustable *n*-factor)
+- - Adjustable *f*<sub>rest</sub> for observation of any spectral line (not just HI)
+- - Secondary axes for relative velocity automatically adjusted accordingly
+- - Prevention against strong narrowband RFI rescaling subplot
+- - The average spectra, calibration spectra and calibrated spectra are optionally saved as a `csv` file for further analysis
+- Continuum support
+- - Supports median operation for time-varying RFI mitigation (adjustable *n*-factor)
+- - Total power distribution (histogram) displayed, both for raw and clean data
+- - Prevention against strong short-duration RFI rescaling subplot
+- - Time series optionally saved as a `csv` file for further analysis
+- Dynamic spectrum (waterfall)
+- - Optionally saved as a `FITS` file for further advanced/custom analysis
+- Decibel support
+- - Power units optionally displayed in dB
+- Argument-parsing support
+- Works directly via `python virgo.py`, or as a module (see below)
+
 ## Example Usage
 
 ```python
