@@ -4,9 +4,9 @@
 </p>
 
 ## About VIRGO
-**VIRGO** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio Companion](https://wiki.gnuradio.org/index.php/GNURadioCompanion) (GRC) that is conveniently applicable to any radio telescope working with a GRC-supported software-defined radio (SDR). In addition to data acquisition, VIRGO also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)**, a **time series (power vs time)** and a **total power distribution** plot.
+**VIRGO** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio](https://wiki.gnuradio.org) (GR) that is conveniently applicable to any radio telescope working with a GR-supported software-defined radio (SDR). In addition to data acquisition, VIRGO also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)**, a **time series (power vs time)** and a **total power distribution** plot.
 
-A list of GRC-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
+A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
 
 ### Key Features
 
@@ -83,7 +83,7 @@ virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
   <img src="https://i.imgur.com/VBxFBs6.png" alt="Example Observation"/>
 </p>                                                                     
 
-## GRC Data Acquisition Flowgraph
+## Data Acquisition Flowgraph
 **VIRGO** is a [**polyphase filterbank** spectrometer](https://arxiv.org/abs/1607.03579). The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
 
 ![alt text](https://i.imgur.com/5tR7WjL.png "Data Acquisition Flowgraph")
