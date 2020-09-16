@@ -90,14 +90,17 @@ the S/W): Allen Telescope Array (42x 6.1m)`
 
 `%Comment: Add example observation (use .pdf instead of .png for optimal quality)`
 
-More specifically, `VIRGO` is a polyphase filterbank spectrometer, offering a 
-significant reduction in spectral leakage compared to the more traditional
-Fourier transform filterbank spectrometers, with a minimal increase in
-computational requirements, as described in greater detail by Danny C. Price
-(2018). Furthermore, `VIRGO` supports optional median operations, both in the
-frequency and time domain, for the suppression of narrowband amd/or
+# Features
+
+One of the key features of `VIRGO` is that it is a polyphase filterbank
+spectrometer, offering a  significant reduction in spectral leakage compared to
+the more traditional Fourier transform filterbank spectrometers, with a minimal
+increase in computational requirements, as described in greater detail by Danny
+C. Price (2018). Furthermore, `VIRGO` supports optional median operations, both
+in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
-the raw observation data in a FITS/csv format for further analysis.
+the raw observation data as a FITS/csv-formatted file for further manual
+intervention analysis.
 
 `%Comment: Must cite Price according to his comment about rev. 2: https://arxiv.org/abs/1607.03579`
 
@@ -121,8 +124,8 @@ observation = {
 # Begin data acquisition in 10 seconds
 virgo.observe(obs_parameters=observation, obs_file='observation.dat', start_in=10)
 
-# Analyze data, and export the raw data as a FITS file
-virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
+# Analyze data, mitigate RFI and export the data as a FITS file
+virgo.plot(obs_parameters=observation, n=20, m=35, f_rest=1420.4057517667e6,
            obs_file='observation.dat', cal_file='calibration.dat',
            waterfall_fits='obs.fits', plot_file='plot.png')
 ```	
