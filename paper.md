@@ -36,8 +36,9 @@ important requirement that deems radio astronomy observations and analyses
 possible, is of course an appropriate software pipeline compatible with the
 spectrometers with which radio observatories are equipped.
 
-%Comment: should 'competent' be changed to a different word?
-%Comment: is 'astrophysical' redundant/obvious since I'm referring to 'universe' anyway?
+`%Comment: should 'competent' be changed to a different word?`
+
+`%Comment: is 'astrophysical' redundant/obvious since I'm referring to 'universe' anyway?`
 
 The forces on stars, galaxies, and dark matter under external gravitational
 fields lead to the dynamical evolution of structures in the universe. The orbits
@@ -61,8 +62,9 @@ spectrum, the dynamic spectrum (waterfall), the time series (power vs time) and
 the total power distribution plot of the observation, with the help of the `numpy`
 and `matplotlib` packages.
 
-%Comment: Should I cite gnu radio/numpy/matplotlib?
-%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?
+`%Comment: Should I cite gnu radio/numpy/matplotlib?`
+
+`%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
 
 Designed to be used by both researchers and students in the field of radio
 astronomy, `VIRGO` has already been adapted in a number of small and
@@ -72,14 +74,14 @@ the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among other
 An example observation of the 21-cm hydrogen line acquired and processed with
 `VIRGO` is shown in \autoref{fig:example}.
 
-%Comment: "with great success" - is this inappropriately subjective? Would a
-different phrase be more suitable?
-%Comment: Do the telescopes require some sort of a reference? What if not quite
-applicable (i.e. telescope doesn't have an official website etc.)?
-%Comment: Maybe I can ask Paul to try VIRGO out with the Dwingeloo 25m to add
-another large-aperture antenna to the list?
-%Comment: TBA (most likely within a few days, once I get a chance to implement
-the S/W): Allen Telescope Array (42x 6.1m)
+`%Comment: "with great success" - is this inappropriately subjective? Would a
+different phrase be more suitable?`
+`%Comment: Do the telescopes require some sort of a reference? What if not quite
+applicable (i.e. telescope doesn't have an official website etc.)?`
+`%Comment: Maybe I can ask Paul to try VIRGO out with the Dwingeloo 25m to add
+another large-aperture antenna to the list?`
+`%Comment: TBA (most likely within a few days, once I get a chance to implement
+the S/W): Allen Telescope Array (42x 6.1m)`
 
 ![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `VIRGO`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series, along with the total power distribution (bottom right) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
