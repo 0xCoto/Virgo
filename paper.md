@@ -76,16 +76,19 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 
 `%Comment: "with great success" - is this inappropriately subjective? Would a
 different phrase be more suitable?`
+
 `%Comment: Do the telescopes require some sort of a reference? What if not quite
 applicable (i.e. telescope doesn't have an official website etc.)?`
+
 `%Comment: Maybe I can ask Paul to try VIRGO out with the Dwingeloo 25m to add
 another large-aperture antenna to the list?`
+
 `%Comment: TBA (most likely within a few days, once I get a chance to implement
 the S/W): Allen Telescope Array (42x 6.1m)`
 
 ![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `VIRGO`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series, along with the total power distribution (bottom right) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
-%Comment: Add example observation (use .pdf instead of .png for optimal quality)
+`%Comment: Add example observation (use .pdf instead of .png for optimal quality)`
 
 More specifically, `VIRGO` is a polyphase filterbank spectrometer, offering a 
 significant reduction in spectral leakage compared to the more traditional
@@ -96,7 +99,7 @@ frequency and time domain, for the suppression of narrowband amd/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data in a FITS/csv format for further analysis.
 
-%Comment: Must cite Price according to his comment about rev. 2: https://arxiv.org/abs/1607.03579
+`%Comment: Must cite Price according to his comment about rev. 2: https://arxiv.org/abs/1607.03579`
 
 # Example Usage
 ```python
