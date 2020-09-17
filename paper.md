@@ -50,8 +50,7 @@ In addition to its data-acquisition functionality, `VIRGO` carries out automated
 analysis of the recorded samples, producing the average spectrum, the calibrated
 spectrum, the dynamic spectrum (waterfall), the time series (power vs time) and
 the total power distribution plot of the observation, with the help of the NumPy
-(Harris, C.R., Millman, K.J., van der Walt, S.J. et al. 2020) and Matplotlib
-(Hunter 2007) packages.
+[@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 `%Comment: should gnuradio.org be cited somehow? There doesn't seem to be an official paper`
 `%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
