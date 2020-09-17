@@ -40,6 +40,8 @@ spectrometers with which radio observatories are equipped.
 
 `%Comment: is 'astrophysical' redundant/obvious since I'm referring to 'universe' anyway?`
 
+`%Comment: comma redundant in 'possible,'?`
+
 # Statement of need
 
 `VIRGO` is a Python package for the acquisition, processing and analysis of
@@ -52,7 +54,8 @@ spectrum, the dynamic spectrum (waterfall), the time series (power vs time) and
 the total power distribution plot of the observation, with the help of the NumPy
 [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
-`%Comment: should gnuradio.org be cited somehow? There doesn't seem to be an official paper`
+`%Comment: Should gnuradio.org be cited somehow? There doesn't seem to be an official paper. Others paper cite it.`
+
 `%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
 
 Designed to be used by both researchers and students in the field of radio
@@ -72,20 +75,20 @@ applicable (i.e. telescope doesn't have an official website etc.)?`
 `%Comment: Maybe I can ask Paul to try VIRGO out with the Dwingeloo 25m to add
 another large-aperture antenna to the list?`
 
-`%Comment: TBA (most likely within a few days, once I get a chance to implement
+`%Self-comment: TBA (most likely within a few days, once I get a chance to implement
 the S/W): Allen Telescope Array (42x 6.1m)`
 
 ![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `VIRGO`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series, along with the total power distribution (bottom right) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
-`%Comment: Add example observation (use .pdf instead of .png for optimal quality)`
+`%Self-comment: Add example observation (use .pdf instead of .png for optimal quality)`
 
 # Features
 
 One of the key features of `VIRGO` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
-increase in computational requirements, as described in greater detail by Danny
-C. Price (2018). Furthermore, `VIRGO` supports optional median operations, both
+increase in computational requirements, as described in greater detail by
+@Danny C. Price.:2021 Furthermore, `VIRGO` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file for further manual
