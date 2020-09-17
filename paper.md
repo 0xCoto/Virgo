@@ -44,16 +44,16 @@ spectrometers with which radio observatories are equipped.
 
 `VIRGO` is a Python package for the acquisition, processing and analysis of
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
-radiometer based on the `GNU Radio` framework, and is conveniently applicable
+radiometer based on the GNU Radio framework, and is conveniently applicable
 to any radio telescope working with a GR-supported software-defined radio (SDR).
 In addition to its data-acquisition functionality, `VIRGO` carries out automated
 analysis of the recorded samples, producing the average spectrum, the calibrated
 spectrum, the dynamic spectrum (waterfall), the time series (power vs time) and
-the total power distribution plot of the observation, with the help of the `numpy`
-and `matplotlib` packages.
+the total power distribution plot of the observation, with the help of the NumPy
+(Harris, C.R., Millman, K.J., van der Walt, S.J. et al. 2020) and Matplotlib
+(Hunter 2007) packages.
 
-`%Comment: Should I cite gnu radio/numpy/matplotlib?`
-
+`%Comment: should gnuradio.org be cited somehow? There doesn't seem to be an official paper`
 `%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
 
 Designed to be used by both researchers and students in the field of radio
