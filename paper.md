@@ -36,6 +36,8 @@ important requirement that deems radio astronomy observations and analyses
 possible, is of course an appropriate software pipeline compatible with the
 spectrometers with which radio observatories are equipped.
 
+`%Comment: Does any of this ('growth in the field of radio astronomy', 'celestial sources emit radio waves' etc.) require proof (citation)?`
+
 `%Comment: should 'competent' be changed to a different word?`
 
 `%Comment: is 'astrophysical' redundant/obvious since I'm referring to 'universe' anyway?`
@@ -46,13 +48,13 @@ spectrometers with which radio observatories are equipped.
 
 `VIRGO` is a Python package for the acquisition, processing and analysis of
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
-radiometer based on the GNU Radio framework, and is conveniently applicable
-to any radio telescope working with a GR-supported software-defined radio (SDR).
-In addition to its data-acquisition functionality, `VIRGO` carries out automated
-analysis of the recorded samples, producing the average spectrum, the calibrated
-spectrum, the dynamic spectrum (waterfall), the time series (power vs time) and
-the total power distribution plot of the observation, with the help of the NumPy
-[@Harris2020] and Matplotlib [@Hunter:2007] packages.
+radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
+applicable to any radio telescope working with a GR-supported software-defined
+radio (SDR). In addition to its data-acquisition functionality, `VIRGO` carries
+out automated analysis of the recorded samples, producing the average spectrum,
+the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
+vs time) and the total power distribution plot of the observation, with the help
+of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 `%Comment: Should gnuradio.org be cited somehow? There doesn't seem to be an official paper. Others paper cite it.`
 
@@ -93,8 +95,6 @@ in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file for further manual
 intervention analysis.
-
-`%Comment: Must cite Price according to his comment about rev. 2: https://arxiv.org/abs/1607.03579`
 
 # Example Usage
 ```python
@@ -137,17 +137,5 @@ For a quick reference, the following citation commands can be used:
 - `@author:2001`  ->  "Author et al. (2001)"
 - `[@author:2001]` -> "(Author et al., 2001)"
 - `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Fenced code blocks are rendered with syntax highlighting:
-```python
-for n in range(10):
-    yield f(n)
-```	
 
 # References
