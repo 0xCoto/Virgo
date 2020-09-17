@@ -56,7 +56,7 @@ the calibrated spectrum, the dynamic spectrum (waterfall), the time series (powe
 vs time) and the total power distribution plot of the observation, with the help
 of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
-`%Comment: Should gnuradio.org be cited somehow? There doesn't seem to be an official paper. Others paper cite it.`
+`%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
 `%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
 
@@ -121,21 +121,6 @@ virgo.observe(obs_parameters=observation, obs_file='observation.dat',
 virgo.plot(obs_parameters=observation, n=20, m=35, f_rest=1420.4057517667e6,
            obs_file='observation.dat', cal_file='calibration.dat',
            waterfall_fits='obs.fits', plot_file='plot.png')
-```	
-
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
+```
 
 # References
