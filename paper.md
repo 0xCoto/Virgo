@@ -88,7 +88,7 @@ One of the key features of `VIRGO` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described in greater detail by
-@Price:2021 Furthermore, `VIRGO` supports optional median operations, both
+@Price:2021. Furthermore, `VIRGO` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file for further manual
