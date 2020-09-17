@@ -111,7 +111,8 @@ observation = {
 }
 
 # Begin data acquisition in 10 seconds
-virgo.observe(obs_parameters=observation, obs_file='observation.dat', start_in=10)
+virgo.observe(obs_parameters=observation, obs_file='observation.dat',
+              start_in=10)
 
 # Analyze data, mitigate RFI and export the data as a FITS file
 virgo.plot(obs_parameters=observation, n=20, m=35, f_rest=1420.4057517667e6,
