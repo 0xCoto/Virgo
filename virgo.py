@@ -168,13 +168,15 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 			spectrum = 10**((avg_spectrum-avg_spectrum_cal)/10)
 		else:
 			spectrum = avg_spectrum/avg_spectrum_cal
-		spectrum = SNR(spectrum, mask)
 
 		# Mitigate RFI (Frequency Domain)
 		if n != 0:
 			spectrum_clean = spectrum.copy()
 			for i in range(0, int(channels)):
 				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
+
+		spectrum = SNR(spectrum, mask)
+		spectrum_clean = SNR(spectrum_clean, mask)
 
 		# Apply position offset for Spectral Line label
 		text_offset = 60
