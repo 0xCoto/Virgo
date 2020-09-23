@@ -51,7 +51,7 @@ of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
 Designed to be used by both researchers and students in the field of radio
-astronomy, `Virgo` has already been adapted by a number of small and
+astronomy, `Virgo` has already been adopted by a number of small and
 large-aperture radio telescopes, permitting both spectral and continuum
 observations with great success. These instruments include the ISEC TLM-18 (18m),
 the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among others.
