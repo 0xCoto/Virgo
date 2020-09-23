@@ -1,5 +1,5 @@
 ---
-title: 'VIRGO: A Versatile Spectrometer for Radio Astronomy'
+title: 'Virgo: A Versatile Spectrometer for Radio Astronomy'
 tags:
   - Python
   - radio astronomy
@@ -27,70 +27,51 @@ bibliography: paper.bib
 
 # Summary
 
-For the last decades, radio astronomy has been undoubtedly among the most
-fundamental branches of astrophysics. This is due to the fact that a variety of
-celestial objects tend to emit electromagnetic radiation at radio wavelengths,
-which has lead to the development of competent radio telescopes, capable of
+For the last decades, radio astronomy has been among the most fundamental
+branches of astrophysics. This is due to the fact that a variety of
+celestial objects emit electromagnetic radiation at radio wavelengths,
+which has lead to the development of radio telescopes, capable of
 revealing the otherwise-hidden astrophysical properties of the universe. An
-important requirement that deems radio astronomy observations and analyses
-possible, is of course an appropriate software pipeline compatible with the
+important requirement that makes radio astronomy observations and analyses
+possible is an appropriate software pipeline compatible with the
 spectrometers with which radio observatories are equipped.
-
-`%Comment: Does any of this ('growth in the field of radio astronomy', 'celestial sources emit radio waves' etc.) require proof (citation)?`
-
-`%Comment: should 'competent' be changed to a different word?`
-
-`%Comment: is 'astrophysical' redundant/obvious since I'm referring to 'universe' anyway?`
-
-`%Comment: comma redundant in 'possible,'?`
 
 # Statement of need
 
-`VIRGO` is a Python package for the acquisition, processing and analysis of
+`Virgo` is a Python package for the acquisition, processing and analysis of
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
-applicable to any radio telescope working with a GR-supported software-defined
-radio (SDR). In addition to its data-acquisition functionality, `VIRGO` carries
-out automated analysis of the recorded samples, producing the average spectrum,
+applicable to any radio telescope working with a GNU Radio-supported software-defined
+radio (SDR). In addition to its data-acquisition functionality, `Virgo` carries
+out automated analysis of the recorded samples, producing the time-averaged spectrum,
 the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
 vs time) and the total power distribution plot of the observation, with the help
 of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
-`%Comment: Should "with the help of numpy/matplotlib" be rephrased a bit differently?`
-
 Designed to be used by both researchers and students in the field of radio
-astronomy, `VIRGO` has already been adapted in a number of small and
+astronomy, `Virgo` has already been adapted by a number of small and
 large-aperture radio telescopes, permitting both spectral and continuum
 observations with great success. These instruments include the ISEC TLM-18 (18m),
 the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among others.
 An example observation of the 21-cm hydrogen line acquired and processed with
-`VIRGO` is shown in \autoref{fig:example}.
-
-`%Comment: "with great success" - is this inappropriately subjective? Would a
-different phrase be more suitable?`
-
-`%Comment: Do the telescopes require some sort of a reference? What if not quite
-applicable (i.e. telescope doesn't have an official website etc.)?`
-
-`%Comment: Maybe I can ask Paul to try VIRGO out with the Dwingeloo 25m to add
-another large-aperture antenna to the list?`
+`Virgo` is shown in \autoref{fig:example}.
 
 `%Self-comment: TBA (most likely within a few days, once I get a chance to implement
 the S/W): Allen Telescope Array (42x 6.1m)`
 
-![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `VIRGO`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
+![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
 `%Self-comment: Add example observation (use .pdf instead of .png for optimal quality)`
 
 # Features
 
-One of the key features of `VIRGO` is that it is a polyphase filterbank
+One of the key features of `Virgo` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described in greater detail by
-@Price:2021. Furthermore, `VIRGO` supports optional median operations, both
+@Price:2021. Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file for further manual
