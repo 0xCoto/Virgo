@@ -42,8 +42,8 @@ spectrometers with which radio observatories are equipped.
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
-radio (i.e. a radio receiver architecture which applies certain functionalities on a
-computer or embedded system by means of software).
+radio (i.e. a radio receiver architecture which applies certain functionalities on an
+embedded system/computer by means of software).
 
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
