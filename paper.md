@@ -42,19 +42,30 @@ spectrometers with which radio observatories are equipped.
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
-radio (SDR). In addition to its data-acquisition functionality, `Virgo` carries
+radio (i.e. a radio receiver architecture which applies some of its functionalities
+in software). In addition to its data-acquisition functionality, `Virgo` carries
 out automated analysis of the recorded samples, producing the time-averaged spectrum,
 the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
 vs time) and the total power distribution plot of the observation, with the help
-of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
+of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages. 
 
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
-Designed to be used by both researchers and students in the field of radio
+Designed to be used by students, educators and amateurs in the field of radio
 astronomy, `Virgo` has already been adopted by a number of small and
 large-aperture radio telescopes, permitting both spectral and continuum
 observations with great success. These instruments include the ISEC TLM-18 (18m),
 the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among others.
+Although the hardware aspect of a radio telescope is generally handled by newcomers
+with relative ease, the skill set needed to integrate a complete software pipeline to
+support observations is not something most users are equipped with. However,
+along with the broad capabilities `Virgo` has to offer, its simple usage is among the
+most attracting aspects to a non-expert.
+
+`Virgo` tackles this problem by providing non-experts with a tool to collect and
+interpret data from radio telescopes, without requiring expertise in digital signal 
+processing and software engineering.
+
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
 
