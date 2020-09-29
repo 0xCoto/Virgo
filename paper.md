@@ -67,6 +67,8 @@ processing and software engineering.
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
 
+'%Comment: As a sidenote, judging by the (educational) statement of need of this published paper, I think we've got a chance: https://joss.theoj.org/papers/10.21105/joss.02436`
+
 `%Self-comment: TBA (most likely within a few days, once I get a chance to implement
 the S/W): Allen Telescope Array (42x 6.1m)`
 
@@ -80,12 +82,18 @@ One of the key features of `Virgo` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described in greater detail by
-@Price:2021. Furthermore, `Virgo` supports optional median operations, both
+@Price:2021. In addition to its data-acquisition functionality, `Virgo` carries
+out automated analysis of the recorded samples, producing the time-averaged spectrum,
+the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
+vs time) and the total power distribution plot of the observation, with the help
+of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
+
+Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
 
-
+`%Comment: In what level of detail should I dive into? I would think something like this (https://github.com/0xCoto/Virgo#data-analysis) is a bit too much information, or is it good to include all these details?`
 
 # Example Usage
 ```python
