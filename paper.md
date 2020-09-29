@@ -25,7 +25,7 @@ bibliography: paper.bib
 
 ---
 
-# Summary
+# Introduction
 
 For the last decades, radio astronomy has been among the most fundamental
 branches of astrophysics. This is due to the fact that a variety of
