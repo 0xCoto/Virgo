@@ -42,12 +42,8 @@ spectrometers with which radio observatories are equipped.
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
-radio (i.e. a radio receiver architecture which applies some of its functionalities
-in software). In addition to its data-acquisition functionality, `Virgo` carries
-out automated analysis of the recorded samples, producing the time-averaged spectrum,
-the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
-vs time) and the total power distribution plot of the observation, with the help
-of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages. 
+radio (i.e. a radio receiver architecture which applies certain functionalities on a
+computer or embedded system by means of software).
 
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
@@ -86,6 +82,8 @@ increase in computational requirements, as described in greater detail by
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
+
+
 
 # Example Usage
 ```python
