@@ -45,6 +45,8 @@ applicable to any radio telescope working with a GNU Radio-supported software-de
 radio (i.e. a radio receiver architecture which applies certain functionalities on an
 embedded system/computer by means of software).
 
+`%Comment: Wikipedia cites the parentheses statement with 'Markus Dillinger, Kambiz Madani, Nancy Alonistioti (2003). Software Defined Radio: Architectures, Systems and Functions. Wiley & Sons. p. xxxiii. ISBN 0-470-85164-3'. Should I do the same?`
+
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
 Designed to be used by students, educators and amateurs in the field of radio
