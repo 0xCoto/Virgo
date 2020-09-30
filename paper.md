@@ -59,8 +59,11 @@ Although the hardware aspect of a radio telescope is generally handled by newcom
 with relative ease, the skill set needed to integrate a complete software pipeline to
 support observations is not something most users are equipped with. `Virgo` tackles
 this problem by providing non-experts with a tool to collect and interpret data from
-radio telescopes, without requiring expertise in digital signal  processing and
-software engineering.
+radio telescopes, without requiring expertise in digital signal processing and
+software engineering. Example use cases include classroom experiments in which
+students build a small-aperture antenna, and with the help of `Virgo`, manage to
+obtain adequate data to map out the galactic distribution of neutral hydrogen and/or
+derive the rotation curve of the Milky Way.
 
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
