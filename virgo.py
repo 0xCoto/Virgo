@@ -174,9 +174,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 			spectrum_clean = spectrum.copy()
 			for i in range(0, int(channels)):
 				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
+			spectrum_clean = SNR(spectrum_clean, mask)
 
 		spectrum = SNR(spectrum, mask)
-		spectrum_clean = SNR(spectrum_clean, mask)
 
 		# Apply position offset for Spectral Line label
 		text_offset = 60
