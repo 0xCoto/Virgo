@@ -89,8 +89,6 @@ in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference, while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
 
-`%Comment: In what level of detail should I dive into? I would think something like this (https://github.com/0xCoto/Virgo#data-analysis) is a bit too much information, or is it good to include all these details?`
-
 # Example Usage
 ```python
 import virgo
