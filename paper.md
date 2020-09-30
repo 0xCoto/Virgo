@@ -126,7 +126,7 @@ As `Virgo` gets adopted by more and more radio telescopes, the need for expandin
 software's capabilities grow. Additional features that have been proposed include but
 are not limited to a more robust and intelligent system for the detection and
 mitigation of RFI, and the support for a data acquisition/analysis pipeline for
-pulsar astronomy, both of which offer the potential of appealing to a braoder user
+pulsar astronomy, both of which offer the potential of appealing to a broader user
 audience.
 
 # References
