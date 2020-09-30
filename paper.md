@@ -54,20 +54,16 @@ astronomy, `Virgo` has already been adopted by a number of small and
 large-aperture radio telescopes, permitting both spectral and continuum
 observations with great success. These instruments include the ISEC TLM-18 (18m),
 the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among others.
+
 Although the hardware aspect of a radio telescope is generally handled by newcomers
 with relative ease, the skill set needed to integrate a complete software pipeline to
-support observations is not something most users are equipped with. However,
-along with the broad capabilities `Virgo` has to offer, its simple usage is among the
-most attracting aspects to a non-expert.
-
-`Virgo` tackles this problem by providing non-experts with a tool to collect and
-interpret data from radio telescopes, without requiring expertise in digital signal 
-processing and software engineering.
+support observations is not something most users are equipped with. `Virgo` tackles
+this problem by providing non-experts with a tool to collect and interpret data from
+radio telescopes, without requiring expertise in digital signal  processing and
+software engineering.
 
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
-
-'%Comment: As a sidenote, judging by the (educational) statement of need of this published paper, I think we've got a chance: https://joss.theoj.org/papers/10.21105/joss.02436`
 
 `%Self-comment: TBA (most likely within a few days, once I get a chance to implement
 the S/W): Allen Telescope Array (42x 6.1m)`
