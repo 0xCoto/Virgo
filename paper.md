@@ -42,10 +42,11 @@ spectrometers with which radio observatories are equipped.
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
-radio (SDR - a radio receiver architecture which applies certain functionalities
-on an embedded system/computer by means of software).
+radio (SDR; a radio receiver architecture where some conventional hardware-based
+steps are replicated in software (@Dillinger:2003)).
 
-`%Comment: Wikipedia cites the parentheses statement with 'Markus Dillinger, Kambiz Madani, Nancy Alonistioti (2003). Software Defined Radio: Architectures, Systems and Functions. Wiley & Sons. p. xxxiii. ISBN 0-470-85164-3'. Should I do the same?`
+(SDR - a radio receiver architecture which applies certain functionalities
+on an embedded system/computer by means of software).
 
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
@@ -68,16 +69,7 @@ distribution of neutral hydrogen and/or derive the rotation curve of the Milky W
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
 
-`%Self-comment: TBA (most likely within a few days, once I get a chance to implement
-the S/W): Allen Telescope Array (42x 6.1m)`
-
-![Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
-
-`%Self-comment: Add example observation (use .pdf instead of .png for optimal quality)`
-
-# Use Cases
-
-TBA
+![TO-DO: ADD FIGURE - Clouds of neutral hydrogen/the 21-cm hydrogen line at (Source name/RA=hh:mm:ss, Dec=dd:mm:ss), observed by the (TBA) Telescope with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
 # Features
 
