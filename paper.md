@@ -43,7 +43,7 @@ data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
 radio (SDR; a radio receiver architecture where some conventional hardware-based
-steps are replicated in software, [@Dillinger:2003]).
+steps are replicated in software, @Dillinger:2003).
 
 (SDR - a radio receiver architecture which applies certain functionalities
 on an embedded system/computer by means of software).
