@@ -45,9 +45,6 @@ applicable to any radio telescope working with a GNU Radio-supported software-de
 radio (SDR; a radio receiver architecture where some conventional hardware-based
 steps are replicated in software, @Dillinger:2003).
 
-(SDR - a radio receiver architecture which applies certain functionalities
-on an embedded system/computer by means of software).
-
 `%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
 Designed to be used by students, educators and amateurs in the field of radio
