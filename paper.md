@@ -36,7 +36,7 @@ important requirement that makes radio astronomy observations and analyses
 possible is an appropriate software pipeline compatible with the
 spectrometers with which radio observatories are equipped.
 
-# Statement of need
+# Statement of Need
 
 `Virgo` is a Python package for the acquisition, processing and analysis of
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
@@ -72,6 +72,10 @@ the S/W): Allen Telescope Array (42x 6.1m)`
 
 `%Self-comment: Add example observation (use .pdf instead of .png for optimal quality)`
 
+# Use Cases
+
+TBA
+
 # Features
 
 One of the key features of `Virgo` is that it is a polyphase filterbank
@@ -86,7 +90,7 @@ of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
-short-duration radio frequency interference, while allowing the user to export
+short-duration radio frequency interference (RFI), while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
 
 # Example Usage
@@ -115,5 +119,14 @@ virgo.plot(obs_parameters=observation, n=20, m=35, f_rest=1420.4057517667e6,
            obs_file='observation.dat', cal_file='calibration.dat',
            waterfall_fits='obs.fits', plot_file='plot.png')
 ```
+
+# Future Work
+
+As `Virgo` gets adopted by more and more radio telescopes, the need for expanding the
+software's capabilities grow. Additional features that have been proposed include but
+are not limited to a more robust and intelligent system for the detection and
+mitigation of RFI, and the support for a data acquisition/analysis pipeline for
+pulsar astronomy, both of which offer the potential of appealing to a braoder user
+audience.
 
 # References
