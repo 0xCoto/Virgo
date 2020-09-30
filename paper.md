@@ -85,11 +85,12 @@ One of the key features of `Virgo` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described in greater detail by
-@Price:2021. In addition to its data-acquisition functionality, `Virgo` carries
-out automated analysis of the recorded samples, producing the time-averaged spectrum,
-the calibrated spectrum, the dynamic spectrum (waterfall), the time series (power
-vs time) and the total power distribution plot of the observation, with the help
-of the NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
+@Price:2021. In addition to its data-acquisition functionality that performs data
+reduction by time-averaging spectrum samples in real time, `Virgo` carries out
+automated analysis of the recorded samples, producing the time-averaged spectrum, the
+calibrated spectrum, the dynamic spectrum (waterfall), the time series (power vs
+time) and the total power distribution plot of the observation, with the help of the
+NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
