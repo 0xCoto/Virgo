@@ -171,10 +171,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 		# Mitigate RFI (Frequency Domain)
 		if n != 0:
-			spectrum_clean = spectrum.copy()
+			spectrum_clean = SNR(spectrum.copy(), mask)
 			for i in range(0, int(channels)):
 				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
-			spectrum_clean = SNR(spectrum_clean, mask)
 
 		spectrum = SNR(spectrum, mask)
 
