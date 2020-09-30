@@ -42,8 +42,8 @@ spectrometers with which radio observatories are equipped.
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
-radio (i.e. a radio receiver architecture which applies certain functionalities on an
-embedded system/computer by means of software).
+radio (SDR - a radio receiver architecture which applies certain functionalities
+on an embedded system/computer by means of software).
 
 `%Comment: Wikipedia cites the parentheses statement with 'Markus Dillinger, Kambiz Madani, Nancy Alonistioti (2003). Software Defined Radio: Architectures, Systems and Functions. Wiley & Sons. p. xxxiii. ISBN 0-470-85164-3'. Should I do the same?`
 
@@ -61,9 +61,10 @@ support observations is not something most users are equipped with. `Virgo` tack
 this problem by providing non-experts with a tool to collect and interpret data from
 radio telescopes, without requiring expertise in digital signal processing and
 software engineering. Example use cases include classroom experiments in which
-students build a small-aperture antenna, and with the help of `Virgo`, manage to
-obtain adequate data to map out the galactic distribution of neutral hydrogen and/or
-derive the rotation curve of the Milky Way.
+students build a small-aperture antenna connected to a low-noise amplifier followed
+by an SDR, and with the help of `Virgo`, manage to obtain adequate data to map out
+the galactic distribution of neutral hydrogen and/or derive the rotation curve of the
+Milky Way.
 
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
