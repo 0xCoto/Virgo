@@ -92,7 +92,7 @@ that reason, `Virgo` performs bandpass calibration:
 \begin{equation}
   X_\mathrm{cal}(\omega) = \frac{X_\mathrm{on}(\omega)H(\omega)}{X_\mathrm{off}(\omega)H(\omega)},
 \end{equation}
-where $X_\mathrm{cal}$, $X_\mathrm{on}$ and $X_\mathrm{off}$ is the calibrated,
+where $X_\mathrm{cal}$, $X_\mathrm{on}$ and $X_\mathrm{off}$ is the corrected,
 observation and calibration spectra respectively. However, because $X_\mathrm{cal}$
 is arbitrarily scaled (due to the difference between the noise floors $\bar {X}$),
 the power axis is automatically rescaled to units of signal-to-noise ratio.
