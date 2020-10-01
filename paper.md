@@ -83,12 +83,28 @@ spectrum (waterfall), the time series (power vs time) and the total power
 distribution plot of the observation, with the help of the NumPy [@Harris2020] and
 Matplotlib [@Hunter:2007] packages.
 
+Because of the nature of their late-stage architecture, the spectra acquired by SDRs
+have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
+In general, this frequency response $H(j\omega)$ makes it difficult to distinguish
+true signals originating from the sky and not from instrumentation artifacts. For
+that reason, `Virgo` performs bandpass calibration:
+
+\[ S_\mathrm{cal} = S_\mathrm{on}/S_\mathrm{off}, \]
+
+where $S_\mathrm{cal}$, $S_\mathrm{on}$ and $S_\mathrm{off}$ is the calibrated,
+observation and calibration spectra respectively. However, because $S_\mathrm{cal}$
+is arbitrarily scaled (due to the difference between the noise floors $\bar {S}$),
+the power axis is automatically rescaled to signal-to-noise ratio units.
+
+`%Comment: Should I use final-stage? I'm referring to the IF filter which introduces the bandpass shape`
+`%Comment: Should I use 'corrected' instead of 'calibrated' to make it more clear?`
+`%Comment: What can I change the variable names to to make everything more clear?`
+`%Comment: Is '(re)adjusted' or 'adapted' better than 'rescaled'?
+
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
-
-
 
 # Example Usage
 
