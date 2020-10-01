@@ -85,25 +85,14 @@ Matplotlib [@Hunter:2007] packages.
 
 Because of the nature of their late-stage architecture, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
-In general, this frequency response $H(\omega)$ makes it difficult to distinguish
+In general, this frequency response makes it difficult to distinguish
 true signals originating from the sky and not from instrumentation artifacts. For
-that reason, `Virgo` performs bandpass calibration:
+that reason, `Virgo` performs bandpass calibration by taking the ratio of the
+observation spectrum (ON) over the calibration spectrum (OFF).
 
-\begin{equation}
-  X_\mathrm{cal}(\omega) = \frac{X_\mathrm{on}(\omega)H(\omega)}{X_\mathrm{off}(\omega)H(\omega)},
-\end{equation}
-where $X_\mathrm{cal}$, $X_\mathrm{on}$ and $X_\mathrm{off}$ is the corrected,
-observation and calibration spectra respectively. However, because $X_\mathrm{cal}$
-is arbitrarily scaled (due to the difference between the noise floors $\bar {X}$),
-the power axis is automatically rescaled to units of signal-to-noise ratio.
-
-`%Comment: Should I use final-stage? I'm referring to the IF filter which introduces the bandpass shape`
-
-`%Comment: Should I use 'corrected' instead of 'calibrated' to make it more clear?`
-
-`%Comment: What can I change the variable names to to make everything more clear?`
-
-`%Comment: Is '(re)adjusted' or 'adapted' better than 'rescaled'?
+However, because this ratio is arbitrarily scaled (due to the difference in the
+noise floor levels), the power axis is automatically rescaled to units of
+signal-to-noise ratio.
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
