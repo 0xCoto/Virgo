@@ -98,8 +98,11 @@ is arbitrarily scaled (due to the difference between the noise floors $\bar {S}$
 the power axis is automatically rescaled to units of signal-to-noise ratio.
 
 `%Comment: Should I use final-stage? I'm referring to the IF filter which introduces the bandpass shape`
+
 `%Comment: Should I use 'corrected' instead of 'calibrated' to make it more clear?`
+
 `%Comment: What can I change the variable names to to make everything more clear?`
+
 `%Comment: Is '(re)adjusted' or 'adapted' better than 'rescaled'?
 
 Furthermore, `Virgo` supports optional median operations, both
