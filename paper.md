@@ -90,10 +90,10 @@ true signals originating from the sky and not from instrumentation artifacts. Fo
 that reason, `Virgo` performs bandpass calibration:
 
 \begin{equation}
-  S_\mathrm{cal} = \frac{S_\mathrm{on}H(\omega)}{S_\mathrm{off}H(\omega)},
+  X_\mathrm{cal}(\omega) = \frac{X_\mathrm{on}(\omega)H(\omega)}{X_\mathrm{off}(\omega)H(\omega)},
 \end{equation}
-where $S_\mathrm{cal}$, $S_\mathrm{on}$ and $S_\mathrm{off}$ is the calibrated,
-observation and calibration spectra respectively. However, because $S_\mathrm{cal}$
+where $X_\mathrm{cal}$, $X_\mathrm{on}$ and $X_\mathrm{off}$ is the calibrated,
+observation and calibration spectra respectively. However, because $X_\mathrm{cal}$
 is arbitrarily scaled (due to the difference between the noise floors $\bar {S}$),
 the power axis is automatically rescaled to units of signal-to-noise ratio.
 
