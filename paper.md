@@ -83,7 +83,7 @@ spectrum (waterfall), the time series (power vs time) and the total power
 distribution plot of the observation, with the help of the NumPy [@Harris2020] and
 Matplotlib [@Hunter:2007] packages.
 
-Because of the nature of their late-stage architecture, the spectra acquired by SDRs
+Because of the nature of their late-stage architecture, the spectra $X(\omega)$ acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
 In general, this frequency response $H(\omega)$ makes it difficult to distinguish
 true signals originating from the sky and not from instrumentation artifacts. For
