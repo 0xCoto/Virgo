@@ -94,7 +94,7 @@ that reason, `Virgo` performs bandpass calibration:
 \end{equation}
 where $X_\mathrm{cal}$, $X_\mathrm{on}$ and $X_\mathrm{off}$ is the calibrated,
 observation and calibration spectra respectively. However, because $X_\mathrm{cal}$
-is arbitrarily scaled (due to the difference between the noise floors $\bar {X(\omega)}$),
+is arbitrarily scaled (due to the difference between the noise floors $\bar {X}$),
 the power axis is automatically rescaled to units of signal-to-noise ratio.
 
 `%Comment: Should I use final-stage? I'm referring to the IF filter which introduces the bandpass shape`
