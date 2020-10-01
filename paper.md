@@ -89,6 +89,8 @@ short-duration radio frequency interference (RFI), while allowing the user to ex
 the raw observation data as a FITS/csv-formatted file.
 
 # Example Usage
+`Virgo` can either be called directly as a Python script using `python virgo.py -h`,
+or be imported and used as a package:
 ```python
 import virgo
 
