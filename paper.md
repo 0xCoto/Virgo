@@ -9,32 +9,33 @@ authors:
   - name: Apostolos Spanakis-Misirlis
     orcid: 0000-0001-6928-6877
     affiliation: 1
-  - name: TBA
+  - name: Cameron L. Van Eck
     affiliation: 2
   - name: TBA
     affiliation: 3
 affiliations:
- - name: University of Piraeus
+ - name: Department of Informatics, University of Piraeus, Greece
    index: 1
- - name: TBA (Institution Name)
+ - name: Dunlap Institute for Astronomy and Astrophysics, University of Toronto, 50 St. George Street, Toronto, ON M5S 3H4, Canada
    index: 2
  - name: TBA (Institution Name)
    index: 3
-date: 16 September 2020
+date: 1 October 2020
 bibliography: paper.bib
 
 ---
 
 # Introduction
 
-For the last decades, radio astronomy has been among the most fundamental
+For the past few decades, radio astronomy has been among the most fundamental
 branches of astrophysics. This is due to the fact that a variety of
 celestial objects emit electromagnetic radiation at radio wavelengths,
-which has led to the development of radio telescopes, capable of
-revealing the otherwise-hidden astrophysical properties of the universe. An
-important requirement that makes radio astronomy observations and analyses
-possible is an appropriate software pipeline compatible with the
-spectrometers with which radio observatories are equipped.
+which has led to the development of radio telescopes capable of revealing
+the otherwise-hidden astrophysical properties of the universe. An important
+requirement that makes radio astronomy observations and analyses possible
+is an appropriate software pipeline compatible with the spectrometers
+with which radio observatories are equipped. 'In this work, we present `Virgo`:
+a versatile software solution for radio telescopes.'
 
 # Statement of Need
 
