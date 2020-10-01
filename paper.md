@@ -85,12 +85,12 @@ Matplotlib [@Hunter:2007] packages.
 
 Because of the nature of their late-stage architecture, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
-In general, this frequency response makes it difficult to distinguish
-true signals originating from the sky and not from instrumentation artifacts. For
+In general, this frequency response makes it difficult to distinguish true
+signals originating from the sky and not from instrumentation artifacts. For
 that reason, `Virgo` performs bandpass calibration by taking the ratio of the
-observation spectrum (ON) over the calibration spectrum (OFF). However, because this
-ratio is arbitrarily scaled (due to the difference in the noise floor levels), the
-power axis is automatically rescaled to units of signal-to-noise ratio.
+observation spectrum over the calibration spectrum. However, because this ratio is
+arbitrarily scaled (due to the difference in the noise floor levels), the power axis
+is automatically rescaled to units of signal-to-noise ratio.
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
