@@ -34,8 +34,8 @@ which has led to the development of radio telescopes capable of revealing
 the otherwise-hidden astrophysical properties of the universe. An important
 requirement that makes radio astronomy observations and analyses possible
 is an appropriate software pipeline compatible with the spectrometers
-with which radio observatories are equipped. 'In this work, we present `Virgo`:
-a versatile software solution for radio telescopes.'
+with which radio observatories are equipped. In this work, we present `Virgo`:
+a versatile software solution for radio telescopes.
 
 # Statement of Need
 
