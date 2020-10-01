@@ -88,12 +88,15 @@ in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
 
+
+
 # Example Usage
-`Virgo` can either be called directly as a Python script using e.g.
+
+`Virgo` can either be called directly as a Python script using e.g.,
 
 `python virgo.py -rf 10 -if 20 -bb 20 -f 1420e6 -b 5e6 -c 2048 -t 1 -d 60 -s 10 -n 20 -m 35 -r 1420.4057517667e6 -C calibration.dat -W obs.fits`,
 
-or be imported and used as a package:
+or imported and used as a package:
 ```python
 import virgo
 
