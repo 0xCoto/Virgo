@@ -2,6 +2,7 @@
 title: 'Virgo: A Versatile Spectrometer for Radio Astronomy'
 tags:
   - Python
+  - astronomy
   - radio astronomy
   - digital signal processing
   - astrophysics
@@ -28,15 +29,14 @@ bibliography: paper.bib
 
 # Introduction
 
-For the past few decades, radio astronomy has been among the most fundamental
-branches of astrophysics. This is due to the fact that a variety of
-celestial objects emit electromagnetic radiation at radio wavelengths,
-which has led to the development of radio telescopes capable of revealing
-the otherwise-hidden astrophysical properties of the universe. An important
-requirement that makes radio astronomy observations and analyses possible
-is an appropriate software pipeline compatible with the spectrometers
-with which radio observatories are equipped. In this work, we present `Virgo`:
-a versatile software solution for radio telescopes.
+For the past few decades, radio astronomy has been a rapidly developing area of
+astrophysics. This is due to the fact that a variety of celestial objects emit
+electromagnetic radiation at radio wavelengths, which has led to the
+development of radio telescopes capable of revealing the otherwise-hidden
+astrophysical properties of the universe. An important requirement that makes radio
+astronomy observations and analyses possible is an appropriate software pipeline
+compatible with the spectrometers with which radio observatories are equipped. In
+this work, we present `Virgo`: a versatile software solution for radio telescopes.
 
 # Statement of Need
 
