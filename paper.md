@@ -85,12 +85,12 @@ Matplotlib [@Hunter:2007] packages.
 
 Because of the nature of their late-stage architecture, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
-In general, this frequency response $H(j\omega)$ makes it difficult to distinguish
+In general, this frequency response $H(\omega)$ makes it difficult to distinguish
 true signals originating from the sky and not from instrumentation artifacts. For
 that reason, `Virgo` performs bandpass calibration:
 
 \begin{equation}
-  S_\mathrm{cal} = \frac{S_\mathrm{on}H(j\omega)}{S_\mathrm{off}H(j\omega)},
+  S_\mathrm{cal} = \frac{S_\mathrm{on}H(\omega)}{S_\mathrm{off}H(\omega)},
 \end{equation}
 where $S_\mathrm{cal}$, $S_\mathrm{on}$ and $S_\mathrm{off}$ is the calibrated,
 observation and calibration spectra respectively. However, because $S_\mathrm{cal}$
