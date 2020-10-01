@@ -90,12 +90,12 @@ true signals originating from the sky and not from instrumentation artifacts. Fo
 that reason, `Virgo` performs bandpass calibration:
 
 \begin{equation}
-  S_\mathrm{cal} = \frac{S_\mathrm{on}}{S_\mathrm{off}}
+  S_\mathrm{cal} = \frac{S_\mathrm{on}H(j\omega)}{S_\mathrm{off}H(j\omega)},
 \end{equation}
 where $S_\mathrm{cal}$, $S_\mathrm{on}$ and $S_\mathrm{off}$ is the calibrated,
 observation and calibration spectra respectively. However, because $S_\mathrm{cal}$
 is arbitrarily scaled (due to the difference between the noise floors $\bar {S}$),
-the power axis is automatically rescaled to signal-to-noise ratio units.
+the power axis is automatically rescaled to units of signal-to-noise ratio.
 
 `%Comment: Should I use final-stage? I'm referring to the IF filter which introduces the bandpass shape`
 `%Comment: Should I use 'corrected' instead of 'calibrated' to make it more clear?`
