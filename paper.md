@@ -97,6 +97,10 @@ in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
 the raw observation data as a FITS/csv-formatted file.
 
+Lastly, the software's modularity allows users to integrate `Virgo`'s
+functionalities into their software effortlessly, permitting a variety of automation
+applications invloving the acquisition and/or processing of telescope data.
+
 # Example Usage
 
 `Virgo` can either be called directly as a Python script using e.g.,
