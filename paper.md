@@ -79,9 +79,9 @@ increase in computational requirements, as described by @Price:2021. In addition
 its data-acquisition functionality that performs data reduction by time-averaging
 spectrum samples in real time, `Virgo` carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
-(waterfall), the time series (power vs time) and the total power distribution plot of
-the observation are all automatically computed and produced, with the help of the
-NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
+(waterfall), the time series (power vs time) and the total power distribution of the
+observation are all automatically computed and plotted with the help of the Numpy
+[@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 Because of the nature of their late-stage architecture, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
