@@ -34,7 +34,7 @@ astrophysics. This is due to the fact that a variety of celestial objects emit
 electromagnetic radiation at radio wavelengths, which has led to the
 development of radio telescopes capable of revealing the otherwise-hidden
 astrophysical properties of the universe. An important requirement that makes radio
-astronomy observations and analyses possible is an appropriate software pipeline
+astronomy observations and analysis possible is an appropriate software pipeline
 compatible with the spectrometers with which radio observatories are equipped. In
 this work, we present `Virgo`: a versatile software solution for radio telescopes.
 
@@ -78,10 +78,10 @@ the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described by @Price:2021. In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
 spectrum samples in real time, `Virgo` carries out automated analysis of the recorded
-samples, producing the time-averaged spectrum, the calibrated spectrum, the dynamic
-spectrum (waterfall), the time series (power vs time) and the total power
-distribution plot of the observation, with the help of the NumPy [@Harris2020] and
-Matplotlib [@Hunter:2007] packages.
+samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
+(waterfall), the time series (power vs time) and the total power distribution plot of
+the observation are all automatically computed and produced, with the help of the
+NumPy [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
 Because of the nature of their late-stage architecture, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
