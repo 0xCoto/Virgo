@@ -18,8 +18,8 @@ def observe(obs_parameters, obs_file='observation.dat', start_in=0):
 	duration = obs_parameters['duration']
 
 	# Schedule observation
-	if start_in != 0:
-		print('[*] The observation will begin in '+str(start_in)+' sec automatically. Please wait...\n')
+	#if start_in != 0:
+	#	print('[*] The observation will begin in '+str(start_in)+' sec automatically. Please wait...\n')
 
 	time.sleep(t_sample)
 
@@ -36,7 +36,7 @@ def observe(obs_parameters, obs_file='observation.dat', start_in=0):
 	mjd = epoch/86400.0 + 40587
 
 	# Run observation
-	print('\n[+] Starting observation at ' + time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime(epoch)) + '...\n')
+	#print('\n[+] Starting observation at ' + time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime(epoch)) + '...\n')
 
 	observation = run_observation(dev_args=dev_args, frequency=frequency, bandwidth=bandwidth, rf_gain=rf_gain,
                               if_gain=if_gain, bb_gain=bb_gain, channels=channels,
@@ -44,7 +44,7 @@ def observe(obs_parameters, obs_file='observation.dat', start_in=0):
 	observation.start()
 	observation.wait()
 
-	print('\n[+] Data acquisition complete. Observation saved as: '+obs_file)
+	#print('\n[+] Data acquisition complete. Observation saved as: '+obs_file)
 
 	# Write observation parameters to header file
 	with open('.'.join(obs_file.split('.')[:-1])+'.header', 'w') as f:
@@ -253,7 +253,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 		ax1.set_ylabel('Relative Power (dB)')
 	else:
 		ax1.set_ylabel('Relative Power')
-	if f_rest != 0:
+	if f_rest != 0 and sys.version_info[0] < 3:
 		ax1.set_title('Average Spectrum\n')
 	else:
 		ax1.set_title('Average Spectrum')
@@ -280,7 +280,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
 		ax2.set_ylabel('Signal-to-Noise Ratio (S/N)')
-		if f_rest != 0:
+		if f_rest != 0 and sys.version_info[0] < 3:
 			ax2.set_title('Calibrated Spectrum\n')
 		else:
 			ax2.set_title('Calibrated Spectrum')
@@ -344,10 +344,12 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 	ax5 = fig.add_subplot(gs[1, 1])
 
-	ax5.hist(power, np.size(power)/50, density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
+	ax5.hist(power, int(np.size(power)/50), density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
+	ax5.set_xlim()
+	ax5.set_ylim()
 	ax5.plot(best_fit(power)[1], best_fit(power)[0], '--', color='blue', label='Best fit (Raw)', zorder=20)
 	if m != 0:
-		ax5.hist(power_clean, np.size(power_clean)/50, density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
+		ax5.hist(power_clean, int(np.size(power_clean)/50), density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
 		ax5.plot(best_fit(power_clean)[1], best_fit(power)[0], '--', color='red', label='Best fit (Median)', zorder=20)
 	ax5.get_shared_x_axes().join(ax5, ax4)
 	ax5.set_yticklabels([])
