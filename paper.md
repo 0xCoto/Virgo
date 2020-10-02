@@ -77,7 +77,7 @@ spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
 increase in computational requirements, as described by @Price:2021. In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
-spectrum samples in real time, `Virgo` also carries out automated analysis of the recorded
+spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
 (waterfall), the time series (power vs time) and the total power distribution of the
 observation are all automatically computed and plotted with the help of the Numpy
