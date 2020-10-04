@@ -102,21 +102,21 @@ Once a submitted observation is finished and the data has been acquired and stor
 
 We can mathematically interpret the dynamic spectrum as a two-dimensional matrix with ***m*** rows and ***2<sup>n</sup>*** columns, where *m* ∈ ℕ\* is the total number of FFT samples (integrations) and *2<sup>n</sup>*, *n* ∈ ℕ is the number of frequency channels (FFT size).
 
-In `plot.py` and `plot_hi.py`, this matrix is defined as a 2D numpy array at [line 29](https://github.com/0xCoto/Virgo/blob/master/plot.py#L29) and [line 58](https://github.com/0xCoto/Virgo/blob/master/plot_hi.py#L58) respectively.
+In `__init__.py`, this matrix is defined as a 2D numpy array at [line 137](https://github.com/0xCoto/Virgo/blob/master/virgo/__init__.py#L137).
 
 ![alt text](https://i.imgur.com/JksgAav.png)
 
 ### Time Series Derivation
-If we take the average of this matrix with respect to time (`w = np.mean(a=z, axis=1)`), we get a new *m* × *1* **column matrix** (or **column vector**), which is the <ins>time series (power vs time)</ins> of the observation. This is defined at [line 33](https://github.com/0xCoto/Virgo/blob/master/plot.py#L33) and [line 88](https://github.com/0xCoto/Virgo/blob/master/plot_hi.py#L88) of `plot.py` and `plot_hi.py` respectively.
+If we take the average of this matrix with respect to time (`power = decibel(np.mean(waterfall, axis=1))`), we get a new *m* × *1* **column matrix** (or **column vector**), which is the <ins>time series (power vs time)</ins> of the observation. This is defined in [line 146](https://github.com/0xCoto/Virgo/blob/master/virgo/__init__.py#L146).
 
 ### Averaged Spectrum Derivation
-Similarly, if we average with respect to the frequency channels (`zmean = np.mean(a=z, axis=0)`), we get a new *1* × *2<sup>n</sup>* **row matrix** (or **row vector**), which is the <ins>averaged spectrum</ins> of the observation. This is defined at [line 39](https://github.com/0xCoto/Virgo/blob/master/plot.py#L39) and [line 64](https://github.com/0xCoto/Virgo/blob/master/plot_hi.py#L64) of `plot.py` and `plot_hi.py` respectively.
+Similarly, if we average with respect to the frequency channels (`avg_spectrum = decibel(np.mean(waterfall, axis=0))`), we get a new *1* × *2<sup>n</sup>* **row matrix** (or **row vector**), which is the <ins>averaged spectrum</ins> of the observation. This is defined at [line 142](https://github.com/0xCoto/Virgo/blob/master/virgo/__init__.py#L142).
 
 ### Calibrated Spectrum Derivation
-To get the <ins>calibrated spectrum</ins>, we could simply subtract the ***OFF*** spectrum (obtained from an observation of e.g. the cold sky) from the ***ON*** spectrum (Z<sub>ON<sub>mean</sub></sub> − Z<sub>OFF<sub>mean</sub></sub>). However, because the system temperature of a radio telescope (T<sub>sys</sub>) is generally variable with time and temperature, the noise floor will not be at a constant level. For this reason, it is more appropriate to choose division over subtraction (Z<sub>ON<sub>mean</sub></sub> / Z<sub>OFF<sub>mean</sub></sub>), in order to account for the variability of thse noise floor. The calibrated spectrum is computed at [line 85](https://github.com/0xCoto/Virgo/blob/master/plot_hi.py#L85) of `plot_hi.py`.
+To get the <ins>calibrated spectrum</ins>, we could simply subtract the ***OFF*** spectrum (obtained from an observation of e.g. the cold sky) from the ***ON*** spectrum (X(f)<sub>ON<sub>mean</sub></sub> − X(f)<sub>OFF<sub>mean</sub></sub>). However, because the system temperature of a radio telescope (T<sub>sys</sub>) is generally variable with time and temperature, the noise floor will not be at a constant level. For this reason, it is more appropriate to choose division over subtraction (X(f)<sub>ON<sub>mean</sub></sub> / X(f)<sub>OFF<sub>mean</sub></sub>), in order to account for the variability of thse noise floor. The calibrated spectrum is computed at [line 165](https://github.com/0xCoto/Virgo/blob/master/virgo/__init__.py#L165).
 
 ## Installation
-To use **Virgo**, make sure **[Python](https://www.python.org/) (Version 2.7)** and **[GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR)** (with **[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki)**) are installed on your machine.
+To use **Virgo**, make sure **[Python](https://www.python.org/)** and **[GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR)** (with **[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki)**) are installed on your machine.
 
 Once Python and GNU Radio are installed on your system, navigate to a directory of your choice (e.g. `cd Desktop`) and run:
 
