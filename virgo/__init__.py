@@ -272,10 +272,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	#Plot Calibrated Spectrum
 	if cal_file != '':
 		ax2 = fig.add_subplot(gs[0, 1])
+		ax2.plot(frequency, spectrum, label='Raw Spectrum')
 		if n != 0:
 			ax2.plot(frequency, spectrum_clean, color='orangered', label='Median (n = '+str(n)+')')
 			ax2.set_ylim()
-		ax2.plot(frequency, spectrum, label='Raw Spectrum', zorder=0)
 		ax2.set_xlim(np.min(frequency), np.max(frequency))
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
@@ -289,7 +289,6 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 				ax2.legend(bbox_to_anchor=(0.002, 0.96), loc='upper left')
 			else:
 				ax2.legend(loc='upper left')
-		ax2.grid()
 
 		if f_rest != 0:
 			# Add secondary axis for Relative Velocity
@@ -300,6 +299,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
                                    xycoords='axes points', size=14, ha='left', va='bottom', color='brown')
 			ax2_secondary.set_xlim(left_velocity_edge, right_velocity_edge)
 			ax2_secondary.tick_params(axis='x', direction='in', pad=-22)
+		ax2.grid()
 
 	# Plot Dynamic Spectrum
 	if cal_file != '':
@@ -321,10 +321,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 	# Plot Time Series (Power vs Time)
 	ax4 = fig.add_subplot(gs[1, 0])
+	ax4.plot(t, power, label='Raw Time Series')
 	if m != 0:
 		ax4.plot(t, power_clean, color='orangered', label='Median (n = '+str(m)+')')
 		ax4.set_ylim()
-	ax4.plot(t, power, label='Raw Time Series', zorder=0)
 	ax4.set_xlim(0, np.max(t))
 	ax4.set_xlabel('Relative Time (s)')
 	if dB:
@@ -345,12 +345,12 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	ax5 = fig.add_subplot(gs[1, 1])
 
 	ax5.hist(power, np.max([int(np.size(power)/50),10], density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
-	ax5.set_xlim()
-	ax5.set_ylim()
 	ax5.plot(best_fit(power)[1], best_fit(power)[0], '--', color='blue', label='Best fit (Raw)', zorder=20)
 	if m != 0:
 		ax5.hist(power_clean, np.max([int(np.size(power)/50),10], density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
 		ax5.plot(best_fit(power_clean)[1], best_fit(power)[0], '--', color='red', label='Best fit (Median)', zorder=20)
+	ax5.set_xlim()
+	ax5.set_ylim()
 	ax5.get_shared_x_axes().join(ax5, ax4)
 	ax5.set_yticklabels([])
 	ax5.set_xlabel('Probability Density')
