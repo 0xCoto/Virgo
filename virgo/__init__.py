@@ -21,7 +21,7 @@ def observe(obs_parameters, obs_file='observation.dat', start_in=0):
 	#if start_in != 0:
 	#	print('[*] The observation will begin in '+str(start_in)+' sec automatically. Please wait...\n')
 
-	time.sleep(t_sample)
+	time.sleep(start_in)
 
 	# Delete pre-existing observation file
 	try:
@@ -133,7 +133,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	bins = int(t_sample*bandwidth/channels)
 
 	# Load observation & calibration data
-	offset = 10000
+	offset = 1
 	waterfall = offset*np.fromfile(obs_file, dtype='float32').reshape(-1, channels)/bins
 
 	if cal_file != '': waterfall_cal = offset*np.fromfile(cal_file, dtype='float32').reshape(-1, channels)/bins
