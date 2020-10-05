@@ -118,10 +118,10 @@ To get the <ins>calibrated spectrum</ins>, we could simply subtract the ***OFF**
 ## Installation
 To use **Virgo**, make sure **[Python](https://www.python.org/)** and **[GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR)** (with **[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki)**) are installed on your machine.
 
-Once Python and GNU Radio are installed on your system, navigate to a directory of your choice (e.g. `cd Desktop`) and run:
+Once Python and GNU Radio are installed on your system, run
 
 ```
-git clone https://github.com/0xCoto/Virgo
+pip install astro-virgo
 ```
 
 #### If you do not use an osmocom-supported SDR (unlikely)
