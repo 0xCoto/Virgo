@@ -344,19 +344,19 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 
 	ax5 = fig.add_subplot(gs[1, 1])
 
-	ax5.hist(power, np.max([int(np.size(power)/50),10], density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
-	ax5.plot(best_fit(power)[1], best_fit(power)[0], '--', color='blue', label='Best fit (Raw)', zorder=20)
-	if m != 0:
-		ax5.hist(power_clean, np.max([int(np.size(power)/50),10], density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
-		ax5.plot(best_fit(power_clean)[1], best_fit(power)[0], '--', color='red', label='Best fit (Median)', zorder=20)
-	ax5.set_xlim()
-	ax5.set_ylim()
-	ax5.get_shared_x_axes().join(ax5, ax4)
-	ax5.set_yticklabels([])
-	ax5.set_xlabel('Probability Density')
-	ax5.set_title('Total Power Distribution')
-	ax5.legend(bbox_to_anchor=(1, 1), loc='upper right')
-	ax5.grid()
+        ax5.hist(power, np.max([int(np.size(power)/50),10]), density=1, alpha=0.5, color='royalblue', orientation='horizontal', zorder=10)
+        ax5.plot(best_fit(power)[1], best_fit(power)[0], '--', color='blue', label='Best fit (Raw)', zorder=20)
+        if m != 0:
+                ax5.hist(power_clean, np.max([int(np.size(power)/50),10]), density=1, alpha=0.5, color='orangered', orientation='horizontal', zorder=10)
+                ax5.plot(best_fit(power_clean)[1], best_fit(power)[0], '--', color='red', label='Best fit (Median)', zorder=20)
+        ax5.set_xlim()
+        ax5.set_ylim()
+        ax5.get_shared_x_axes().join(ax5, ax4)
+        ax5.set_yticklabels([])
+        ax5.set_xlabel('Probability Density')
+        ax5.set_title('Total Power Distribution')
+        ax5.legend(bbox_to_anchor=(1, 1), loc='upper right')
+        ax5.grid()
 
 	# Save plots to file
 	plt.tight_layout()
