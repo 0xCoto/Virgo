@@ -136,7 +136,14 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	offset = 1
 	waterfall = offset*np.fromfile(obs_file, dtype='float32').reshape(-1, channels)/bins
 
-	if cal_file != '': waterfall_cal = offset*np.fromfile(cal_file, dtype='float32').reshape(-1, channels)/bins
+	# Delete first 3 rows (potentially containing outlier samples)
+	waterfall = waterfall[3:, :]
+
+	if cal_file != '':
+		waterfall_cal = offset*np.fromfile(cal_file, dtype='float32').reshape(-1, channels)/bins
+
+		# Delete first 3 rows (potentially containing outlier samples)
+		waterfall_cal = waterfall_cal[3:, :]
 
 	# Compute average specta
 	avg_spectrum = decibel(np.mean(waterfall, axis=0))
