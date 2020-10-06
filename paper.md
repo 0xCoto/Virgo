@@ -68,7 +68,7 @@ distribution of neutral hydrogen and/or derive the rotation curve of the Milky W
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
 
-![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20\mathrm{h}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, US with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
+![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20\mathrm{h}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, U.S. with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
 # Features
 
