@@ -42,12 +42,10 @@ this work, we present `Virgo`: a versatile software solution for radio telescope
 
 `Virgo` is a Python package for the acquisition, processing and analysis of
 data from radio telescopes. It is an easy-to-use open-source spectrometer and
-radiometer based on the GNU Radio framework [@gnuradio], and is conveniently
+radiometer based on the GNU Radio framework (https://www.gnuradio.org), and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
 radio (SDR; a radio receiver architecture where some conventional hardware-based
 steps are replicated in software, @Dillinger:2003).
-
-`%Comment [to Paul]: How do you suggest we cite GNU Radio?`
 
 Designed to be used by students, educators and amateurs in the field of radio
 astronomy, `Virgo` has already been adopted by a number of small and
