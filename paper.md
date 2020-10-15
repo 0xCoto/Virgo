@@ -73,7 +73,7 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 One of the key features of `Virgo` is that it is a polyphase filterbank
 spectrometer, offering a  significant reduction in spectral leakage compared to
 the more traditional Fourier transform filterbank spectrometers, with a minimal
-increase in computational requirements, as described by @Price:2021. In addition to
+increase in computational requirements, as described by @10.5555/524660. In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
 spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
