@@ -20,7 +20,7 @@ affiliations:
    index: 1
  - name: Dunlap Institute for Astronomy and Astrophysics, University of Toronto, 50 St. George Street, Toronto, ON M5S 3H4, Canada
    index: 2
- - name: CAMRAS
+ - name: C.A. Muller Radioastronomie Station, Dwingeloo, the Netherlands
    index: 3
 date: 1 October 2020
 bibliography: paper.bib
