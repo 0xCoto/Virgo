@@ -80,7 +80,7 @@ virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
 
 ## Example Observation
 <p align="center">
-  <img src="https://i.imgur.com/VBxFBs6.png" alt="Example Observation"/>
+  <img src="https://i.imgur.com/ROPPWza.png" alt="Example Observation"/>
 </p>                                                                     
 
 ## Data Acquisition Flowgraph
