@@ -70,10 +70,10 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 
 # Features
 
-One of the key features of `Virgo` is that it is a polyphase filterbank
-spectrometer, offering a  significant reduction in spectral leakage compared to
-the more traditional Fourier transform filterbank spectrometers, with a minimal
-increase in computational requirements, as described by @10.5555/524660. In addition to
+One of the key features of `Virgo` is that it is a four-tap weighted overlap-add (WOLA) Fourier transform (FT)
+spectrometer, offering a significant reduction in spectral leakage compared to
+a simple FT filterbank spectrometer that does not make use of the WOLA method, with a minimal
+increase in computational requirements (@10.5555/524660). In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
 spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
@@ -81,7 +81,7 @@ samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectr
 observation are all automatically computed and plotted with the help of the Numpy
 [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
-Because of the nature of their late-stage architecture, the spectra acquired by SDRs
+Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
 In general, this frequency response makes it difficult to distinguish true
 signals originating from the sky and not from instrumentation artifacts. For
