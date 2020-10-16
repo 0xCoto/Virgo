@@ -13,14 +13,14 @@ authors:
   - name: Cameron L. Van Eck
     affiliation: 2
     orcid: 0000-0002-7641-9946
-  - name: TBA
+  - name: E.P. Boven
     affiliation: 3
 affiliations:
  - name: Department of Informatics, University of Piraeus, Greece
    index: 1
  - name: Dunlap Institute for Astronomy and Astrophysics, University of Toronto, 50 St. George Street, Toronto, ON M5S 3H4, Canada
    index: 2
- - name: TBA (Institution Name)
+ - name: CAMRAS
    index: 3
 date: 1 October 2020
 bibliography: paper.bib
@@ -83,12 +83,12 @@ observation are all automatically computed and plotted with the help of the Nump
 
 Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
-In general, this frequency response makes it difficult to distinguish true
-signals originating from the sky and not from instrumentation artifacts. For
-that reason, `Virgo` performs bandpass calibration by taking the ratio of the
-observation spectrum over the calibration spectrum. However, because this ratio is
-arbitrarily scaled (due to the difference in the noise floor levels), the power axis
-is automatically rescaled to units of signal-to-noise ratio.
+In general, this frequency response makes it difficult to distinguish true signals,
+originating from the sky, from instrumentation artifacts. For that reason, `Virgo`
+performs bandpass calibration by taking the ratio of the observed spectrum over
+the calibration spectrum. However, because this ratio is arbitrarily scaled (due to
+the difference in the noise floor levels), the power axis is automatically rescale
+to units of signal-to-noise ratio.
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
@@ -96,7 +96,7 @@ short-duration radio frequency interference (RFI), while allowing the user to ex
 the raw observation data as a FITS/csv-formatted file.
 
 Lastly, the software's modularity allows users to integrate `Virgo`'s
-functionalities into their software effortlessly, permitting a variety of automation
+functionalities into their own software effortlessly, permitting a variety of automation
 applications invloving the acquisition and/or processing of telescope data.
 
 # Example Usage
