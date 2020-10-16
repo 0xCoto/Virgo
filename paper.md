@@ -73,7 +73,7 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 One of the key features of `Virgo` is that it is a four-tap weighted overlap-add (WOLA) Fourier transform (FT)
 spectrometer, offering a significant reduction in spectral leakage compared to
 a simple FT filterbank spectrometer that does not make use of the WOLA method, with a minimal
-increase in computational requirements (@10.5555/524660). In addition to
+increase in computational requirements (@Crochiere1996). In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
 spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
