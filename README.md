@@ -10,7 +10,7 @@ A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.
 
 ### Key Features
 
-- Polyphase filterbank-based data acquisition
+- 4-tap weighted overlap-add (WOLA) Fourier transform spectrometer
 - - Reduced FFT sidelobes
 - Adjustable SDR parameters
 - - Device arguments
@@ -84,18 +84,9 @@ virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
 </p>                                                                     
 
 ## Data Acquisition Flowgraph
-**Virgo** is a [**polyphase filterbank** spectrometer](https://arxiv.org/abs/1607.03579). The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
+**Virgo** is a **four-tap WOLA Fourier transform** spectrometer. The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
 
 ![alt text](https://i.imgur.com/5tR7WjL.png "Data Acquisition Flowgraph")
-
-## Spectral leakage: a comparison between ACS, FTF and PFB spectrometers
-The noteworthy advantage of polyphase filterbanks is **reduced spectral leakage**, with a slight increase in computational requirements. The following figure compares the spectral leakage produced by an autocorrelation spectrometer (ACS), a Fourier transform filterbank spectrometer (FTF) and a polyphase filterbank spectrometer (PFB) with a Hann FFT window:
-![alt text](https://i.imgur.com/e5TwE3w.png "Spectrometer comparison regarding spectral leakage")
-Source: [Danny C. Price (2018)](https://arxiv.org/abs/1607.03579)
-
-## A graphical representation of a polyphase filterbank
-![alt text](https://i.imgur.com/HUFTmTh.png)
-Source: [Danny C. Price (2018)](https://arxiv.org/abs/1607.03579)
 
 ## Data Analysis
 Once a submitted observation is finished and the data has been acquired and stored to `observation.dat`, the FFT samples (interpreted as a [numpy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) in `plot.py` and `plot_hi.py`) constitute the **dynamic spectrum (waterfall)**, from which the **averaged spectrum** and **time series (power vs time)** of the observation can be derived.
