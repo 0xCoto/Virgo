@@ -110,7 +110,7 @@ or imported and used as a package:
 import virgo
 
 # Define observation parameters
-observation = {
+obs = {
     'dev_args': '',
     'rf_gain': 10,
     'if_gain': 20,
@@ -123,11 +123,10 @@ observation = {
 }
 
 # Begin data acquisition in 10 seconds
-virgo.observe(obs_parameters=observation, obs_file='observation.dat',
-              start_in=10)
+virgo.observe(obs_parameters=obs, obs_file='observation.dat', start_in=10)
 
 # Analyze data, mitigate RFI and export the data as a FITS file
-virgo.plot(obs_parameters=observation, n=20, m=35, f_rest=1420.4057517667e6,
+virgo.plot(obs_parameters=obs, n=20, m=35, f_rest=1420.4057517667e6,
            obs_file='observation.dat', cal_file='calibration.dat',
            waterfall_fits='obs.fits', plot_file='plot.png')
 ```
