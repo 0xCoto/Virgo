@@ -82,6 +82,7 @@ virgo.plot(obs_parameters=observation, n=10, m=25, f_rest=1420.4057517667e6,
 <p align="center">
   <img src="https://i.imgur.com/ROPPWza.png" alt="Example Observation"/>
 </p>                                                                     
+Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus (α = 20h, δ = 40° , l = 77° , b = 3°), observed by the TLM-18 Telescope in New Jersey, U.S. with Virgo. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.
 
 ## Data Acquisition Flowgraph
 **Virgo** is a **four-tap WOLA Fourier transform** spectrometer. The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
