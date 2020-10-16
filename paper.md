@@ -30,7 +30,7 @@ bibliography: paper.bib
 # Introduction
 
 For the past few decades, radio astronomy has been a rapidly developing area of
-astrophysics. This is due to the fact that a variety of celestial objects emit
+observational astronomy. This is due to the fact that a variety of celestial objects emit
 electromagnetic radiation at radio wavelengths, which has led to the
 development of radio telescopes capable of revealing the otherwise-hidden
 astrophysical properties of the universe. An important requirement that makes radio
