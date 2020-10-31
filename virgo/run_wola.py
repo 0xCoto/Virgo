@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Run Wola
+# Title: Run Observation
 # GNU Radio version: 3.7.13.5
 ##################################################
 
@@ -19,10 +19,10 @@ import osmosdr
 import time
 
 
-class run_wola(gr.top_block):
+class run_observation(gr.top_block):
 
     def __init__(self, bandwidth=2e6, bb_gain=20, channels=1024, dev_args='', duration=60, frequency=1420e6, if_gain=20, obs_file='observation.dat', rf_gain=30, t_sample=1):
-        gr.top_block.__init__(self, "Run Wola")
+        gr.top_block.__init__(self, "Run Observation")
 
         ##################################################
         # Parameters
@@ -244,7 +244,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=run_wola, options=None):
+def main(top_block_cls=run_observation, options=None):
     if options is None:
         options, _ = argument_parser().parse_args()
 
