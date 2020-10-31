@@ -3,9 +3,97 @@ import sys
 import argparse
 import time
 import numpy as np
+import datetime
 
-def observe(obs_parameters, obs_file='observation.dat', start_in=0):
-	from run_observation import run_observation
+def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
+	from astropy.time import Time
+	from astropy.visualization import astropy_mpl_style, quantity_support
+	from astropy.coordinates import SkyCoord, EarthLocation, AltAz, get_sun
+	import astropy.units as u
+	import matplotlib
+	import matplotlib.pyplot as plt
+
+	plt.style.use(astropy_mpl_style)
+	plt.rcParams['figure.constrained_layout.use'] = True
+	plt.rcParams['figure.figsize'] = (18,10)
+	plt.rcParams['legend.fontsize'] = 20
+	plt.rcParams['axes.labelsize'] = 22
+	plt.rcParams['axes.titlesize'] = 26
+	plt.rcParams['xtick.labelsize'] = 18
+	plt.rcParams['ytick.labelsize'] = 18
+
+	quantity_support()
+
+	# Define source
+	if source != '':
+		obj = SkyCoord.from_name(source)
+
+	# Set observer location
+	loc = EarthLocation(lat=lat*u.deg, lon=lon*u.deg, height=height*u.m)
+
+	# Get system timezone and set UTC offset
+	try:
+		offset = time.timezone if (time.localtime().tm_isdst == 0) else time.altzone
+		utcoffset = (offset / 60 / 60 * -1) * u.hour
+	except:
+		utcoffset = 0
+
+	# Fetch toady's system date if not specified
+	if date == '':
+		date = datetime.datetime.today().strftime('%Y-%m-%d')
+
+	midnight = Time(date+' 00:00:00') - utcoffset
+	delta_midnight = np.linspace(0, 24, 1000)*u.hour
+	full_day = midnight + delta_midnight
+	frame = AltAz(obstime=full_day, location=loc)
+	sun_altaz = get_sun(full_day).transform_to(frame)
+
+	if source != '':
+		obj_altaz = obj.transform_to(frame)
+
+	# Note source altitude peak
+	if source != '':
+		seconds = float(delta_midnight[np.argmax(obj_altaz.alt*u.deg)]*3600/u.hour)
+		max = seconds/3600
+
+		plt.axvline(x=max, color='brown', linestyle='--', linewidth=2, zorder=2)
+
+		# Plot source
+		plt.scatter(delta_midnight, obj_altaz.alt,
+					c=obj_altaz.az, label=source, lw=0, s=8,
+					cmap='viridis')
+
+	# Plot Sun
+	if plot_sun:
+		plt.scatter(delta_midnight, sun_altaz.alt,
+					c=sun_altaz.az, label='Sun', lw=0, s=8,
+					cmap='viridis')
+
+	# Plot properties
+	plt.colorbar(aspect=40).set_label('Azimuth (deg)', labelpad=13)
+	plt.legend(loc='best')
+
+	plt.xlim(0*u.hour, 24*u.hour)
+	plt.xticks((np.arange(24))*u.hour)
+	plt.ylim(0*u.deg, 90*u.deg)
+	plt.title(source+' | '+date, y=1.01)
+
+	if utcoffset/u.hour != 0:
+		plt.xlabel('Time (UTC+'+str(int(utcoffset/u.hour))+')')
+	else:
+		plt.xlabel('Time (UTC)')
+	plt.ylabel('Altitude (deg)')
+
+	if plot_file != '':
+		plt.savefig(plot_file, bbox_inches='tight', pad_inches=0.2)
+	else:
+		plt.show()
+
+def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
+	if spectrometer.lower() != 'wola':
+		from run_ftf import run_observation
+	else:
+		from run_wola import run_observation
 
 	dev_args = '"'+obs_parameters['dev_args']+'"'
 	rf_gain = obs_parameters['rf_gain']
@@ -58,6 +146,9 @@ bandwidth='''+str(bandwidth)+'''
 channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
+
+### def observe_psr():
+### TO DO
 
 def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.dat',
          cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
