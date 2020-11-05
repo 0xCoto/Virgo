@@ -91,9 +91,15 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
 	if spectrometer.lower() != 'wola':
-		from run_ftf import run_observation
+		try:
+			from run_ftf import run_observation
+		except:
+			from .run_ftf import run_observation
 	else:
-		from run_wola import run_observation
+		try:
+			from run_wola import run_observation
+		except:
+			from .run_wola import run_observation
 
 	dev_args = '"'+obs_parameters['dev_args']+'"'
 	rf_gain = obs_parameters['rf_gain']
