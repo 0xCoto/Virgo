@@ -5,6 +5,82 @@ import time
 import numpy as np
 import datetime
 
+def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
+	import requests
+	import matplotlib
+	import matplotlib.pyplot as plt
+
+	if plot_file != '':
+		plt.rcParams['figure.figsize'] = (9,7)
+	plt.rcParams['legend.fontsize'] = 14
+	plt.rcParams['axes.labelsize'] = 14
+	plt.rcParams['axes.titlesize'] = 16
+	plt.rcParams['xtick.labelsize'] = 12
+	plt.rcParams['ytick.labelsize'] = 12
+
+	# Establish velocity limits
+	if v_min < -400:
+		v_min = -400
+	if v_max > 400:
+		v_max = 400
+
+	# Download LAB Survey HI data
+	response = requests.get('https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/download.php?ral='+str(l)+'&decb='+str(b)+'&csys=0&beam='+str(beamwidth))
+	data = response.content
+
+	# Parse data
+	data = data.splitlines()
+	data = data[4:]
+	data = [' '.join(line.split()).replace('\n', '') for line in data]
+
+	frequency = []
+	spectrum = []
+	for line in data:
+		try:
+			frequency.append(float(line.split()[2]))
+			spectrum.append(float(line.split()[1]))
+		except IndexError:
+			break
+
+	# Convert km/s to m/s
+	v_min = v_min*1000
+	v_max = v_max*1000
+
+	# Define Frequency limits
+	left_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * v_min/(299792458 * 1e6)
+	right_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * v_max/(299792458 * 1e6)
+
+	fig, ax = plt.subplots()
+
+	try:
+		plt.title('Simulated HI Profile $(l$=$'+str(l)+'\degree$, $b$=$'+str(b)+'\degree)$ | Beamwidth: $'+str(beamwidth)+'\degree$', pad=40)
+	except: # Catch missing TeX exception
+		plt.title('Simulated HI Profile (l='+str(l)+' deg, b='+str(b)+' deg) | Beamwidth: '+str(beamwidth)+' deg', pad=40)
+
+	# Plot data
+	ax.plot(frequency, spectrum, label='LAB Survey')
+	ax.set_xlabel('Frequency (MHz)')
+	ax.set_ylabel('Brightness Temperature (K)')
+	ax.set_xlim(left_frequency_edge, right_frequency_edge)
+	ax.ticklabel_format(useOffset=False)
+	ax.legend(loc='upper left')
+
+	# Set secondary axis for Radial Velocity
+	ax_secondary = ax.twiny()
+	ax_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
+	ax_secondary.axvline(x=0, color='brown', linestyle='--', linewidth=2, zorder=0)
+
+	ax_secondary.set_xlim(v_min/1000, v_max/1000)
+	ax_secondary.tick_params(axis='x', direction='in', pad=2)
+	ax.grid()
+
+	if plot_file != '':
+		# Save plot to file
+		plt.savefig(plot_file, bbox_inches='tight', pad_inches=0.1)
+	else:
+		# Display plot
+		plt.show()
+
 def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
 	from astropy.time import Time
 	from astropy.visualization import astropy_mpl_style, quantity_support
@@ -88,6 +164,51 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 		plt.savefig(plot_file, bbox_inches='tight', pad_inches=0.2)
 	else:
 		plt.show()
+
+def equatorial(alt, az, lat, lon, height=0):
+    from astropy.time import Time
+    from astropy.coordinates import SkyCoord, EarthLocation, AltAz
+    import astropy.units as u
+
+	# Set observer location
+    loc = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
+
+	# Get current system time
+    current_time = Time.now()
+
+	# Compute Alt/Az
+    AltAzcoordiantes = SkyCoord(alt=alt * u.deg, az=az * u.deg,
+	                            obstime=current_time, frame='altaz', location=loc)
+
+	# Transform to RA/Dec
+    c = AltAzcoordiantes.icrs
+
+    ra = c.ra.hour
+    dec = c.dec.deg
+
+	# Return position as tuple
+    return (ra, dec)
+
+def galactic(ra, dec):
+    from astropy.time import Time
+    from astropy.coordinates import SkyCoord, EarthLocation, AltAz
+    import astropy.units as u
+
+	# Set observer location
+    loc = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
+
+	# Get current system time
+    current_time = Time.now()
+
+	# Transform source position to galactic longitude & latitude
+    equatorial = SkyCoord(ra=ra * u.hour, dec=dec * u.deg, frame='icrs')
+    galactic = equatorial.galactic
+
+    l = result.l.deg
+    b = result.b.deg
+
+	# Return position as tuple
+    return (l, b)
 
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
 	if spectrometer.lower() != 'wola':
@@ -222,7 +343,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 			elif 't_sample' in headers[i]:
 				t_sample = float(headers[i].strip().split('=')[1])
 
-	# Define Relative Velocity axis limits
+	# Define Radial Velocity axis limits
 	left_velocity_edge = -299792.458*(bandwidth-2*frequency+2*f_rest)/(bandwidth-2*frequency)
 	right_velocity_edge = 299792.458*(-bandwidth-2*frequency+2*f_rest)/(bandwidth+2*frequency)
 
@@ -364,9 +485,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	ax1.grid()
 
 	if f_rest != 0:
-		# Add secondary axis for Relative Velocity
+		# Add secondary axis for Radial Velocity
 		ax1_secondary = ax1.twiny()
-		ax1_secondary.set_xlabel('Relative Velocity (km/s)', labelpad=5)
+		ax1_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
 		ax1_secondary.axvline(x=0, color='brown', linestyle='--', linewidth=2, zorder=0)
 		ax1_secondary.annotate('Spectral Line\nRest Frequency', xy=(460-text_offset, 5),
                                xycoords='axes points', size=14, ha='left', va='bottom', color='brown')
@@ -395,9 +516,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 				ax2.legend(loc='upper left')
 
 		if f_rest != 0:
-			# Add secondary axis for Relative Velocity
+			# Add secondary axis for Radial Velocity
 			ax2_secondary = ax2.twiny()
-			ax2_secondary.set_xlabel('Relative Velocity (km/s)', labelpad=5)
+			ax2_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
 			ax2_secondary.axvline(x=0, color='brown', linestyle='--', linewidth=2, zorder=0)
 			ax2_secondary.annotate('Spectral Line\nRest Frequency', xy=(400, 5),
                                    xycoords='axes points', size=14, ha='left', va='bottom', color='brown')
