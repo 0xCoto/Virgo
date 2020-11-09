@@ -1,1 +1,1 @@
-from .virgo import observe, plot
+from .virgo import simulate, predict, equatorial, galactic, observe, plot
