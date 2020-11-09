@@ -194,9 +194,6 @@ def galactic(ra, dec):
     from astropy.coordinates import SkyCoord, EarthLocation, AltAz
     import astropy.units as u
 
-	# Set observer location
-    loc = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
-
 	# Get current system time
     current_time = Time.now()
 
