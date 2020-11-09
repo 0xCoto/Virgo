@@ -31,7 +31,7 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	# Parse data
 	data = data.splitlines()
 	data = data[4:]
-	data = [' '.join(line.split()).replace('\n', '') for line in data]
+	#data = [' '.join(line.split()).replace('\n', '') for line in data]
 
 	frequency = []
 	spectrum = []
