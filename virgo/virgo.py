@@ -201,8 +201,8 @@ def galactic(ra, dec):
     equatorial = SkyCoord(ra=ra * u.hour, dec=dec * u.deg, frame='icrs')
     galactic = equatorial.galactic
 
-    l = result.l.deg
-    b = result.b.deg
+    l = galactic.l.deg
+    b = galactic.b.deg
 
 	# Return position as tuple
     return (l, b)
