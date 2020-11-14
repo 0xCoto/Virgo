@@ -47,8 +47,8 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	v_max = v_max*1000
 
 	# Define Frequency limits
-	left_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * v_min/(299792458 * 1e6)
-	right_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * v_max/(299792458 * 1e6)
+	left_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * -v_max/(299792458 * 1e6)
+	right_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * -v_min/(299792458 * 1e6)
 
 	fig, ax = plt.subplots()
 
@@ -70,7 +70,7 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	ax_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
 	ax_secondary.axvline(x=0, color='brown', linestyle='--', linewidth=2, zorder=0)
 
-	ax_secondary.set_xlim(v_min/1000, v_max/1000)
+	ax_secondary.set_xlim(v_max/1000, v_min/1000)
 	ax_secondary.tick_params(axis='x', direction='in', pad=2)
 	ax.grid()
 
