@@ -219,7 +219,7 @@ def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', sta
 		except:
 			from .run_wola import run_observation
 
-	dev_args = '"'+obs_parameters['dev_args']+'"'
+	dev_args = obs_parameters['dev_args']
 	rf_gain = obs_parameters['rf_gain']
 	if_gain = obs_parameters['if_gain']
 	bb_gain = obs_parameters['bb_gain']
