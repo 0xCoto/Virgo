@@ -80,6 +80,7 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	else:
 		# Display plot
 		plt.show()
+	plt.clf()
 
 def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
 	from astropy.time import Time
@@ -164,6 +165,7 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 		plt.savefig(plot_file, bbox_inches='tight', pad_inches=0.2)
 	else:
 		plt.show()
+	plt.clf()
 
 def equatorial(alt, az, lat, lon, height=0):
     from astropy.time import Time
@@ -583,6 +585,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 	# Save plots to file
 	plt.tight_layout()
 	plt.savefig(plot_file)
+	plt.clf()
 
 if __name__ == '__main__':
 	# Load argument values
