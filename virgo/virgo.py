@@ -273,7 +273,7 @@ channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
 
-def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, xlim=[0,0], ylim=[0,0],
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0],
 	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
@@ -353,11 +353,27 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	# Delete first 3 rows (potentially containing outlier samples)
 	waterfall = waterfall[3:, :]
 
+	# Mask RFI-contaminated channels
+	if rfi != [0,0]:
+		# Frequency to channel transformation
+		rfi_lo = channels*(rfi[0] - (frequency - bandwidth/2))/bandwidth
+		rfi_hi = channels*(rfi[1] - (frequency - bandwidth/2))/bandwidth
+
+		# Blank channels
+		for i in range(int(rfi_lo), int(rfi_hi)):
+			waterfall[:, i] = np.nan
+
 	if cal_file != '':
 		waterfall_cal = offset*np.fromfile(cal_file, dtype='float32').reshape(-1, channels)/bins
 
 		# Delete first 3 rows (potentially containing outlier samples)
 		waterfall_cal = waterfall_cal[3:, :]
+		
+		# Mask RFI-contaminated channels
+		if rfi != [0,0]:
+			# Blank channels
+			for i in range(int(rfi_lo), int(rfi_hi)):
+				waterfall_cal[:, i] = np.nan
 
 	# Compute average specta
 	avg_spectrum = decibel(np.mean(waterfall, axis=0))
