@@ -273,8 +273,8 @@ channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
 
-def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, obs_file='observation.dat',
-         cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, xlim=[0,0], ylim=[0,0],
+	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
 	import matplotlib.pyplot as plt
@@ -479,7 +479,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	# Plot Average Spectrum
 	ax1 = fig.add_subplot(gs[0, 0])
 	ax1.plot(frequency, avg_spectrum)
-	ax1.set_xlim(np.min(frequency), np.max(frequency))
+	if xlim == [0,0]:
+		ax1.set_xlim(np.min(frequency), np.max(frequency))
+	else:
+		ax1.set_xlim(xlim[0], xlim[1])
 	ax1.ticklabel_format(useOffset=False)
 	ax1.set_xlabel('Frequency (MHz)')
 	if dB:
@@ -492,7 +495,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax1.set_title('Average Spectrum')
 	ax1.grid()
 
-	if f_rest != 0:
+	if xlim == [0,0] and f_rest != 0:
 		# Add secondary axis for Radial Velocity
 		ax1_secondary = ax1.twiny()
 		ax1_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
@@ -509,7 +512,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		if n != 0:
 			ax2.plot(frequency, spectrum_clean, color='orangered', label='Median (n = '+str(n)+')')
 			ax2.set_ylim()
-		ax2.set_xlim(np.min(frequency), np.max(frequency))
+		if xlim == [0,0]:
+			ax2.set_xlim(np.min(frequency), np.max(frequency))
+		else:
+			ax2.set_xlim(xlim[0], xlim[1])
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
 		ax2.set_ylabel('Signal-to-Noise Ratio (S/N)')
@@ -523,7 +529,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			else:
 				ax2.legend(loc='upper left')
 
-		if f_rest != 0:
+		if xlim == [0,0] and f_rest != 0:
 			# Add secondary axis for Radial Velocity
 			ax2_secondary = ax2.twiny()
 			ax2_secondary.set_xlabel('Radial Velocity (km/s)', labelpad=5)
@@ -539,8 +545,20 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax3 = fig.add_subplot(gs[0, 2])
 	else:
 		ax3 = fig.add_subplot(gs[0, 1])
-	ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-               extent=[np.min(frequency), np.max(frequency), np.min(t), np.max(t)])
+
+	if xlim == [0,0] and ylim == [0,0]:
+		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
+			   extent=[np.min(frequency), np.max(frequency), np.min(t), np.max(t)])
+	elif xlim == [0,0] and ylim != [0,0]:
+		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
+			   extent=[np.min(frequency), np.max(frequency), ylim[0], ylim[1])
+	elif xlim != [0,0] and ylim == [0,0]:
+		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
+			   extent=[xlim[0], xlim[1], np.min(t), np.max(t)])
+	else:
+		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
+			   extent=[xlim[0], xlim[1], ylim[0], ylim[1])
+
 	ax3.ticklabel_format(useOffset=False)
 	ax3.set_xlabel('Frequency (MHz)')
 	ax3.set_ylabel('Relative Time (s)')
@@ -558,7 +576,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	if m != 0:
 		ax4.plot(t, power_clean, color='orangered', label='Median (n = '+str(m)+')')
 		ax4.set_ylim()
-	ax4.set_xlim(0, np.max(t))
+	if ylim == [0,0]:
+		ax4.set_xlim(0, np.max(t))
+	else:
+		ax4.set_xlim(ylim[0], ylim[1])
 	ax4.set_xlabel('Relative Time (s)')
 	if dB:
 		ax4.set_ylabel('Relative Power (dB)')
