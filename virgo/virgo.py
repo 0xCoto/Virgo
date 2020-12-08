@@ -273,10 +273,7 @@ channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
 
-### def observe_psr():
-### TO DO
-
-def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.dat',
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, obs_file='observation.dat',
          cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
@@ -400,6 +397,18 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, dB=False, obs_file='observation.
 				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
 
 		spectrum = SNR(spectrum, mask)
+		if slope_correction:
+			fit = np.polyfit(frequency, spectrum, 1)
+			ang_coeff = fit[0]
+			intercept = fit[1]
+			fit_eq = ang_coeff*frequency + intercept
+			spectrum = SNR(spectrum-fit_eq, mask)
+			if n != 0:
+				fit_clean = np.polyfit(frequency, spectrum_clean, 1)
+				ang_coeff_clean = fit_clean[0]
+				intercept_clean = fit_clean[1]
+				fit_eq_clean = ang_coeff_clean*frequency + intercept_clean
+				spectrum_clean = SNR(spectrum_clean-fit_eq_clean, mask)
 
 		# Apply position offset for Spectral Line label
 		text_offset = 60
