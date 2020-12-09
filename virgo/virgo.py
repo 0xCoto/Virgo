@@ -567,13 +567,13 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			   extent=[np.min(frequency), np.max(frequency), np.min(t), np.max(t)])
 	elif xlim == [0,0] and ylim != [0,0]:
 		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[np.min(frequency), np.max(frequency), ylim[0], ylim[1])
+			   extent=[np.min(frequency), np.max(frequency), ylim[0], ylim[1]])
 	elif xlim != [0,0] and ylim == [0,0]:
 		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
 			   extent=[xlim[0], xlim[1], np.min(t), np.max(t)])
 	else:
 		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[xlim[0], xlim[1], ylim[0], ylim[1])
+			   extent=[xlim[0], xlim[1], ylim[0], ylim[1]])
 
 	ax3.ticklabel_format(useOffset=False)
 	ax3.set_xlabel('Frequency (MHz)')
