@@ -4,6 +4,7 @@ import argparse
 import time
 import numpy as np
 import datetime
+import warnings
 
 def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	import requests
@@ -298,14 +299,14 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		if mask.size == 0:
 			mask = np.zeros_like(spectrum)
 
-		noise = np.std((spectrum[2:]-spectrum[:-2])[mask[1:-1] == 0])/np.sqrt(2)
+		noise = np.nanstd((spectrum[2:]-spectrum[:-2])[mask[1:-1] == 0])/np.sqrt(2)
 		background = np.nanmean(spectrum[mask == 0])
 
 		return (spectrum-background)/noise
 
 	def best_fit(power):
 		'''Compute best Gaussian fit'''
-		avg = np.mean(power)
+		avg = np.nanmean(power)
 		var = np.var(power)
 
 		gaussian_fit_x = np.linspace(np.min(power),np.max(power),100)
@@ -339,6 +340,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			elif 't_sample' in headers[i]:
 				t_sample = float(headers[i].strip().split('=')[1])
 
+	# Transform frequency axis limits to MHz
+	xlim = [x / 1e6 for x in xlim]
+
 	# Define Radial Velocity axis limits
 	left_velocity_edge = -299792.458*(bandwidth-2*frequency+2*f_rest)/(bandwidth-2*frequency)
 	right_velocity_edge = 299792.458*(-bandwidth-2*frequency+2*f_rest)/(bandwidth+2*frequency)
@@ -368,7 +372,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 
 		# Delete first 3 rows (potentially containing outlier samples)
 		waterfall_cal = waterfall_cal[3:, :]
-		
+
 		# Mask RFI-contaminated channels
 		if rfi != [0,0]:
 			# Blank channels
@@ -376,11 +380,14 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 				waterfall_cal[:, i] = np.nan
 
 	# Compute average specta
-	avg_spectrum = decibel(np.mean(waterfall, axis=0))
-	if cal_file != '': avg_spectrum_cal = decibel(np.nanmean(waterfall_cal, axis=0))
+	with warnings.catch_warnings():
+		warnings.filterwarnings(action='ignore', message='Mean of empty slice')
+		avg_spectrum = decibel(np.nanmean(waterfall, axis=0))
+		if cal_file != '':
+			avg_spectrum_cal = decibel(np.nanmean(waterfall_cal, axis=0))
 
 	# Define array for Time Series plot
-	power = decibel(np.mean(waterfall, axis=1))
+	power = decibel(np.nanmean(waterfall, axis=1))
 
 	# Number of sub-integrations
 	subs = waterfall.shape[0]
@@ -406,25 +413,20 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		else:
 			spectrum = avg_spectrum/avg_spectrum_cal
 
-		# Mitigate RFI (Frequency Domain)
-		if n != 0:
-			spectrum_clean = SNR(spectrum.copy(), mask)
-			for i in range(0, int(channels)):
-				spectrum_clean[i] = np.median(spectrum_clean[i:i+n])
-
 		spectrum = SNR(spectrum, mask)
 		if slope_correction:
-			fit = np.polyfit(frequency, spectrum, 1)
+			idx = np.isfinite(frequency) & np.isfinite(spectrum)
+			fit = np.polyfit(frequency[idx], spectrum[idx], 1)
 			ang_coeff = fit[0]
 			intercept = fit[1]
 			fit_eq = ang_coeff*frequency + intercept
 			spectrum = SNR(spectrum-fit_eq, mask)
-			if n != 0:
-				fit_clean = np.polyfit(frequency, spectrum_clean, 1)
-				ang_coeff_clean = fit_clean[0]
-				intercept_clean = fit_clean[1]
-				fit_eq_clean = ang_coeff_clean*frequency + intercept_clean
-				spectrum_clean = SNR(spectrum_clean-fit_eq_clean, mask)
+
+		# Mitigate RFI (Frequency Domain)
+		if n != 0:
+			spectrum_clean = SNR(spectrum.copy(), mask)
+			for i in range(0, int(channels)):
+				spectrum_clean[i] = np.nanmedian(spectrum_clean[i:i+n])
 
 		# Apply position offset for Spectral Line label
 		text_offset = 60
@@ -433,7 +435,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	if m != 0:
 		power_clean = power.copy()
 		for i in range(0, int(subs)):
-			power_clean[i] = np.median(power_clean[i:i+m])
+			power_clean[i] = np.nanmedian(power_clean[i:i+m])
 
 	# Write Waterfall to file (FITS)
 	if waterfall_fits != '':
@@ -562,18 +564,15 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	else:
 		ax3 = fig.add_subplot(gs[0, 1])
 
-	if xlim == [0,0] and ylim == [0,0]:
-		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[np.min(frequency), np.max(frequency), np.min(t), np.max(t)])
-	elif xlim == [0,0] and ylim != [0,0]:
-		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[np.min(frequency), np.max(frequency), ylim[0], ylim[1]])
+	ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
+		   extent=[np.min(frequency), np.max(frequency), np.min(t), np.max(t)])
+	if xlim == [0,0] and ylim != [0,0]:
+		ax3.set_ylim(ylim[0], ylim[1])
 	elif xlim != [0,0] and ylim == [0,0]:
-		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[xlim[0], xlim[1], np.min(t), np.max(t)])
-	else:
-		ax3.imshow(decibel(waterfall), origin='lower', interpolation='None', aspect='auto',
-			   extent=[xlim[0], xlim[1], ylim[0], ylim[1]])
+		ax3.set_xlim(xlim[0], xlim[1])
+	elif xlim != [0,0] and ylim != [0,0]:
+		ax3.set_xlim(xlim[0], xlim[1])
+		ax3.set_ylim(ylim[0], ylim[1])
 
 	ax3.ticklabel_format(useOffset=False)
 	ax3.set_xlabel('Frequency (MHz)')
@@ -638,7 +637,7 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 
 	parser.add_argument('-da', '--dev_args', dest='dev_args',
-                        help='SDR Device Arguments (osmocom Source)', type=str, default='""')
+                        help='SDR Device Arguments (osmocom Source)', type=str, default='')
 	parser.add_argument('-rf', '--rf_gain', dest='rf_gain',
                         help='SDR RF Gain (dB)', type=float, default=10)
 	parser.add_argument('-if', '--if_gain', dest='if_gain',
