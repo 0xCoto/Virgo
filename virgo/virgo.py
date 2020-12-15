@@ -379,7 +379,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			for i in range(int(rfi_lo), int(rfi_hi)):
 				waterfall_cal[:, i] = np.nan
 
-	# Compute average specta
+	# Compute average spectra
 	with warnings.catch_warnings():
 		warnings.filterwarnings(action='ignore', message='Mean of empty slice')
 		avg_spectrum = decibel(np.nanmean(waterfall, axis=0))
@@ -631,6 +631,120 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	plt.tight_layout()
 	plt.savefig(plot_file)
 	plt.clf()
+
+def plot_rfi(rfi_parameters, data='rfi_data', dB=False, plot_file='plot.png'):
+	import matplotlib
+	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
+	import matplotlib.pyplot as plt
+
+	plt.rcParams['legend.fontsize'] = 14
+	plt.rcParams['axes.labelsize'] = 14
+	plt.rcParams['axes.titlesize'] = 18
+	plt.rcParams['xtick.labelsize'] = 12
+	plt.rcParams['ytick.labelsize'] = 12
+
+	f_lo = obs_parameters['f_lo']
+	bandwidth = obs_parameters['bandwidth']
+	channels = obs_parameters['channels']
+	t_sample = obs_parameters['t_sample']
+	duration = obs_parameters['duration']
+
+	# Transform sampling time to number of bins
+	bins = int(t_sample*bandwidth/channels)
+
+	offset = 1
+	total = []
+
+	# Count number of .dat files
+	n = len([f for f in os.listdir(data) if f.endswith('.dat') and os.path.isfile(os.path.join(data, f))])
+
+	for i in range(int(n)):
+		# Load data
+		waterfall = offset*np.fromfile(data+'/'str(i)+'.dat', dtype='float32').reshape(-1, channels)/bins
+
+		# Delete first 3 rows (potentially containing outlier samples)
+		waterfall = waterfall[3:, :]
+
+		total.append(final)
+
+	# Merge dynamic spectra
+	combined = np.concatenate(total, axis=1)
+
+	# Compute average spectra
+	avg_spectrum = np.mean(combined, axis=0)
+
+	# Compute frequency axis
+	allfreq = []
+
+	for i in range(int(n)):
+		f_total = np.linspace((f_lo+bandwidth*i)-0.5*bandwidth, (f_lo+bandwidth*i)+0.5*bandwidth, channels, endpoint=False)*1e-6
+		allfreq.append(f_total)
+
+	f_total = np.concatenate(allfreq)
+
+	# Initialize plot
+	fig = plt.figure(figsize=(5*n,20.25))
+	gs = GridSpec(1,1)
+
+	# Plot merged spectra
+	ax = fig.add_subplot(gs[0,0])
+
+	ax.plot(f_total, decibel(avg_spectrum), '#3182bd')
+	ax.fill_between(f_total, decibel(avg_spectrum), color='#deebf7')
+	ax.set_xlim(np.min(f_total), np.max(f_total))
+	ax.set_ylim(np.amin(decibel(avg_spectrum))-0.5, np.amin(decibel(avg_spectrum))+15)
+	ax.ticklabel_format(useOffset=False)
+	ax.set_xlabel('Frequency (MHz)', labelpad=25)
+
+	if dB:
+		ax.set_ylabel('Relative Power (dB)', labelpad=25)
+	else:
+		ax.set_ylabel('Relative Power', labelpad=25)
+
+	try:
+		ax.set_title('Averaged RFI Spectrum', pad=25)
+	except: # matplotlib version compatibility
+		ax.set_title('Averaged RFI Spectrum')
+
+	ax.annotate('Monitored frequency range: '+str(f_lo/1000000)+'-'+str(f_hi/1000000)+' MHz ($\\Delta\\nu$ = '+str((f_hi-f_lo)/1000000)+' MHz)\n
+Bandwidth per spectrum: '+str(bandwidth/1000000)+' MHz\nIntegration time per spectrum: '+str(duration)+' sec\nFFT size: '+str(channels), xy=(17, 1179),
+xycoords='axes points', size=32, ha='left', va='top', color='brown')
+
+	ax.grid()
+
+	plt.tight_layout()
+	plt.savefig(plot_file)
+
+def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
+	dev_args = obs_parameters['dev_args']
+	rf_gain = obs_parameters['rf_gain']
+	if_gain = obs_parameters['if_gain']
+	bb_gain = obs_parameters['bb_gain']
+	bandwidth = obs_parameters['bandwidth']
+	channels = obs_parameters['channels']
+	duration = obs_parameters['duration']
+
+	t_sample = 0.1
+
+	# Iterate over the input frequency range
+	i = 0
+	for frequency in range(f_lo, f_hi, bandwidth):
+		rfi_parameters = {
+			'dev_args': dev_args,
+			'rf_gain': rf_gain,
+			'if_gain': if_gain,
+			'bb_gain': bb_gain,
+			'frequency': frequency,
+			'bandwidth': bandwidth,
+			'channels': channels,
+			't_sample': t_sample,
+			'duration': duration,
+			'f_lo': f_lo
+		}
+
+		# Run RFI monitor
+		observe(rfi_parameters=rfi_parameters, spectrometer='ftf', obs_file=data+'/'str(i)+'.dat')
+		i += 1
 
 if __name__ == '__main__':
 	# Load argument values
