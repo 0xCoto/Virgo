@@ -660,7 +660,7 @@ def plot_rfi(rfi_parameters, data='rfi_data', dB=False, plot_file='plot.png'):
 
 	for i in range(int(n)):
 		# Load data
-		waterfall = offset*np.fromfile(data+'/'str(i)+'.dat', dtype='float32').reshape(-1, channels)/bins
+		waterfall = offset*np.fromfile(data+'/'+str(i)+'.dat', dtype='float32').reshape(-1, channels)/bins
 
 		# Delete first 3 rows (potentially containing outlier samples)
 		waterfall = waterfall[3:, :]
