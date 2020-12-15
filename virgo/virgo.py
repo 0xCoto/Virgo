@@ -4,6 +4,7 @@ import argparse
 import time
 import numpy as np
 import datetime
+import shutil
 import warnings
 
 def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
@@ -632,22 +633,27 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	plt.savefig(plot_file)
 	plt.clf()
 
-def plot_rfi(rfi_parameters, data='rfi_data', dB=False, plot_file='plot.png'):
+def plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png'):
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
 	import matplotlib.pyplot as plt
+	from matplotlib.gridspec import GridSpec
 
-	plt.rcParams['legend.fontsize'] = 14
-	plt.rcParams['axes.labelsize'] = 14
-	plt.rcParams['axes.titlesize'] = 18
-	plt.rcParams['xtick.labelsize'] = 12
-	plt.rcParams['ytick.labelsize'] = 12
+	plt.rcParams['legend.fontsize'] = 18
+	plt.rcParams['axes.labelsize'] = 40
+	plt.rcParams['axes.titlesize'] = 50
+	plt.rcParams['xtick.labelsize'] = 34
+	plt.rcParams['ytick.labelsize'] = 34
 
-	f_lo = obs_parameters['f_lo']
-	bandwidth = obs_parameters['bandwidth']
-	channels = obs_parameters['channels']
-	t_sample = obs_parameters['t_sample']
-	duration = obs_parameters['duration']
+	f_lo = rfi_parameters['f_lo']
+	bandwidth = rfi_parameters['bandwidth']
+	channels = rfi_parameters['channels']
+	t_sample = rfi_parameters['t_sample']
+	duration = rfi_parameters['duration']
+
+	def decibel(x):
+		if dB: return 10.0*np.log10(x)
+		return x
 
 	# Transform sampling time to number of bins
 	bins = int(t_sample*bandwidth/channels)
@@ -665,7 +671,7 @@ def plot_rfi(rfi_parameters, data='rfi_data', dB=False, plot_file='plot.png'):
 		# Delete first 3 rows (potentially containing outlier samples)
 		waterfall = waterfall[3:, :]
 
-		total.append(final)
+		total.append(waterfall)
 
 	# Merge dynamic spectra
 	combined = np.concatenate(total, axis=1)
@@ -690,24 +696,21 @@ def plot_rfi(rfi_parameters, data='rfi_data', dB=False, plot_file='plot.png'):
 	ax = fig.add_subplot(gs[0,0])
 
 	ax.plot(f_total, decibel(avg_spectrum), '#3182bd')
-	ax.fill_between(f_total, decibel(avg_spectrum), color='#deebf7')
+	ax.set_ylim()
+	ax.fill_between(f_total, decibel(avg_spectrum), y2=-1000, color='#deebf7')
 	ax.set_xlim(np.min(f_total), np.max(f_total))
-	ax.set_ylim(np.amin(decibel(avg_spectrum))-0.5, np.amin(decibel(avg_spectrum))+15)
 	ax.ticklabel_format(useOffset=False)
-	ax.set_xlabel('Frequency (MHz)', labelpad=25)
+	ax.set_xlabel('Frequency (MHz)')
 
 	if dB:
-		ax.set_ylabel('Relative Power (dB)', labelpad=25)
+		ax.set_ylabel('Relative Power (dB)', x=-10)
 	else:
-		ax.set_ylabel('Relative Power', labelpad=25)
+		ax.set_ylabel('Relative Power', x=-10)
 
-	try:
-		ax.set_title('Averaged RFI Spectrum', pad=25)
-	except: # matplotlib version compatibility
-		ax.set_title('Averaged RFI Spectrum')
+	ax.set_title('Average RFI Spectrum', y=1.0075)
 
-	ax.annotate('Monitored frequency range: '+str(f_lo/1000000)+'-'+str(f_hi/1000000)+' MHz ($\\Delta\\nu$ = '+str((f_hi-f_lo)/1000000)+' MHz)\n
-Bandwidth per spectrum: '+str(bandwidth/1000000)+' MHz\nIntegration time per spectrum: '+str(duration)+' sec\nFFT size: '+str(channels), xy=(17, 1179),
+	ax.annotate('Monitored frequency range: '+str(round(f_lo/1000000,1))+'-'+str(round(np.max(f_total),1))+' MHz ($\\Delta\\nu$ = '+str(round(((np.max(f_total)*1e6-f_lo)/1000000),1))+
+' MHz)\nBandwidth per spectrum: '+str(bandwidth/1000000)+' MHz\nIntegration time per spectrum: '+str(duration)+' sec\nFFT size: '+str(channels), xy=(17, 1290),
 xycoords='axes points', size=32, ha='left', va='top', color='brown')
 
 	ax.grid()
@@ -727,9 +730,15 @@ def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 
 	t_sample = 0.1
 
+	# Create RFI data directory
+	if os.path.exists(data):
+		shutil.rmtree(data)
+
+	os.makedirs(data)
+
 	# Iterate over the input frequency range
 	i = 0
-	for frequency in range(f_lo, f_hi, bandwidth):
+	for frequency in range(int(f_lo), int(f_hi), int(bandwidth)):
 		rfi_parameters = {
 			'dev_args': dev_args,
 			'rf_gain': rf_gain,
@@ -744,7 +753,7 @@ def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 		}
 
 		# Run RFI monitor
-		observe(rfi_parameters=rfi_parameters, spectrometer='ftf', obs_file=data+'/'str(i)+'.dat')
+		observe(obs_parameters=rfi_parameters, spectrometer='ftf', obs_file=data+'/'+str(i)+'.dat')
 		i += 1
 
 if __name__ == '__main__':
