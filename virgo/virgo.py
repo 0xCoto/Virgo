@@ -714,6 +714,7 @@ xycoords='axes points', size=32, ha='left', va='top', color='brown')
 
 	plt.tight_layout()
 	plt.savefig(plot_file)
+	plt.clf()
 
 def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 	dev_args = obs_parameters['dev_args']
