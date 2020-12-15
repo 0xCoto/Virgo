@@ -155,7 +155,11 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	plt.xlim(0*u.hour, 24*u.hour)
 	plt.xticks((np.arange(24))*u.hour)
 	plt.ylim(0*u.deg, 90*u.deg)
-	plt.title(source+' | '+date, y=1.01)
+
+	if source != '':
+		plt.title(source+' | '+date, y=1.01)
+	else:
+		plt.title('Sun | '+date, y=1.01)
 
 	if utcoffset/u.hour != 0:
 		plt.xlabel('Time (UTC+'+str(int(utcoffset/u.hour))+')')
