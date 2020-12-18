@@ -161,11 +161,12 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	else:
 		plt.title('Sun | '+date, y=1.01)
 
+	offset = ["", "+"][int(utcoffset/u.hour) > 0] + str(int(utcoffset/u.hour))
 	if utcoffset/u.hour != 0:
-		plt.xlabel('Time (UTC+'+str(int(utcoffset/u.hour))+')')
+		plt.xlabel('Time (UTC'+str(offset)+')')
 	else:
 		plt.xlabel('Time (UTC)')
-	plt.ylabel('Altitude (deg)')
+	plt.ylabel('Altitude')
 
 	if plot_file != '':
 		plt.savefig(plot_file, bbox_inches='tight', pad_inches=0.2)
