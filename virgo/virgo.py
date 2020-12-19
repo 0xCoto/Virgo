@@ -27,7 +27,11 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 		v_max = 400
 
 	# Download LAB Survey HI data
-	response = requests.get('https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/download.php?ral='+str(l)+'&decb='+str(b)+'&csys=0&beam='+str(beamwidth))
+	try:
+		response = requests.get('https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/download.php?ral='+str(l)+'&decb='+str(b)+'&csys=0&beam='+str(beamwidth))
+	except requests.exceptions.ConnectionError:
+		raise requests.exceptions.ConnectionError('Failed to reach astro.uni-bonn.de. Make sure you are connected to the internet and try again.')
+
 	data = response.content
 
 	# Parse data
@@ -175,46 +179,90 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	plt.clf()
 
 def equatorial(alt, az, lat, lon, height=0):
-    from astropy.time import Time
-    from astropy.coordinates import SkyCoord, EarthLocation, AltAz
-    import astropy.units as u
+	from astropy.time import Time
+	from astropy.coordinates import SkyCoord, EarthLocation, AltAz
+	import astropy.units as u
 
 	# Set observer location
-    loc = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
+	loc = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
 
 	# Get current system time
-    current_time = Time.now()
+	current_time = Time.now()
 
 	# Compute Alt/Az
-    AltAzcoordiantes = SkyCoord(alt=alt * u.deg, az=az * u.deg,
-	                            obstime=current_time, frame='altaz', location=loc)
+	AltAzcoordiantes = SkyCoord(alt=alt * u.deg, az=az * u.deg,
+				    obstime=current_time, frame='altaz', location=loc)
 
 	# Transform to RA/Dec
-    c = AltAzcoordiantes.icrs
+	c = AltAzcoordiantes.icrs
 
-    ra = c.ra.hour
-    dec = c.dec.deg
+	ra = c.ra.hour
+	dec = c.dec.deg
 
 	# Return position as tuple
-    return (ra, dec)
+	return (ra, dec)
 
 def galactic(ra, dec):
-    from astropy.time import Time
-    from astropy.coordinates import SkyCoord, EarthLocation, AltAz
-    import astropy.units as u
+	from astropy.time import Time
+	from astropy.coordinates import SkyCoord, EarthLocation, AltAz
+	import astropy.units as u
 
 	# Get current system time
-    current_time = Time.now()
+	current_time = Time.now()
 
 	# Transform source position to galactic longitude & latitude
-    equatorial = SkyCoord(ra=ra * u.hour, dec=dec * u.deg, frame='icrs')
-    galactic = equatorial.galactic
+	equatorial = SkyCoord(ra=ra * u.hour, dec=dec * u.deg, frame='icrs')
+	galactic = equatorial.galactic
 
-    l = galactic.l.deg
-    b = galactic.b.deg
+	l = galactic.l.deg
+	b = galactic.b.deg
 
 	# Return position as tuple
-    return (l, b)
+	return (l, b)
+
+def map(ra=None, dec=None, plot_file=''):
+	import matplotlib
+	import matplotlib.pyplot as plt
+
+	plt.rcParams["figure.figsize"] = (20,20)
+
+	# Load HI survey
+	survey = np.loadtxt('map.txt')
+
+	# Flip array to match RA and Dec axes
+	survey_corrected = np.flip(survey, 1)
+
+	# Plot map
+	plt.imshow(survey_corrected, extent=[24,0,-90,90], aspect=0.07, interpolation='None')
+
+	# Survey citation
+	plt.text(4.75, 91.8, 'LAB HI Survey (Kalberla et al., 2005)', fontsize=14, bbox={'facecolor': 'white', 'pad': 4})
+
+	# Plot properties
+	plt.title('All-Sky Map (21 cm)', fontsize=28, y=1.01)
+	plt.xticks(np.arange(0, 24.01, 2))
+	plt.xlabel('Right Ascension (hours)', fontsize=20)
+	plt.ylabel('Declination (deg)', fontsize=20)
+	plt.xticks(fontsize=16)
+	plt.yticks(fontsize=16)
+
+	# Plot given source position
+	if ra is not None and dec is not None:
+		if ra >= 0 and ra <= 24 and dec >= -90 and dec <= 90:
+			plt.axvline(ra, 0, 1, linestyle='--', linewidth=2, color=(214/255, 39/255, 40/255, 0.9))
+			plt.axhline(dec, 0, 1, linestyle='--', linewidth=2, color=(214/255, 39/255, 40/255, 0.9))
+			plt.scatter(ra, dec, s=350, color=[214/255, 39/255, 40/255])
+		else:
+			warnings.warn('RA and/or Dec out of range. Ensure the input is decimal hours and decimal degrees respectively.')
+
+	#plt.tight_layout() ### CHECK IF NECESSARY
+	if plot_file != '':
+		# Save plot to file
+		plt.savefig(plot_file, bbox_inches='tight') ### CHECK IF NECESSARY , pad_inches=0.1)
+	else:
+		# Display plot
+		plt.show()
+	plt.clf()
 
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
 	if spectrometer.lower() != 'wola':
@@ -329,7 +377,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	else:
 		header_file = '.'.join(obs_file.split('.')[:-1])+'.header'
 
-		print('[!] No observation parameters passed. Attempting to load from header file ('+header_file+')...')
+		warnings.warn('No observation parameters passed. Attempting to load from header file ('+header_file+')...')
 
 		with open(header_file, 'r') as f:
 			headers = [parameter.rstrip('\n') for parameter in f.readlines()]
@@ -465,7 +513,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		try:
 			hdu.header['MJD-OBS'] = mjd
 		except NameError:
-			print('[!] Observation MJD could not be found and will not be part of the FITS header. Ignoring...')
+			warnings.warn('Observation MJD could not be found and will not be part of the FITS header.')
 			pass
 
 		# Delete pre-existing FITS file
