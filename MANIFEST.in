@@ -1,1 +1,1 @@
-recursive-include virgo *.txt *.py *.grc
+global-include *.txt *.py *.grc
