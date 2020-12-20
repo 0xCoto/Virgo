@@ -220,14 +220,22 @@ def galactic(ra, dec):
 	# Return position as tuple
 	return (l, b)
 
-def map(ra=None, dec=None, plot_file=''):
+def map_hi(ra=None, dec=None, plot_file=''):
 	import matplotlib
 	import matplotlib.pyplot as plt
 
 	plt.rcParams["figure.figsize"] = (20,20)
 
+	# Get package path
+	if sys.version_info >= (3, 4):
+		import importlib.util
+		virgo_path = importlib.util.find_spec('virgo').submodule_search_locations[0]
+	else:
+		import imp
+		sys.modules['virgo'].__path__[0]
+
 	# Load HI survey
-	survey = np.loadtxt('map.txt')
+	survey = np.loadtxt(virgo_path+'/map.txt')
 
 	# Flip array to match RA and Dec axes
 	survey_corrected = np.flip(survey, 1)
