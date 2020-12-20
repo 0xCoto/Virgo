@@ -232,7 +232,7 @@ def map_hi(ra=None, dec=None, plot_file=''):
 		virgo_path = importlib.util.find_spec('virgo').submodule_search_locations[0]
 	else:
 		import imp
-		sys.modules['virgo'].__path__[0]
+		virgo_path = sys.modules['virgo'].__path__[0]
 
 	# Load HI survey
 	survey = np.loadtxt(virgo_path+'/map.txt')
