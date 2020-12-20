@@ -87,6 +87,7 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 		# Display plot
 		plt.show()
 	plt.clf()
+	plt.close()
 
 def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
 	from astropy.time import Time
@@ -224,7 +225,9 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	import matplotlib
 	import matplotlib.pyplot as plt
 
-	plt.rcParams["figure.figsize"] = (20,20)
+	# Adjust figsize
+	if plot_file != '':
+		plt.rcParams["figure.figsize"] = (20,20)
 
 	# Get package path
 	if sys.version_info >= (3, 4):
@@ -243,9 +246,6 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	# Plot map
 	plt.imshow(survey_corrected, extent=[24,0,-90,90], aspect=0.07, interpolation='None')
 
-	# Survey citation
-	plt.text(4.75, 91.8, 'LAB HI Survey (Kalberla et al., 2005)', fontsize=14, bbox={'facecolor': 'white', 'pad': 4})
-
 	# Plot properties
 	plt.title('All-Sky Map (21 cm)', fontsize=28, y=1.01)
 	plt.xticks(np.arange(0, 24.01, 2))
@@ -257,18 +257,21 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	# Plot given source position
 	if ra is not None and dec is not None:
 		if ra >= 0 and ra <= 24 and dec >= -90 and dec <= 90:
-			plt.axvline(ra, 0, 1, linestyle='--', linewidth=2, color=(214/255, 39/255, 40/255, 0.9))
-			plt.axhline(dec, 0, 1, linestyle='--', linewidth=2, color=(214/255, 39/255, 40/255, 0.9))
-			plt.scatter(ra, dec, s=350, color=[214/255, 39/255, 40/255])
+			plt.axvline(ra, 0, 1, linestyle='--', linewidth=2, color=(0.85, 0.15, 0.16, 0.9))
+			plt.axhline(dec, 0, 1, linestyle='--', linewidth=2, color=(0.85, 0.15, 0.16, 0.9))
+			plt.scatter(ra, dec, s=200, color=[0.85, 0.15, 0.16])
 		else:
 			warnings.warn('RA and/or Dec out of range. Ensure the input is decimal hours and decimal degrees respectively.')
 
-	#plt.tight_layout() ### CHECK IF NECESSARY
 	if plot_file != '':
-		# Save plot to file
-		plt.savefig(plot_file, bbox_inches='tight') ### CHECK IF NECESSARY , pad_inches=0.1)
+                # Add survey citation
+                plt.text(5.62, 92.1, 'LAB HI Survey (Kalberla et al., 2005)', fontsize=14, bbox={'facecolor': 'white', 'pad': 4})
+
+                # Save plot to file
+                plt.savefig(plot_file, bbox_inches='tight')
 	else:
 		# Display plot
+		plt.tight_layout()
 		plt.show()
 	plt.clf()
 
