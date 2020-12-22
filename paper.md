@@ -81,22 +81,50 @@ samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectr
 observation are all automatically computed and plotted with the help of the Numpy
 [@Harris2020] and Matplotlib [@Hunter:2007] packages.
 
+% Comment: Mention ability to switch to the simple FT
+
 Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
 In general, this frequency response makes it difficult to distinguish true signals,
 originating from the sky, from instrumentation artifacts. For that reason, `Virgo`
 performs bandpass calibration by taking the ratio of the observed spectrum over
 the calibration spectrum. However, because this ratio is arbitrarily scaled (due to
-the difference in the noise floor levels), the power axis is automatically rescale
-to units of signal-to-noise ratio.
+the difference in the noise floor levels), the power axis is automatically rescaled
+to units of signal-to-noise ratio. In case the resulted spectrum has an unwanted
+slope due to e.g. inconsistent conditions between the calibration and the observation,
+the software can also automatically correct poorly-calibrated spectra using linear
+regression.
+
+% Not sure how clear the above sentence sounds. A figure would definitely help make
+this more clear (if it fits).
 
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
-the raw observation data as a FITS/csv-formatted file.
+the raw observation data as a FITS/csv-formatted file. Frequencies contaminated
+with RFI may also be stamped out with the software's built-in channel masking
+capability.
 
-Lastly, the software's modularity allows users to integrate `Virgo`'s
-functionalities into their own software effortlessly, permitting a variety of automation
+By additionally providing the observer with an important set of utilities, `Virgo` also
+makes for a great tool for planning (radio) observations. This includes the ability to
+compute the position of astronomical sources in the sky (altitude & azimuth vs time)
+for a given date, estimate the right ascension and declination given the observer's
+coordinates along with the altitude and azimuth the telescope is pointing to and convert
+equatorial to galactic coordinates with the help of the Astropy [@Astropy2013] package.
+Likewise, the software provides a handy tool for simulating HI profiles based on the
+Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra can be associated with
+`Virgo`'s 21 cm all-sky map previewer.
+
+% Should we cite Astropy 2013 or 2018? See: https://www.astropy.org/acknowledging.html
+% How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
+% (To do: add map figure)
+
+Moreover, the package comes with an integrated frequency-domain RFI measurement pipeline,
+allowing observers to rapidly deploy a survey outlining the compatibility of the
+telescope's environment with radio observation standards.
+
+Lastly, the software's modularity allows users to effortlessly integrate
+`Virgo`'s functionalities into other pipelines, permitting a variety of automation
 applications invloving the acquisition and/or processing of telescope data.
 
 # Example Usage
