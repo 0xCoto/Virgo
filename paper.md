@@ -112,8 +112,13 @@ for a given date, estimate the right ascension and declination given the observe
 coordinates along with the altitude and azimuth the telescope is pointing to and convert
 equatorial to galactic coordinates with the help of the Astropy [@Astropy2013] package.
 Likewise, the software provides a handy tool for simulating HI profiles based on the
-Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra can be associated with
-`Virgo`'s 21 cm all-sky map previewer.
+Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra (see \autoref{fig:profile}
+for an example) can be associated with the integrated 21 cm all-sky map previewer shown
+in \autoref{fig:map}.
+
+![Example HI profile ($\alpha = 20\mathrm{h}30\mathrm{'}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
+
+![21 cm all-sky map rendered by the software. The red dot indicates the position of the telescope's beam in the sky, provided by the user.\label{fig:map}](map.pdf)
 
 % Should we cite Astropy 2013 or 2018? See: https://www.astropy.org/acknowledging.html
 % How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
