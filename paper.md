@@ -66,7 +66,7 @@ distribution of neutral hydrogen and/or derive the rotation curve of the Milky W
 An example observation of the 21-cm hydrogen line acquired and processed with
 `Virgo` is shown in \autoref{fig:example}.
 
-![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20\mathrm{h}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, U.S. with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
+![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20^{\mathrm{h}}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, U.S. with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
 # Features
 
@@ -116,13 +116,12 @@ Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra (see \autoref{f
 for an example) can be associated with the integrated 21 cm all-sky map previewer shown
 in \autoref{fig:map}.
 
-![Example HI profile ($\alpha = 20\mathrm{h}30\mathrm{'}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
+![Example HI profile ($\alpha = 20^{\mathrm{h}}30^{\mathrm{m}}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
 
 ![21 cm all-sky map rendered by the software. The red dot indicates the position of the telescope's beam in the sky, provided by the user.\label{fig:map}](map.pdf)
 
 % Should we cite Astropy 2013 or 2018? See: https://www.astropy.org/acknowledging.html
 % How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
-% (To do: add map figure)
 
 Moreover, the package comes with an integrated frequency-domain RFI measurement pipeline,
 allowing observers to rapidly deploy a survey outlining the compatibility of the
@@ -155,13 +154,17 @@ obs = {
     'duration': 60
 }
 
-# Begin data acquisition in 10 seconds
+# Check source position
+virgo.predict(lat=39.83, lon=-74.87, source='Cas A', date='2020-12-26')
+
+# Begin data acquisition in 10 sec
 virgo.observe(obs_parameters=obs, obs_file='observation.dat', start_in=10)
 
 # Analyze data, mitigate RFI and export the data as a FITS file
 virgo.plot(obs_parameters=obs, n=20, m=35, f_rest=1420.4057517667e6,
            obs_file='observation.dat', cal_file='calibration.dat',
-           waterfall_fits='obs.fits', plot_file='plot.png')
+           rfi=[1419.2e6, 1419.3e6], waterfall_fits='obs.fits',
+           slope_correction=True, plot_file='plot.png')
 ```
 
 # Future Work
