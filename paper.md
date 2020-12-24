@@ -94,9 +94,6 @@ slope due to e.g. inconsistent conditions between the calibration and the observ
 the software can also automatically correct poorly-calibrated spectra using linear
 regression.
 
-% Not sure how clear the above sentence sounds. A figure would definitely help make
-this more clear (if it fits).
-
 Furthermore, `Virgo` supports optional median operations, both
 in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
@@ -118,10 +115,6 @@ in \autoref{fig:map}.
 ![Example HI profile ($\alpha = 20^{\mathrm{h}}30^{\mathrm{m}}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
 
 ![21 cm all-sky map rendered by the software. The red dot indicates the position of the telescope's beam in the sky, provided by the user.\label{fig:map}](map.pdf)
-
-% Should we cite Astropy 2013 or 2018? See: https://www.astropy.org/acknowledging.html
-
-% How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
 
 Moreover, the package comes with an integrated frequency-domain RFI measurement pipeline,
 allowing observers to rapidly carry out a survey outlining the compatibility of the
