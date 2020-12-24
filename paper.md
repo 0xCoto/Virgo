@@ -124,7 +124,7 @@ in \autoref{fig:map}.
 % How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
 
 Moreover, the package comes with an integrated frequency-domain RFI measurement pipeline,
-allowing observers to rapidly deploy a survey outlining the compatibility of the
+allowing observers to rapidly carry out a survey outlining the compatibility of the
 telescope's environment with radio observation standards.
 
 Lastly, the software's modularity allows users to effortlessly integrate
