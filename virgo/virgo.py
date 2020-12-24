@@ -56,6 +56,11 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	left_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * -v_max/(299792458 * 1e6)
 	right_frequency_edge = 1420.4057517667 + 1420.4057517667e6 * -v_min/(299792458 * 1e6)
 
+	# Limit galactic coordinates to 2 decimal places
+	l = float('%.2f' % l)
+	b = float('%.2f' % b)
+
+	# Initiate plot
 	fig, ax = plt.subplots()
 
 	try:
