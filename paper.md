@@ -73,15 +73,14 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 One of the key features of `Virgo` is that it is a four-tap weighted overlap-add (WOLA) Fourier transform (FT)
 spectrometer, offering a significant reduction in spectral leakage compared to
 a simple FT filterbank spectrometer that does not make use of the WOLA method, with a minimal
-increase in computational requirements [@Crochiere1996]. In addition to
+increase in computational requirements [@Crochiere1996]\footnote{The package also supports
+a plain FT filterbank pipeline for observatories with limited computational resources.}. In addition to
 its data-acquisition functionality that performs data reduction by time-averaging
 spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
 (waterfall), the time series (power vs time) and the total power distribution of the
 observation are all automatically computed and plotted with the help of the Numpy
 [@Harris2020] and Matplotlib [@Hunter:2007] packages.
-
-% Comment: Mention ability to switch to the simple FT
 
 Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
