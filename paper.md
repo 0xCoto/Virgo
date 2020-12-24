@@ -120,6 +120,7 @@ in \autoref{fig:map}.
 ![21 cm all-sky map rendered by the software. The red dot indicates the position of the telescope's beam in the sky, provided by the user.\label{fig:map}](map.pdf)
 
 % Should we cite Astropy 2013 or 2018? See: https://www.astropy.org/acknowledging.html
+
 % How exactly should we cite LAB's grant etc.? See: https://www.astro.uni-bonn.de/hisurvey/euhou/LABprofile/
 
 Moreover, the package comes with an integrated frequency-domain RFI measurement pipeline,
