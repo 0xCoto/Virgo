@@ -249,7 +249,7 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	survey_corrected = np.flip(survey, 1)
 
 	# Plot map
-	plt.imshow(survey_corrected, extent=[24,0,-90,90], aspect=0.07, interpolation='None')
+	plt.imshow(survey_corrected, extent=[24,0,-90,90], aspect=0.07, interpolation='gaussian')
 
 	# Plot properties
 	plt.title('All-Sky Map (21 cm)', fontsize=28, y=1.01)
