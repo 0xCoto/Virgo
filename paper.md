@@ -103,16 +103,19 @@ capability.
 
 By additionally providing the observer with an important set of utilities, `Virgo` also
 makes for a great tool for planning (radio) observations. This includes the ability to
-compute the position of astronomical sources in the sky (altitude & azimuth vs time)
-for a given date, estimate the right ascension and declination given the observer's
-coordinates along with the altitude and azimuth the telescope is pointing to and convert
-equatorial to galactic coordinates with the help of the Astropy [@Astropy2013] package.
+compute the position of astronomical sources in the sky for a given date (see \autoref{fig:predict}),
+estimate the right ascension and declination given the observer's coordinates along with
+the altitude and azimuth the telescope is pointing to and convert equatorial to galactic
+coordinates with the help of the Astropy [@Astropy2013] package.
+
+![Example prediction of the location of the Cygnus A radio galaxy (3C 405) in the celestial sphere of the observer.\label{fig:predict}](predict.pdf)
+
 Likewise, the software provides a handy tool for simulating HI profiles based on the
 Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra (see \autoref{fig:profile}
 for an example) can be associated with the integrated 21 cm all-sky map previewer shown
 in \autoref{fig:map}.
 
-![Example HI profile ($\alpha = 20^{\mathrm{h}}30^{\mathrm{m}}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
+![Sample HI profile ($\alpha = 20^{\mathrm{h}}30^{\mathrm{m}}$, $\delta = 45^{\circ}$) simulated with `Virgo`.\label{fig:profile}](profile.pdf)
 
 ![21 cm all-sky map rendered by the software. The red dot indicates the position of the telescope's beam in the sky, provided by the user.\label{fig:map}](map.pdf)
 
