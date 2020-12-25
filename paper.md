@@ -79,8 +79,8 @@ its data-acquisition functionality that performs data reduction by time-averagin
 spectra in real time, `Virgo` also carries out automated analysis of the recorded
 samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectrum
 (waterfall), the time series (power vs time) and the total power distribution of the
-observation are all automatically computed and plotted with the help of the Numpy
-[@Harris2020] and Matplotlib [@Hunter:2007] packages.
+observation are all automatically computed and plotted with the help of the `Numpy`
+[@Harris2020] and `Matplotlib` [@Hunter:2007] packages.
 
 Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
@@ -106,7 +106,7 @@ makes for a great tool for planning (radio) observations. This includes the abil
 compute the position of astronomical sources in the sky for a given date (see \autoref{fig:predict}),
 estimate the right ascension and declination given the observer's coordinates along with
 the altitude and azimuth the telescope is pointing to and convert equatorial to galactic
-coordinates with the help of the Astropy [@astropy:2013, @astropy:2018] package.
+coordinates with the help of the `Astropy` package [@astropy].
 
 ![Example prediction of the location of the Cygnus A radio galaxy (3C 405) in the celestial sphere of the observer.\label{fig:predict}](predict.pdf)
 
