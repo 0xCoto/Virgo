@@ -111,7 +111,7 @@ coordinates with the help of the `Astropy` package [@astropy:2013; @astropy:2018
 ![Example prediction of the location of the Cygnus A radio galaxy (3C 405) in the celestial sphere of the observer.\label{fig:predict}](predict.pdf)
 
 Likewise, the software provides a handy tool for simulating HI profiles based on the
-Leiden/Argentine/Bonn (LAB) Survey of Galactic HI, whose spectra (see \autoref{fig:profile}
+Leiden/Argentine/Bonn (LAB) Survey of Galactic HI [@Kalberla2005], whose spectra (see \autoref{fig:profile}
 for an example) can be associated with the integrated 21 cm all-sky map previewer shown
 in \autoref{fig:map}.
 
