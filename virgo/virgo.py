@@ -480,7 +480,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			shift(t_bin, n)
 
 	# Define array for Time Series plot
-        power = decibel(np.nanmean(waterfall, axis=1))
+	power = decibel(np.nanmean(waterfall, axis=1))
 
 	# Apply Mask
 	mask = np.zeros_like(avg_spectrum)
