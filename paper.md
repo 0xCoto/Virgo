@@ -101,6 +101,14 @@ the raw observation data as a FITS/csv-formatted file. Frequencies contaminated
 with RFI may also be stamped out with the software's built-in channel masking
 capability.
 
+Lastly, the package may also be used for the detection of giant pulses (irregularly intense
+bursts of radio emission by pulsars). Due to the frequency-dependent dispersion
+introduced by plasma distributions in the interstellar medium (ISM), observed pulses
+naturally appear smeared, depending on the dispersion measure (integrated column density of
+free electrons from the observer to the source). To prevent implied degradations of
+the signal-to-noise ratio, incoherent dedispersion is optionally applied to dynamic spectra
+of pulsar observations, compensating for the unwanted smearing effects of the ISM.
+
 By additionally providing the observer with an important set of utilities, `Virgo` also
 makes for a great tool for planning (radio) observations. This includes the ability to
 compute the position of astronomical sources in the sky for a given date (see \autoref{fig:predict}),
@@ -123,7 +131,7 @@ Moreover, the package comes with an integrated frequency-domain RFI measurement 
 allowing observers to rapidly carry out a survey outlining the compatibility of the
 telescope's environment with radio observation standards.
 
-Lastly, the software's modularity allows users to effortlessly integrate
+Last but not least, the software's modularity allows users to effortlessly integrate
 `Virgo`'s functionalities into other pipelines, permitting a variety of automation
 applications invloving the acquisition and/or processing of telescope data.
 
