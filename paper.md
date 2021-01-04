@@ -107,7 +107,7 @@ introduced by plasma distributions in the interstellar medium (ISM), observed pu
 naturally appear smeared, depending on the dispersion measure (integrated column density of
 free electrons from the observer to the source). To prevent implied degradations of
 the signal-to-noise ratio, incoherent dedispersion is optionally applied to dynamic spectra
-of pulsar observations, compensating for the unwanted smearing effects of the ISM.
+of pulsar observations, compensating for the unwanted dispersive effects of the ISM.
 
 By additionally providing the observer with an important set of utilities, `Virgo` also
 makes for a great tool for planning (radio) observations. This includes the ability to
