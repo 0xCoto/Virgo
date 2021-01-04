@@ -344,7 +344,7 @@ channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
 
-def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0],
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0,
 	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
@@ -360,6 +360,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	def decibel(x):
 		if dB: return 10.0*np.log10(x)
 		return x
+
+	def shift(phase_num, n_rows):
+		waterfall[:, phase_num] = np.roll(waterfall[:, phase_num], -n_rows)
 
 	def SNR(spectrum, mask=np.array([])):
 		'''Signal-to-Noise Ratio estimator, with optional masking.
@@ -456,9 +459,6 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		if cal_file != '':
 			avg_spectrum_cal = decibel(np.nanmean(waterfall_cal, axis=0))
 
-	# Define array for Time Series plot
-	power = decibel(np.nanmean(waterfall, axis=1))
-
 	# Number of sub-integrations
 	subs = waterfall.shape[0]
 
@@ -468,6 +468,19 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	# Compute Frequency axis; convert Hz to MHz
 	frequency = np.linspace(frequency-0.5*bandwidth, frequency+0.5*bandwidth,
 	                        channels, endpoint=False)*1e-6
+
+	# Perform de-dispersion
+	if dm != 0:
+		deltaF = float(np.max(frequency)-np.min(frequency))/subs
+		f_start = np.min(frequency)
+		for t_bin in range(subs):
+			f_chan = f_start+t_bin*deltaF
+			deltaT = 4149*dm*((1/(f_chan**2))-(1/(np.max(frequency)**2)))
+			n = int((float(deltaT)/(float(1)/channels)))
+			shift(t_bin, n)
+
+	# Define array for Time Series plot
+        power = decibel(np.nanmean(waterfall, axis=1))
 
 	# Apply Mask
 	mask = np.zeros_like(avg_spectrum)
