@@ -94,7 +94,7 @@ the software can also automatically correct poorly-calibrated spectra using line
 regression.
 
 Furthermore, `Virgo` supports optional median operations, both
-in the frequency and time domain, for the suppression of narrowband and
+in the frequency and time domain, for the suppression of narrowband and/or
 short-duration radio frequency interference (RFI), while allowing the user to export
 the raw observation data as a FITS [@Pence2010] or csv-formatted file. Frequencies contaminated
 with RFI may also be stamped out with the software's built-in channel masking
