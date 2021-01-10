@@ -51,7 +51,7 @@ Designed to be used by students, educators and amateurs in the field of radio
 astronomy, `Virgo` has already been adopted by a number of small and
 large-aperture radio telescopes, permitting both spectral and continuum
 observations with great success. These instruments include the ISEC TLM-18 (18m),
-the ACRO RT-320 (3.2m), the JRT (1.9m), the PICTOR Telescope (1.5m), among others.
+the ACRO RT-320 (3.2m), the JRT (1.9m), and the PICTOR Telescope (1.5m), among others.
 
 Although the hardware aspect of a radio telescope is generally handled by newcomers
 with relative ease, the skill set needed to integrate a complete software pipeline to
@@ -70,7 +70,7 @@ An example observation of the 21-cm hydrogen line acquired and processed with
 
 # Features
 
-One of the key features of `Virgo` is that it is a four-tap weighted overlap-add (WOLA) Fourier transform (FT)
+One of the key features of `Virgo` is its implementation of a four-tap weighted overlap-add (WOLA) Fourier transform (FT)
 spectrometer, offering a significant reduction in spectral leakage compared to
 a simple FT filterbank spectrometer that does not make use of the WOLA method, with a minimal
 increase in computational requirements [@Crochiere1996]\footnote{The package also supports
@@ -82,7 +82,7 @@ samples. The time-averaged spectrum, the calibrated spectrum, the dynamic spectr
 observation are all automatically computed and plotted with the help of the `Numpy`
 [@Harris2020] and `Matplotlib` [@Hunter:2007] packages.
 
-Because of the nature of RF instrumentation radio telescopes are equipped with, the spectra acquired by SDRs
+Because of the nature of the RF instrumentation that radio telescopes are equipped with, the spectra acquired by SDRs
 have an unwanted frequency-dependant sensitivity, also known as the bandpass shape.
 In general, this frequency response makes it difficult to distinguish true signals,
 originating from the sky, from instrumentation artifacts. For that reason, `Virgo`
@@ -103,8 +103,8 @@ capability.
 
 Lastly, the package may also be used for the detection of giant pulses (irregularly intense
 bursts of radio emission by pulsars). Due to the frequency-dependent dispersion
-introduced by plasma distributions in the interstellar medium (ISM), observed pulses
-naturally appear smeared, depending on the dispersion measure (integrated column density of
+caused by the plasma distribution in the interstellar medium (ISM), observed pulses
+naturally appear smeared in time, depending on the dispersion measure (integrated column density of
 free electrons from the observer to the source). To prevent implied degradations of
 the signal-to-noise ratio, incoherent dedispersion is optionally applied to dynamic spectra
 of pulsar observations, compensating for the unwanted dispersive effects of the ISM.
@@ -112,15 +112,14 @@ of pulsar observations, compensating for the unwanted dispersive effects of the 
 By additionally providing the observer with an important set of utilities, `Virgo` also
 makes for a great tool for planning (radio) observations. This includes the ability to
 compute the position of astronomical sources in the sky for a given date (see \autoref{fig:predict}),
-estimate the right ascension and declination given the observer's coordinates along with
-the altitude and azimuth the telescope is pointing to and convert equatorial to galactic
-coordinates with the help of the `Astropy` package [@astropy:2013; @astropy:2018].
+and conversely, estimate the right ascencion and declination given the observer's coordinates along with
+the altitude and azimuth the telescope is pointing to, with the help of the `Astropy` package [@astropy:2013; @astropy:2018].
 
 ![Example prediction of the location of the Cygnus A radio galaxy (3C 405) in the celestial sphere of the observer.\label{fig:predict}](predict.pdf)
 
-Likewise, the software provides a handy tool for simulating HI profiles based on the
-Leiden/Argentine/Bonn (LAB) Survey of Galactic HI [@Kalberla2005], whose spectra (see \autoref{fig:profile}
-for an example) can be associated with the integrated 21 cm all-sky map previewer shown
+Likewise, the software provides a handy tool for retrieving HI profiles based on the
+Leiden/Argentine/Bonn (LAB) Survey of Galactic HI [@Kalberla2005]. These spectra (see \autoref{fig:profile}
+for an example) can be correlated with the integrated 21 cm all-sky map previewer shown
 in \autoref{fig:map}.
 
 ![Sample HI profile ($\alpha = 20^{\mathrm{h}}30^{\mathrm{m}}$, $\delta = 45^{\circ}$) obtained with the package's `virgo.simulate()` function.\label{fig:profile}](profile.pdf)
