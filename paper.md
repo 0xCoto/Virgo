@@ -60,11 +60,10 @@ this problem by providing non-experts with a tool to collect and interpret data 
 radio telescopes, without requiring expertise in digital signal processing and
 software engineering. An example use case is classroom experiments in which students
 build a small-aperture antenna connected to a low-noise amplifier followed by an SDR,
-and with the help of `Virgo`, obtain adequate data to map out the galactic
-distribution of neutral hydrogen and/or derive the rotation curve of the Milky Way.
-
-An example observation of the 21-cm hydrogen line acquired and processed with
-`Virgo` is shown in \autoref{fig:example}.
+and with the help of `Virgo`, obtain data to map out the galactic distribution of
+neutral hydrogen and/or derive the rotation curve of the Milky Way. An example
+observation of the 21-cm hydrogen line acquired and processed with `Virgo` is shown
+in \autoref{fig:example}.
 
 ![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20^{\mathrm{h}}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, U.S. with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
