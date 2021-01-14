@@ -113,6 +113,8 @@ makes for a great tool for planning (radio) observations. This includes the abil
 compute the position of astronomical sources in the sky for a given date (see \autoref{fig:predict}),
 and conversely, to estimate the right ascencion and declination given the observer's coordinates along with
 the altitude and azimuth the telescope is pointing to, with the help of the `Astropy` package [@astropy:2013; @astropy:2018].
+On top of that, the package comes with a basic set of calculators for quickly carrying out a variety of
+computations involving the theoretical sensitivity and performance of a given instrument.
 
 ![Example prediction of the location of the Cygnus A radio galaxy (3C 405) in the celestial sphere of the observer.\label{fig:predict}](predict.pdf)
 
