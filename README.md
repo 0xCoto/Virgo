@@ -95,6 +95,36 @@ galactic(ra, dec)
 # Takes observer's location and AltAz as input and returns RA/Dec as a tuple.
 equatorial(alt, az, lat, lon, height=0)
 
+# Converts frequency (Hz) to wavelength (m)
+frequency(wavelength)
+
+# Converts wavelength (m) to frequency (Hz)
+wavelength(frequency)
+
+# Computes the gain of a parabolic antenna. D is diameter (m), f is frequency (Hz), e is aperture efficiency and u is the output unit (dBi, linear or K/Jy)
+gain(D, f, e=0.7, u='dBi')
+
+# Computes the effective antenna aperture (m^2). Gain is in dBi, f is in Hz.
+A_e(gain, f)
+
+# Computes the half-power beamwidth of a parabolic antenna. D is diameter (m) and f is frequency (Hz).
+beamwidth(D, f)
+
+# Convert noise temperature (K) to noise figure (dB).
+NF(T_noise, T_ref=290)
+
+# Convert noise figure (dB) to noise temperature (K).
+T_noise(NF, T_ref=290)
+
+# Compute antenna gain-to-noise-temperature (G/T). Gain is in dBi and T_sys in K.
+G_T(gain, T_sys)
+
+# Compute the system equivalent flux density (Jy)
+SEFD(A_e, T_sys)
+
+# Estimate the signal-to-noise ratio (radiometer equation). S is flux density (Jy), sefd is the system equivalent flux density (Jy), t is on-source integration time (sec) and bw is the acquisition bandwidth (Hz).
+snr(S, sefd, t, bw)
+
 # Plots 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
 map_hi(ra=None, dec=None, plot_file='')
 
