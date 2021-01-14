@@ -35,6 +35,8 @@ A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.
 - - - Best Gaussian fits computed automatically
 - - Prevention against strong short-duration RFI rescaling subplot
 - - Time series optionally saved as a `csv` file for further analysis
+- Pulsars
+- - Incoherent dedispersion support for giant pulse search (and FRB follow-up, assuming DM is known)
 - Dynamic spectrum (waterfall)
 - - Optionally saved as a `FITS` file for further advanced/custom analysis
 - Decibel support
