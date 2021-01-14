@@ -3,6 +3,7 @@ import sys
 import argparse
 import time
 import numpy as np
+import math
 import datetime
 import shutil
 import warnings
@@ -213,9 +214,6 @@ def galactic(ra, dec):
 	from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 	import astropy.units as u
 
-	# Get current system time
-	current_time = Time.now()
-
 	# Transform source position to galactic longitude & latitude
 	equatorial = SkyCoord(ra=ra * u.hour, dec=dec * u.deg, frame='icrs')
 	galactic = equatorial.galactic
@@ -225,6 +223,93 @@ def galactic(ra, dec):
 
 	# Return position as tuple
 	return (l, b)
+
+def frequency(wavelength):
+	# Define speed of light
+	c = 299792458.0
+
+	# Compute and return frequency (Hz)
+	f = c/wavelength
+
+	return f
+
+def wavelength(frequency):
+	# Define speed of light
+	c = 299792458.0
+
+	# Compute and return wavelength (m)
+	l = c/frequency
+
+	return l
+
+def gain(D, f, e=0.7, u='dBi'):
+	# Compute antenna gain of parabolic antenna
+	G_ant = e*(math.pi*D/wavelength(f))**2
+
+	if u.lower() == 'lin' or u.lower() == 'linear':
+		# Gain unit: linear
+		return G_ant
+	elif u.lower() == 'dB' or u.lower() == 'dbi':
+		# Gain unit: dBi
+		G_ant = 10*np.log10(G_ant)
+
+		return G_ant
+	else:
+		# Gain unit: K/Jy
+		Ae = (G_ant*wavelength(f)**2)/(4*math.pi)
+
+		# Define Boltzmann constant
+		k_B = 1.38064852e-23
+
+		# Transform gain to K/Jy
+		G_ant = 1e-26 * A_e/(2*1.38064852e-23)
+
+		return G_ant
+
+def A_e(gain, f):
+	# Compute and return effective antenna aperture (m^2)
+	Ae = (10**(gain/10)*wavelength(f)**2)/(4*math.pi)
+
+	return Ae
+
+def beamwidth(D, f):
+	# Compute and return half-power beamwidth of a parabolic antenna
+	hpbw = 70*wavelength(f)/D
+
+	return hpbw
+
+def NF(T_noise, T_ref=290):
+	# Compute and return noise figure
+	nf = 10*np.log10((T_noise/T_ref) + 1)
+
+	return nf
+
+def T_noise(NF, T_ref=290):
+	# Compute and return noise temperature
+	T_noise = T_ref*((10**(NF/10)) - 1)
+
+	return T_noise
+
+def G_T(gain, T_sys):
+	# Compute and return antenna gain-to-noise-temperature (G/T)
+	G_T = gain-10*np.log10(T_sys)
+
+	return G_T
+
+def SEFD(A_e, T_sys):
+	# Define Boltzmann constant
+	k_B = 1.38064852e-23
+
+	# Compute and return the system equivalent flux density (Jy)
+	sefd = 10**26 * 2*k_B*T_sys/A_e
+
+	return sefd
+
+def snr(S, sefd, t, bw):
+	# Estimate and return the signal-to-noise ratio (radiometer equation)
+	snr = S*sqrt(t*bw)/SEFD
+
+	return snr
 
 def map_hi(ra=None, dec=None, plot_file=''):
 	import matplotlib
