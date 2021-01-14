@@ -12,18 +12,19 @@ A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.
 
 - 4-tap weighted overlap-add (WOLA) Fourier transform spectrometer
 - - Reduced FFT sidelobes
+- - Plain FT filterbank pipeline also supported for observatories with limited computational resources
 - Adjustable SDR parameters
 - - Device arguments
-- - RF Gain
-- - IF Gain
-- - BB Gain
+- - RF/IF/BB Gain
 - Header file
 - - Observation parameters automatically passed to corresponding `.header` file
 - - Includes logged MJD (at observation *t<sub>0</sub>*)
 - Spectral line support
 - - Spectrum calibration
-- - - *y* axis is automatically transformed to S:N units with line masking
+- - - *y* axis is automatically rescaled to S:N units with line masking
+- - - Optional automatic slope correction (based on linear regression) for poorly-calibrated spectra
 - - Supports median operation for RFI mitigation on the frequency-domain (adjustable *n*-factor)
+- - RFI channel masking
 - - Adjustable *f*<sub>rest</sub> for observation of any spectral line (not just HI)
 - - Secondary axes for relative velocity automatically adjusted accordingly
 - - Prevention against strong narrowband RFI rescaling subplot
@@ -38,6 +39,20 @@ A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.
 - - Optionally saved as a `FITS` file for further advanced/custom analysis
 - Decibel support
 - - Power units optionally displayed in dB
+- Observation planning toolkit
+- - Predict source altitude & azimuth vs time
+- - Quickly convert galactic to equatorial and Alt/Az to RA/Dec
+- - Plot telescope position on the 21 cm all-sky survey
+- - Simulate 21 cm profiles based on the LAB HI survey
+- Basic calculation toolkit for system sensitivity & performance. Computes:
+- - Antenna gain (in dBi, linear or K/Jy)
+- - Effective aperture
+- - Half-power beamwidth
+- - Noise figure to noise temperature and vice versa
+- - Antenna gain-to-noise-temperature (G/T)
+- - System equivalent flux density (SEFD)
+- - Radiometer equation (S:N estimation)
+- Built-in tool for conducting rapid RFI surveys
 - Argument-parsing support
 - Works directly via `python virgo.py`, or as a module (see below)
 
@@ -147,11 +162,27 @@ plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png')
 - NanoRT Telescope (15cm)
 - and more!
 
-## Example Observation
+### Example Observation
 <p align="center">
   <img src="https://i.imgur.com/ROPPWza.png" alt="Example Observation"/>
-</p>                                                                     
+</p>
 Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus (α = 20h, δ = 40° , l = 77° , b = 3°), observed by the TLM-18 Telescope in New Jersey, U.S. with Virgo. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.
+
+### Example Source Location Prediction
+<p align="center">
+  <img src="https://i.imgur.com/jnGJEvQ.png" alt=""/>
+</p>
+
+### Example HI Profile Retrieval
+<p align="center">
+  <img src="https://i.imgur.com/HHSkDJM.png" alt="Example HI Profile Retrieval"/>
+</p>
+
+### Example HI Map
+<p align="center">
+  <img src="https://i.imgur.com/bvg4r4c.png" alt="Example HI map plot"/>
+</p>
+The red dot indicates the position of the telescope's beam in the sky.
 
 ## Data Acquisition Flowgraph
 **Virgo** is a **four-tap WOLA Fourier transform** spectrometer. The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
