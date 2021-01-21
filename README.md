@@ -3,6 +3,14 @@
   <img src="https://i.imgur.com/lH2OOTd.png?raw=true" alt="Virgo Spectrometer"/>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/python-2.7%20%7C%203.x-green"/>
+  <img src="https://img.shields.io/pypi/v/astro-virgo"/>
+  <img src="http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat"/>
+  <img src="https://img.shields.io/github/license/0xCoto/Virgo?color=yellow"/>
+</p>
+
+
 ## About Virgo
 **Virgo** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio](https://wiki.gnuradio.org) (GR) that is conveniently applicable to any radio telescope working with a GR-supported software-defined radio (SDR). In addition to data acquisition, Virgo also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)**, a **time series (power vs time)** and a **total power distribution** plot.
 
