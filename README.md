@@ -199,6 +199,9 @@ The red dot indicates the position of the telescope's beam in the sky.
 
 ![alt text](https://i.imgur.com/5tR7WjL.png "Data Acquisition Flowgraph")
 
+### Example radio map acquired and processed with the help of Virgo (PICTOR Northern HI Survey)
+![alt text](https://i.imgur.com/pYgMAhW.png "PICTOR HI Survey")
+
 ## Data Analysis
 Once a submitted observation is finished and the data has been acquired and stored to `observation.dat`, the FFT samples (interpreted as a [numpy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) in `plot.py` and `plot_hi.py`) constitute the **dynamic spectrum (waterfall)**, from which the **averaged spectrum** and **time series (power vs time)** of the observation can be derived.
 
