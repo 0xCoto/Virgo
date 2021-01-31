@@ -224,7 +224,7 @@ def galactic(ra, dec):
 	# Return position as tuple
 	return (l, b)
 
-def frequency(wavelength1427583133.3333335):
+def frequency(wavelength):
 	# Define speed of light
 	c = 299792458.0
 
