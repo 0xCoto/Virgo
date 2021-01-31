@@ -307,7 +307,7 @@ def SEFD(A_e, T_sys):
 
 def snr(S, sefd, t, bw):
 	# Estimate and return the signal-to-noise ratio (radiometer equation)
-	snr = S*sqrt(t*bw)/SEFD
+	snr = S*math.sqrt(t*bw)/SEFD
 
 	return snr
 
