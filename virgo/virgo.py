@@ -224,7 +224,7 @@ def galactic(ra, dec):
 	# Return position as tuple
 	return (l, b)
 
-def frequency(wavelength):
+def frequency(wavelength1427583133.3333335):
 	# Define speed of light
 	c = 299792458.0
 
@@ -249,28 +249,28 @@ def gain(D, f, e=0.7, u='dBi'):
 	if u.lower() == 'lin' or u.lower() == 'linear':
 		# Gain unit: linear
 		return G_ant
-	elif u.lower() == 'dB' or u.lower() == 'dbi':
+	elif u.lower() == 'db' or u.lower() == 'dbi':
 		# Gain unit: dBi
 		G_ant = 10*np.log10(G_ant)
 
 		return G_ant
 	else:
 		# Gain unit: K/Jy
-		Ae = (G_ant*wavelength(f)**2)/(4*math.pi)
+		A_eff = (G_ant*wavelength(f)**2)/(4*math.pi)
 
 		# Define Boltzmann constant
 		k_B = 1.38064852e-23
 
 		# Transform gain to K/Jy
-		G_ant = 1e-26 * A_e/(2*1.38064852e-23)
+		G_ant = 1e-26 * A_eff/(2*1.38064852e-23)
 
 		return G_ant
 
 def A_e(gain, f):
 	# Compute and return effective antenna aperture (m^2)
-	Ae = (10**(gain/10)*wavelength(f)**2)/(4*math.pi)
+	A_eff = (10**(gain/10)*wavelength(f)**2)/(4*math.pi)
 
-	return Ae
+	return A_eff
 
 def beamwidth(D, f):
 	# Compute and return half-power beamwidth of a parabolic antenna
@@ -307,7 +307,7 @@ def SEFD(A_e, T_sys):
 
 def snr(S, sefd, t, bw):
 	# Estimate and return the signal-to-noise ratio (radiometer equation)
-	snr = S*math.sqrt(t*bw)/SEFD
+	snr = S*math.sqrt(t*bw)/sefd
 
 	return snr
 
