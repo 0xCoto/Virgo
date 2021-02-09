@@ -5,7 +5,7 @@ obs = {
     'frequency': 1420e6,
     'bandwidth': 2.4e6,
     'channels': 2048,
-    't_sample': 0.085,
+    't_sample': 0.085
 }
 
 # Analyze and export data as csv
