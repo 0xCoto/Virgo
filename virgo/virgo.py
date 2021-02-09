@@ -618,8 +618,8 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		hdu.header['NAXIS2'] = subs
 		hdu.header['CRPIX1'] = channels/2
 		hdu.header['CRPIX2'] = subs/2
-		hdu.header['CRVAL1'] = frequency[channels/2]
-		hdu.header['CRVAL2'] = t[subs/2]
+		hdu.header['CRVAL1'] = frequency[int(channels/2)]
+		hdu.header['CRVAL2'] = t[int(subs/2)]
 		hdu.header['CDELT1'] = bandwidth*1e-6/channels
 		hdu.header['CDELT2'] = t_sample
 		hdu.header['CTYPE1'] = 'Frequency (MHz)'
