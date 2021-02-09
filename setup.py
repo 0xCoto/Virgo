@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="astro-virgo",
-    version="3.6.3",
+    version="3.6.4",
     author="Apostolos Spanakis-Misirlis",
     author_email="0xcoto@protonmail.com",
     description="A Versatile Spectrometer for Radio Astronomy",
