@@ -675,7 +675,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax1.set_ylabel('Relative Power (dB)')
 	else:
 		ax1.set_ylabel('Relative Power')
-	if f_rest != 0 and sys.version_info[0] < 3:
+	if f_rest != 0:
 		ax1.set_title('Average Spectrum\n')
 	else:
 		ax1.set_title('Average Spectrum')
@@ -705,7 +705,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
 		ax2.set_ylabel('Signal-to-Noise Ratio (S/N)')
-		if f_rest != 0 and sys.version_info[0] < 3:
+		if f_rest != 0:
 			ax2.set_title('Calibrated Spectrum\n')
 		else:
 			ax2.set_title('Calibrated Spectrum')
