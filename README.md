@@ -4,6 +4,7 @@
 </p>
 
 <p align="center">
+  <a href="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861"><img src="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861/status.svg"></a>
   <img src="https://img.shields.io/badge/python-2.7%20%7C%203.x-green"/>
   <img src="https://img.shields.io/pypi/v/astro-virgo"/>
   <img src="http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat"/>
