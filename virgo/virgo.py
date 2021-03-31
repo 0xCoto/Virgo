@@ -9,6 +9,17 @@ import shutil
 import warnings
 
 def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
+	'''
+	Simulate 21 cm profiles based on the LAB HI Survey.
+	
+	Args:
+		l: float. Target galactic longitude [deg]
+		b: float. Target galactic latitude [deg]
+		beamwidth: float. Telescope half-power beamwidth (approx. equal to 0.7 * lambda/D) [deg]
+		v_min: float. Minimum radial velocity (xlim) [km/s]
+		v_max: float. Maximum radial velocity (xlim) [km/s]
+		plot_file: string. Output plot filename
+	'''
 	import requests
 	import matplotlib
 	import matplotlib.pyplot as plt
@@ -96,6 +107,18 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	plt.close()
 
 def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
+	'''
+	Plots source Alt/Az given the observer's Earth coordinates.
+	
+	Args:
+		lat: float. Observer latitude [deg]
+		long: float. Obesrver longitude [deg]
+		height: float. Observer elevation [m]
+		source: string. Source name
+		date: string. Date in YYYY-MM-DD format. If no date is given, it defaults to today's system date.
+		plot_sun: bool. Also plot Sun position for reference
+		plot_file: string. Output plot filename
+	'''
 	from astropy.time import Time
 	from astropy.visualization import astropy_mpl_style, quantity_support
 	from astropy.coordinates import SkyCoord, EarthLocation, AltAz, get_sun
@@ -186,6 +209,16 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	plt.clf()
 
 def equatorial(alt, az, lat, lon, height=0):
+	'''
+	Takes observer's location and Alt/Az as input and returns RA/Dec as a tuple.
+	
+	Args:
+		alt: float. Altitude [deg]
+		az: float. Azimuth [deg]
+		lat: float. Observer latitude [deg]
+		lon: float. Observer longitude [deg]
+		height: float. Observer elevation [m]
+	'''
 	from astropy.time import Time
 	from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 	import astropy.units as u
@@ -210,6 +243,13 @@ def equatorial(alt, az, lat, lon, height=0):
 	return (ra, dec)
 
 def galactic(ra, dec):
+	'''
+	Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).
+	
+	Args:
+		ra: float. Right ascension [deg]
+		dec: float. Declination [deg]
+	'''
 	from astropy.time import Time
 	from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 	import astropy.units as u
@@ -225,6 +265,12 @@ def galactic(ra, dec):
 	return (l, b)
 
 def frequency(wavelength):
+	'''
+	Transform wavelength to frequency.
+	
+	Args:
+		wavelength: float. Wavelength [m]
+	'''
 	# Define speed of light
 	c = 299792458.0
 
@@ -234,6 +280,12 @@ def frequency(wavelength):
 	return f
 
 def wavelength(frequency):
+	'''
+	Transform frequency to wavelength.
+	
+	Args:
+		frequency: float. Wave frequency [Hz]
+	'''
 	# Define speed of light
 	c = 299792458.0
 
@@ -243,6 +295,15 @@ def wavelength(frequency):
 	return l
 
 def gain(D, f, e=0.7, u='dBi'):
+	'''
+	Estimate parabolic antenna gain.
+	
+	Args:
+		D: float. Antenna diameter [m]
+		f: float. Frequency [Hz]
+		e: float. Aperture efficiency (0 >= e >= 1)
+		u: string. Output gain unit ('dBi', 'linear' or 'K/Jy')
+	'''
 	# Compute antenna gain of parabolic antenna
 	G_ant = e*(math.pi*D/wavelength(f))**2
 
@@ -267,36 +328,78 @@ def gain(D, f, e=0.7, u='dBi'):
 		return G_ant
 
 def A_e(gain, f):
+	'''
+	Transform antenna gain to effective aperture [m^2].
+	
+	Args:
+		gain: float. Antenna gain [dBi]
+		f: float. Frequency [Hz]
+	'''
 	# Compute and return effective antenna aperture (m^2)
 	A_eff = (10**(gain/10)*wavelength(f)**2)/(4*math.pi)
 
 	return A_eff
 
 def beamwidth(D, f):
+	'''
+	Estimate parabolic antenna half-power beamwidth (FWHM).
+	
+	Args:
+		D: float. Antenna diameter [m]
+		f: float. Frequency [Hz]
+	'''
 	# Compute and return half-power beamwidth of a parabolic antenna
 	hpbw = 70*wavelength(f)/D
 
 	return hpbw
 
 def NF(T_noise, T_ref=290):
+	'''
+	Convert noise temperature to noise figure [dB].
+	
+	Args:
+		T_noise: float. Noise temperature [K]
+		T_ref: float. Reference temperature [K]
+	'''
 	# Compute and return noise figure
 	nf = 10*np.log10((T_noise/T_ref) + 1)
 
 	return nf
 
 def T_noise(NF, T_ref=290):
+	'''
+	Convert noise figure to noise temperature [K].
+	
+	Args:
+		NF: float. Noise figure [dB]
+		T_ref: float. Reference temperature [K]
+	'''
 	# Compute and return noise temperature
 	T_noise = T_ref*((10**(NF/10)) - 1)
 
 	return T_noise
 
 def G_T(gain, T_sys):
+	'''
+	Compute antenna gain-to-noise-temperature (G/T).
+	
+	Args:
+		gain: float. Antenna gain [dBi]
+		T_sys: float. System noise temperature [K]
+	'''
 	# Compute and return antenna gain-to-noise-temperature (G/T)
 	G_T = gain-10*np.log10(T_sys)
 
 	return G_T
 
 def SEFD(A_e, T_sys):
+	'''
+	Compute system equivalent flux density [Jy].
+	
+	Args:
+		A_e: float. Antenna gain [m^2]
+		T_sys: float. System noise temperature [K]
+	'''
 	# Define Boltzmann constant
 	k_B = 1.38064852e-23
 
@@ -306,12 +409,29 @@ def SEFD(A_e, T_sys):
 	return sefd
 
 def snr(S, sefd, t, bw):
+	'''
+	Estimate the obtained signal-to-noise ratio of an observation (radiometer equation).
+	
+	Args:
+		S: float. Source flux density [Jy]
+		sefd: float. Instrument's system equivalent flux density [Jy]
+		t: float. Total on-source integration time [sec]
+		bw: float. Acquisition bandwidth [Hz]
+	'''
 	# Estimate and return the signal-to-noise ratio (radiometer equation)
 	snr = S*math.sqrt(t*bw)/sefd
 
 	return snr
 
 def map_hi(ra=None, dec=None, plot_file=''):
+	'''
+	Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
+	
+	Args:
+		ra: float. Right ascension [deg]
+		dec: float. Declination [deg]
+		plot_file: string. Output plot filename
+	'''
 	import matplotlib
 	import matplotlib.pyplot as plt
 
@@ -366,6 +486,24 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	plt.clf()
 
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
+	'''
+	Begin data acquisition (requires SDR connected to the machine).
+	
+	Args:
+		obs_parameters: dict. Observation parameters
+			dev_args: string. Device arguments (gr-osmosdr)
+			rf_gain: float. RF gain
+			if_gain: float. IF gain
+			bb_gain: float. Baseband gain
+			frequency: float. Center frequency [Hz]
+			bandwidth: float. Instantaneous bandwidth [Hz]
+			channels: int: Number of frequency channels (FFT size)
+			t_sample: float: Integration time per FFT sample
+			duration: float: Total observing duration [sec]
+		spectrometer: string. Spectrometer flowchart/pipeline ('WOLA'/'FTF')
+		obs_file: string. Output data filename
+		start_in: float. Schedule observation start [sec]
+	'''
 	if spectrometer.lower() != 'wola':
 		try:
 			from run_ftf import run_observation
@@ -431,6 +569,36 @@ duration='''+str(duration))
 
 def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0,
 	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
+	'''
+	Process, analyze and plot data.
+	
+	Args:
+		obs_parameters: dict. Observation parameters (identical to parameters used to acquire data)
+			dev_args: string. Device arguments (gr-osmosdr)
+			rf_gain: float. RF gain
+			if_gain: float. IF gain
+			bb_gain: float. Baseband gain
+			frequency: float. Center frequency [Hz]
+			bandwidth: float. Instantaneous bandwidth [Hz]
+			channels: int: Number of frequency channels (FFT size)
+			t_sample: float: Integration time per FFT sample
+			duration: float: Total observing duration [sec]
+		n: int. Median filter factor (spectrum)
+		m: int. Median filter factor (time series)
+		f_rest: float. Spectral line reference frequency used for radial velocity (Doppler shift) calculations [Hz]
+		slope_correction: bool. Correct slope in poorly-calibrated spectra using linear regression
+		dB: bool. Display data in decibel scaling
+		rfi: list. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
+		xlim: list. x-axis limits ([low_frequency, high_frequency]) [Hz]
+		ylim: list. y-axis limits ([start_time, end_time]) [Hz]
+		dm: float. Dispersion measure for dedispersion [pc/cm^3]
+		obs_file: string. Input observation filename (generated with virgo.observe)
+		cal_file: string. Input calibration filename (generated with virgo.observe)
+		waterfall_fits: string. Output FITS filename
+		spectra_csv: string. Output CSV filename (spectra)
+		power_csv: string. Output CSV filename (time series)
+		plot_file: string. Output plot filename
+	'''
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
 	import matplotlib.pyplot as plt
@@ -801,6 +969,15 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	plt.clf()
 
 def plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png'):
+	'''
+	Plots wideband RFI survey spectrum.
+	
+	Args:
+		rfi_parameters: dictionary. identical to obs_parameters, but also including 'f_lo': f_lo
+		data: string. Survey data directory containing individual observations
+		dB: bool. Display data in decibel scaling
+		plot_file: string. Output plot filename
+	'''
 	import matplotlib
 	matplotlib.use('Agg') # Try commenting this line if you run into display/rendering errors
 	import matplotlib.pyplot as plt
@@ -887,6 +1064,24 @@ xycoords='axes points', size=32, ha='left', va='top', color='brown')
 	plt.clf()
 
 def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
+	'''
+	Begin data acquisition (wideband RFI survey).
+	
+	Args:
+		f_lo: float. Start frequency [Hz]
+		f_hi: float. End frequency [Hz]
+		obs_parameters: dict. Observation parameters (identical to parameters used to acquire data)
+			dev_args: string. Device arguments (gr-osmosdr)
+			rf_gain: float. RF gain
+			if_gain: float. IF gain
+			bb_gain: float. Baseband gain
+			frequency: float. Center frequency [Hz]
+			bandwidth: float. Instantaneous bandwidth [Hz]
+			channels: int: Number of frequency channels (FFT size)
+			t_sample: float: Integration time per FFT sample
+			duration: float: Total observing duration [sec]
+		data: string. Survey data directory to output individual observations to
+	'''
 	dev_args = obs_parameters['dev_args']
 	rf_gain = obs_parameters['rf_gain']
 	if_gain = obs_parameters['if_gain']
