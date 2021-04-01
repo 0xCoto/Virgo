@@ -33,7 +33,7 @@ You can view the full list of arguments by running:
 
     python virgo.py -h
 
-The following parameters are more thoroughly described in section **Functions**:
+The following parameters are more thoroughly described in section `Reference <https://virgo.readthedocs.io/en/latest/reference.html>`_:
 
 .. code-block:: none
 
