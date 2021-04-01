@@ -26,7 +26,7 @@ author = 'Apostolos Spanakis-Misirlis'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '3.6.4'
+release = '3.6.5'
 
 
 # -- General configuration ---------------------------------------------------
