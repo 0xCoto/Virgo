@@ -973,7 +973,7 @@ def plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png'):
 	Plots wideband RFI survey spectrum.
 	
 	Args:
-		rfi_parameters: dict. identical to obs_parameters, but also including 'f_lo': f_lo
+		rfi_parameters: dict. Identical to obs_parameters, but also including 'f_lo': f_lo
 		data: string. Survey data directory containing individual observations
 		dB: bool. Display data in decibel scaling
 		plot_file: string. Output plot filename
