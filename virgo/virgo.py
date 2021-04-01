@@ -112,7 +112,7 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	
 	Args:
 		lat: float. Observer latitude [deg]
-		long: float. Obesrver longitude [deg]
+		lon: float. Obesrver longitude [deg]
 		height: float. Observer elevation [m]
 		source: string. Source name
 		date: string. Date in YYYY-MM-DD format. If no date is given, it defaults to today's system date.
