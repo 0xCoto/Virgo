@@ -15,8 +15,8 @@ Module import
     virgo.observe(...)
     virgo.plot(...)
 
-Script method
-^^^^^^^^^^^^^
+Command-line method
+^^^^^^^^^^^^^^^^^^^
 
 Alternatively, it can be called directly from the command line using:
 
@@ -31,7 +31,7 @@ You can view the full list of arguments by running:
 
 .. code-block:: bash
 
-    virgo.py -h
+    virgo -h
 
 The following parameters are more thoroughly described in section `Reference <https://virgo.readthedocs.io/en/latest/reference.html>`_:
 
