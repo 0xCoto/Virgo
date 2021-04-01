@@ -397,7 +397,7 @@ def SEFD(A_e, T_sys):
 	Compute system equivalent flux density [Jy].
 	
 	Args:
-		A_e: float. Antenna gain [m^2]
+		A_e: float. Effective antenna aperture [m^2]
 		T_sys: float. System noise temperature [K]
 	'''
 	# Define Boltzmann constant
