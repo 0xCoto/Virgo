@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/0xCoto/Virgo",
     packages=setuptools.find_packages(),
+    entry_points={
+        'console_scripts': ['virgo=virgo.virgo:main']
+    },
     classifiers=[
         "Programming Language :: Python",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
