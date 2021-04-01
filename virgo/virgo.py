@@ -1118,7 +1118,7 @@ def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 		observe(obs_parameters=rfi_parameters, spectrometer='ftf', obs_file=data+'/'+str(i)+'.dat')
 		i += 1
 
-if __name__ == '__main__':
+def main():
 	# Load argument values
 	parser = argparse.ArgumentParser()
 
@@ -1185,3 +1185,6 @@ if __name__ == '__main__':
 	plot(obs_parameters=observation, n=args.n, m=args.m, f_rest=args.f_rest,
 	     dB=args.dB, obs_file=args.obs_file, cal_file=args.cal_file, waterfall_fits=args.waterfall_fits,
 		 spectra_csv=args.spectra_csv, power_csv=args.power_csv, plot_file=args.plot_file)
+
+if __name__ == '__main__':
+	main()
