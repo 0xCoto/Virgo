@@ -31,17 +31,17 @@ You can view the full list of arguments by running:
 
 .. code-block:: bash
 
-    python virgo.py -h
+    virgo.py -h
 
 The following parameters are more thoroughly described in section `Reference <https://virgo.readthedocs.io/en/latest/reference.html>`_:
 
 .. code-block:: none
 
-    usage: virgo.py [-h] [-da DEV_ARGS] [-rf RF_GAIN] [-if IF_GAIN] [-bb BB_GAIN]
-                    -f FREQUENCY -b BANDWIDTH -c CHANNELS -t T_SAMPLE
-                    [-d DURATION] [-s START_IN] [-o OBS_FILE] [-C CAL_FILE] [-db]
-                    [-n N] [-m M] [-r F_REST] [-W WATERFALL_FITS] [-S SPECTRA_CSV]
-                    [-P POWER_CSV] [-p PLOT_FILE]
+    usage: virgo [-h] [-da DEV_ARGS] [-rf RF_GAIN] [-if IF_GAIN] [-bb BB_GAIN] -f
+             FREQUENCY -b BANDWIDTH -c CHANNELS -t T_SAMPLE [-d DURATION]
+             [-s START_IN] [-o OBS_FILE] [-C CAL_FILE] [-db] [-n N] [-m M]
+             [-r F_REST] [-W WATERFALL_FITS] [-S SPECTRA_CSV] [-P POWER_CSV]
+             [-p PLOT_FILE]
     
     optional arguments:
       -h, --help            show this help message and exit
