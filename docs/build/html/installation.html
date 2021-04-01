@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation &#8212; Virgo 3.6.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="About" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="About"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Although Virgo has been tested successfully on both Windows and Mac OS, the required
+dependencies are most easily installed on Linux distributions (recommended OS).</p>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The following two dependencies are only required for <strong>acquiring data with the necessary
+hardware</strong> (software-defined radio). They are not required for planning observations,
+analyzing data, running calculations or any other functionalities provided by the package.</p>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.gnuradio.org/index.php/InstallingGR">GNU Radio</a>: An open radio framework for digital signal processing</li>
+<li><a class="reference external" href="https://osmocom.org/projects/gr-osmosdr/wiki">gr-osmosdr</a>: Fundamental I/O GNU Radio blocks supporting most SDRs</li>
+</ul>
+<p>For Debian/Ubuntu and derivates, the installation is straightforward:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install gnuradio gr-osmosdr
+</pre></div>
+</div>
+<p>If you wish to verify the installation has succeeded, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnuradio-companion
+</pre></div>
+</div>
+<p>Once the graphical interface opens up, check the right-hand side (<strong>Library</strong> panel)
+for a block named <code class="docutils literal notranslate"><span class="pre">osmocom</span> <span class="pre">Source</span></code>. If this block shows up, GNU Radio and <code class="docutils literal notranslate"><span class="pre">gr-osmosdr</span></code>
+have been installed on your system successfully.</p>
+</div>
+<div class="section" id="installing-virgo">
+<h2>Installing Virgo<a class="headerlink" href="#installing-virgo" title="Permalink to this headline">¶</a></h2>
+<p>Virgo runs on Python 2.7/3.x. To install the package, you can get it directly
+from <a class="reference external" href="https://pypi.org/project/astro-virgo/">PyPI</a> using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install astro-virgo
+</pre></div>
+</div>
+<p>By obtaining <code class="docutils literal notranslate"><span class="pre">Virgo</span></code>, the following packages are installed <em>automatically</em>:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://numpy.org/">numpy</a></li>
+<li><a class="reference external" href="https://matplotlib.org/">matplotlib</a></li>
+<li><a class="reference external" href="https://www.astropy.org/">astropy</a></li>
+</ul>
+<p>You can finally verify the installation by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import virgo&quot;</span>
+</pre></div>
+</div>
+<p>No output indicates a successful installation.</p>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>In certain systems, this command may give an error like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&quot;&lt;string&gt;&quot;</span>, line <span class="m">1</span>, in &lt;module&gt;
+ImportError: No module named virgo
+</pre></div>
+</div>
+<p>This is a common error when installing Python packages, and it is often
+due to a mismatch between the Python versions the <code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code> commands
+refer to.</p>
+<p>You can diagnose this with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">-V</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-V</span></code>, or you can simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install astro-virgo
+</pre></div>
+</div>
+<p>This should load the exact <code class="docutils literal notranslate"><span class="pre">pip</span></code> version associated with <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#installing-virgo">Installing Virgo</a></li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">About</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="next chapter">Usage</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="About"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Apostolos Spanakis-Misirlis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

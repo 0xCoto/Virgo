@@ -1,0 +1,289 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About &#8212; Virgo 3.6.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="figure align-center" id="id1">
+<img alt="Virgo Spectrometer" src="https://camo.githubusercontent.com/6a51d3998787aecfa34154eb524fea7462fe9bad882a31121ae6ef26de2858da/68747470733a2f2f692e696d6775722e636f6d2f6c48324f4f54642e706e673f7261773d74727565" />
+<p class="caption"><span class="caption-text"><a class="reference external" href="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861"><img alt="joss" src="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861/status.svg" /></a> <a class="reference external" href="https://www.python.org/"><img alt="python" src="https://img.shields.io/badge/python-2.7%20%7C%203.x-green" /></a> <a class="reference external" href="https://pypi.python.org/pypi/astro-virgo"><img alt="pypi" src="https://img.shields.io/pypi/v/astro-virgo" /></a> <a class="reference external" href="https://www.astropy.org/"><img alt="astropy" src="http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat" /></a> <a class="reference external" href="https://github.com/0xCoto/Virgo/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/0xCoto/Virgo?color=yellow" /></a></span></p>
+</div>
+<div class="section" id="about">
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Virgo</span></code> is an easy-to-use <strong>open-source</strong> spectrometer and radiometer based on <a class="reference external" href="https://www.python.org">Python</a> and
+<a class="reference external" href="https://wiki.gnuradio.org">GNU Radio</a> (GR) that is conveniently applicable to any radio telescope working with a
+GR-supported software-defined radio (SDR). In addition to data acquisition, <code class="docutils literal notranslate"><span class="pre">Virgo</span></code> also carries out automated analysis
+of the recorded samples, producing an averaged spectrum,a calibrated spectrum, a dynamic spectrum (waterfall),
+a time series (power vs time) and a total power distribution plot.</p>
+<p>Lastly, an important set of utilities is provided to observers, making the package for a great tool for planning (radio)
+observations, estimating the system sensitivity of an instrument, and many more.</p>
+<div class="section" id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>4-tap weighted overlap-add (WOLA) Fourier transform spectrometer</li>
+<li><ul class="first">
+<li>Reduced FFT sidelobes</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Plain FT filterbank pipeline also supported for observatories with limited computational resources</li>
+</ul>
+</li>
+<li>Adjustable SDR parameters</li>
+<li><ul class="first">
+<li>Device arguments</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>RF/IF/BB Gain</li>
+</ul>
+</li>
+<li>Header file</li>
+<li><ul class="first">
+<li>Observation parameters automatically passed to corresponding <code class="docutils literal notranslate"><span class="pre">.header</span></code> file</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Includes logged MJD (at observation <em>t</em><sub>0</sub>)</li>
+</ul>
+</li>
+<li>Spectral line support</li>
+<li><ul class="first">
+<li>Spectrum calibration</li>
+</ul>
+</li>
+<li><ul class="first">
+<li><ul class="first">
+<li><em>y</em> axis is automatically rescaled to S:N units with line masking</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul class="first">
+<li><ul class="first">
+<li>Optional automatic slope correction (based on linear regression) for poorly-calibrated spectra</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Supports median operation for RFI mitigation on the frequency-domain (adjustable <em>n</em>-factor)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>RFI channel masking</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Adjustable <em>f</em><sub>rest</sub> for the observation of any spectral line (not just HI)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Secondary axes for relative velocity automatically adjusted accordingly</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Prevention against strong narrowband RFI rescaling subplot</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>The average spectra, calibration spectra and calibrated spectra are optionally saved as a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file for further analysis</li>
+</ul>
+</li>
+<li>Continuum support</li>
+<li><ul class="first">
+<li>Supports median operation for time-varying RFI mitigation (adjustable <em>n</em>-factor)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Total power distribution (histogram) displayed, both for raw and clean data</li>
+</ul>
+</li>
+<li><ul class="first">
+<li><ul class="first">
+<li>Best Gaussian fits computed automatically</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Prevention against strong short-duration RFI rescaling subplot</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Time series optionally saved as a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file for further analysis</li>
+</ul>
+</li>
+<li>Pulsars</li>
+<li><ul class="first">
+<li>Incoherent dedispersion support for giant pulse search (and FRB follow-up, assuming DM is known)</li>
+</ul>
+</li>
+<li>Dynamic spectrum (waterfall)</li>
+<li><ul class="first">
+<li>Optionally saved as a <code class="docutils literal notranslate"><span class="pre">FITS</span></code> file for further advanced/custom analysis</li>
+</ul>
+</li>
+<li>Decibel support</li>
+<li><ul class="first">
+<li>Power units optionally displayed in dB</li>
+</ul>
+</li>
+<li>Observation planning toolkit</li>
+<li><ul class="first">
+<li>Predict source altitude &amp; azimuth vs time</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Quickly convert galactic to equatorial and Alt/Az to RA/Dec</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Plot telescope position on the 21 cm all-sky survey</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Simulate 21 cm profiles based on the LAB HI survey</li>
+</ul>
+</li>
+<li>Basic calculation toolkit for system sensitivity &amp; performance. Computes:</li>
+<li><ul class="first">
+<li>Antenna gain (in dBi, linear or K/Jy)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Effective aperture</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Half-power beamwidth</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Noise figure to noise temperature and vice versa</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Antenna gain-to-noise-temperature (G/T)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>System equivalent flux density (SEFD)</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>Radiometer equation (S:N estimation)</li>
+</ul>
+</li>
+<li>Built-in tool for conducting rapid RFI surveys</li>
+<li>Argument-parsing support</li>
+<li>Works directly via <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">virgo.py</span></code>, or as a module (see Usage)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/0xCoto/Virgo">GitHub</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">About</a><ul>
+<li><a class="reference internal" href="#key-features">Key Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Apostolos Spanakis-Misirlis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

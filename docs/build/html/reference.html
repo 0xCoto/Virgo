@@ -1,0 +1,630 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Reference &#8212; Virgo 3.6.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<p>This reference page details the functions included in Virgo, describing their roles and what they do.</p>
+<div class="section" id="simulate">
+<h2>simulate<a class="headerlink" href="#simulate" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>l</em>, <em>b</em>, <em>beamwidth=0.6</em>, <em>v_min=-400</em>, <em>v_max=400</em>, <em>plot_file=''</em><span class="sig-paren">)</span></dt>
+<dd><p>Simulate 21 cm profiles based on the LAB HI Survey.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>l</strong> (<em>float</em>) – Target galactic longitude [deg]</li>
+<li><strong>b</strong> (<em>float</em>) – Target galactic latitude [deg]</li>
+<li><strong>beamwidth</strong> (<em>float</em>) – Telescope half-power beamwidth (approx. equal to 0.7 * lambda/D) [deg]</li>
+<li><strong>v_min</strong> (<em>float</em>) – Minimum radial velocity (xlim) [km/s]</li>
+<li><strong>v_max</strong> (<em>float</em>) – Maximum radial velocity (xlim) [km/s]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="predict">
+<h2>predict<a class="headerlink" href="#predict" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>lat</em>, <em>lon</em>, <em>height=0</em>, <em>source=''</em>, <em>date=''</em>, <em>plot_sun=True</em>, <em>plot_file=''</em><span class="sig-paren">)</span></dt>
+<dd><p>Plots source Alt/Az given the observer’s Earth coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lat</strong> (<em>float</em>) – Observer latitude [deg]</li>
+<li><strong>lon</strong> (<em>float</em>) – Obesrver longitude [deg]</li>
+<li><strong>height</strong> (<em>float</em>) – Observer elevation [m]</li>
+<li><strong>source</strong> (<em>string</em>) – Date in YYYY-MM-DD format. If no date is given, it defaults to today’s system date.</li>
+<li><strong>plot_sun</strong> (<em>bool</em>) – Also plot Sun position for reference</li>
+<li><strong>plot_file</strong> (<em>string</em>) – Output plot filename</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="equatorial">
+<h2>equatorial<a class="headerlink" href="#equatorial" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">equatorial</code><span class="sig-paren">(</span><em>alt</em>, <em>az</em>, <em>lat</em>, <em>lon</em>, <em>height=0</em><span class="sig-paren">)</span></dt>
+<dd><p>Takes observer’s location and Alt/Az as input and returns RA/Dec as a tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>alt</strong> (<em>float</em>) – Altitude [deg]</li>
+<li><strong>az</strong> (<em>float</em>) – Azimuth [deg]</li>
+<li><strong>lat</strong> (<em>float</em>) – Observer latitude [deg]</li>
+<li><strong>lon</strong> (<em>float</em>) – Observer longitude [deg]</li>
+<li><strong>height</strong> (<em>float</em>) – Observer elevation [m]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="galactic">
+<h2>galactic<a class="headerlink" href="#galactic" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">galactic</code><span class="sig-paren">(</span><em>ra</em>, <em>dec</em><span class="sig-paren">)</span></dt>
+<dd><p>Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ra</strong> (<em>float</em>) – Right ascension [deg]</li>
+<li><strong>dec</strong> (<em>float</em>) – Declination [deg]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="frequency">
+<h2>frequency<a class="headerlink" href="#frequency" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">frequency</code><span class="sig-paren">(</span><em>wavelength</em><span class="sig-paren">)</span></dt>
+<dd><p>Transform wavelength to frequency.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>wavelength</strong> (<em>float</em>) – Wavelength [m]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="wavelength">
+<h2>wavelength<a class="headerlink" href="#wavelength" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">wavelength</code><span class="sig-paren">(</span><em>frequency</em><span class="sig-paren">)</span></dt>
+<dd><p>Transform frequency to wavelength.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>frequency</strong> (<em>float</em>) – Wave frequency [Hz]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gain">
+<h2>gain<a class="headerlink" href="#gain" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">gain</code><span class="sig-paren">(</span><em>D</em>, <em>f</em>, <em>e=0.7</em>, <em>u='dBi'</em><span class="sig-paren">)</span></dt>
+<dd><p>Estimate parabolic antenna gain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>D</strong> (<em>float</em>) – Antenna diameter [m]</li>
+<li><strong>f</strong> (<em>float</em>) – Frequency [Hz]</li>
+<li><strong>e</strong> (<em>float</em>) – Aperture efficiency (0 &gt;= e &gt;= 1)</li>
+<li><strong>u</strong> (<em>string</em>) – Output gain unit (‘dBi’, ‘linear’ or ‘K/Jy’)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="a-e">
+<h2>A_e<a class="headerlink" href="#a-e" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="A_e">
+<code class="descname">A_e</code><span class="sig-paren">(</span><em>gain</em>, <em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#A_e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform antenna gain to effective aperture [m^2].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gain</strong> (<em>float</em>) – Antenna gain [dBi]</li>
+<li><strong>f</strong> (<em>float</em>) – Frequency [Hz]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="beamwidth">
+<h2>beamwidth<a class="headerlink" href="#beamwidth" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">beamwidth</code><span class="sig-paren">(</span><em>D</em>, <em>f</em><span class="sig-paren">)</span></dt>
+<dd><p>Estimate parabolic antenna half-power beamwidth (FWHM).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>D</strong> (<em>float</em>) – Antenna diameter [m]</li>
+<li><strong>f</strong> (<em>float</em>) – Frequency [Hz]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="nf">
+<h2>NF<a class="headerlink" href="#nf" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="NF">
+<code class="descname">NF</code><span class="sig-paren">(</span><em>T_noise</em>, <em>T_ref=290</em><span class="sig-paren">)</span><a class="headerlink" href="#NF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert noise temperature to noise figure [dB].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>T_noise</strong> (<em>float</em>) – Noise temperature [K]</li>
+<li><strong>T_ref</strong> (<em>float</em>) – Reference temperature [K]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="t-noise">
+<h2>T_noise<a class="headerlink" href="#t-noise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="T_noise">
+<code class="descname">T_noise</code><span class="sig-paren">(</span><em>NF</em>, <em>T_ref=290</em><span class="sig-paren">)</span><a class="headerlink" href="#T_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert noise figure to noise temperature [K].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>NF</strong> (<em>float</em>) – Noise figure [dB]</li>
+<li><strong>T_ref</strong> (<em>float</em>) – Reference temperature [K]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="g-t">
+<h2>G_T<a class="headerlink" href="#g-t" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="G_T">
+<code class="descname">G_T</code><span class="sig-paren">(</span><em>gain</em>, <em>T_sys</em><span class="sig-paren">)</span><a class="headerlink" href="#G_T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute antenna gain-to-noise-temperature (G/T).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>gain</strong> (<em>float</em>) – Antenna gain [dBi]</li>
+<li><strong>T_sys</strong> (<em>float</em>) – System noise temperature [K]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sefd">
+<h2>SEFD<a class="headerlink" href="#sefd" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="SEFD">
+<code class="descname">SEFD</code><span class="sig-paren">(</span><em>A_e</em>, <em>T_sys</em><span class="sig-paren">)</span><a class="headerlink" href="#SEFD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute system equivalent flux density [Jy].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>A_e</strong> (<em>float</em>) – Effective antenna aperture [m^2]</li>
+<li><strong>T_sys</strong> (<em>float</em>) – System noise temperature [K]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="snr">
+<h2>snr<a class="headerlink" href="#snr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">snr</code><span class="sig-paren">(</span><em>S</em>, <em>sefd</em>, <em>t</em>, <em>bw</em><span class="sig-paren">)</span></dt>
+<dd><p>Estimate the obtained signal-to-noise ratio of an observation (radiometer equation).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>S</strong> (<em>float</em>) – Source flux density [Jy]</li>
+<li><strong>sefd</strong> (<em>float</em>) – Instrument’s system equivalent flux density [Jy]</li>
+<li><strong>t</strong> (<em>float</em>) – Total on-source integration time [sec]</li>
+<li><strong>bw</strong> (<em>float</em>) – Acquisition bandwidth [Hz]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="map-hi">
+<h2>map_hi<a class="headerlink" href="#map-hi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="map_hi">
+<code class="descname">map_hi</code><span class="sig-paren">(</span><em>ra=None</em>, <em>dec=None</em>, <em>plot_file=''</em><span class="sig-paren">)</span><a class="headerlink" href="#map_hi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ra</strong> (<em>float</em>) – Right ascension [deg]</li>
+<li><strong>dec</strong> (<em>float</em>) – Declination [deg]</li>
+<li><strong>plot_file</strong> (<em>string</em>) – Output plot filename</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="observe">
+<h2>observe<a class="headerlink" href="#observe" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">observe</code><span class="sig-paren">(</span><em>obs_parameters</em>, <em>spectrometer='wola'</em>, <em>obs_file='observation.dat'</em>, <em>start_in=0</em><span class="sig-paren">)</span></dt>
+<dd><p>Begin data acquisition (requires SDR connected to the machine).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>obs_parameters</strong> (<em>dict</em>) – Observation parameters</li>
+<li><strong>spectrometer</strong> (<em>string</em>) – Spectrometer flowchart/pipeline (‘WOLA’/’FTF’)</li>
+<li><strong>obs_file</strong> (<em>string</em>) – Output data filename</li>
+<li><strong>start_in</strong> (<em>float</em>) – Schedule observation start [sec]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Arguments for <code class="docutils literal notranslate"><span class="pre">obs_parameters</span></code>:</p>
+<dl class="attribute">
+<dt id="obs_parameters">
+<code class="descname">obs_parameters</code><a class="headerlink" href="#obs_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dev_args</strong> (<em>string</em>) – Device arguments (gr-osmosdr)</li>
+<li><strong>rf_gain</strong> (<em>float</em>) – RF gain</li>
+<li><strong>if_gain</strong> (<em>float</em>) – IF gain</li>
+<li><strong>bb_gain</strong> (<em>float</em>) – Baseband gain</li>
+<li><strong>frequency</strong> (<em>float</em>) – Center frequency [Hz]</li>
+<li><strong>bandwidth</strong> (<em>float</em>) – Instantaneous bandwidth [Hz]</li>
+<li><strong>channels</strong> (<em>int</em>) – Number of frequency channels (FFT size)</li>
+<li><strong>t_sample</strong> (<em>float</em>) – Integration time per FFT sample</li>
+<li><strong>duration</strong> (<em>float</em>) – Total observing duration [sec]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="plot">
+<h2>plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descname">plot</code><span class="sig-paren">(</span><em>obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0, obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'</em><span class="sig-paren">)</span></dt>
+<dd><p>Process, analyze and plot data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>obs_parameters</strong> (<em>dict</em>) – Observation parameters</li>
+<li><strong>n</strong> (<em>int</em>) – Median filter factor (spectrum)</li>
+<li><strong>m</strong> (<em>int</em>) – Median filter factor (time series)</li>
+<li><strong>f_rest</strong> (<em>float</em>) – Spectral line reference frequency used for radial velocity (Doppler shift) calculations [Hz]</li>
+<li><strong>slope_correction</strong> (<em>bool</em>) – Correct slope in poorly-calibrated spectra using linear regression</li>
+<li><strong>dB</strong> (<em>bool</em>) – Display data in decibel scaling</li>
+<li><strong>rfi</strong> (<em>list</em>) – Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]</li>
+<li><strong>xlim</strong> (<em>list</em>) – x-axis limits ([low_frequency, high_frequency]) [Hz]</li>
+<li><strong>ylim</strong> (<em>list</em>) – y-axis limits ([start_time, end_time]) [Hz]</li>
+<li><strong>dm</strong> (<em>float</em>) – Dispersion measure for dedispersion [pc/cm^3]</li>
+<li><strong>obs_file</strong> (<em>string</em>) – Input observation filename (generated with virgo.observe)</li>
+<li><strong>cal_file</strong> (<em>string</em>) – Input calibration filename (generated with virgo.observe)</li>
+<li><strong>waterfall_fits</strong> (<em>string</em>) – Output FITS filename</li>
+<li><strong>spectra_csv</strong> (<em>string</em>) – Output CSV filename (spectra)</li>
+<li><strong>power_csv</strong> (<em>string</em>) – Output CSV filename (time series)</li>
+<li><strong>plot_file</strong> (<em>string</em>) – Output plot filename</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Arguments for <code class="docutils literal notranslate"><span class="pre">obs_parameters</span></code>:</p>
+<dl class="attribute">
+<dt>
+<code class="descname">obs_parameters</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dev_args</strong> (<em>string</em>) – Device arguments (gr-osmosdr)</li>
+<li><strong>rf_gain</strong> (<em>float</em>) – RF gain</li>
+<li><strong>if_gain</strong> (<em>float</em>) – IF gain</li>
+<li><strong>bb_gain</strong> (<em>float</em>) – Baseband gain</li>
+<li><strong>frequency</strong> (<em>float</em>) – Center frequency [Hz]</li>
+<li><strong>bandwidth</strong> (<em>float</em>) – Instantaneous bandwidth [Hz]</li>
+<li><strong>channels</strong> (<em>int</em>) – Number of frequency channels (FFT size)</li>
+<li><strong>t_sample</strong> (<em>float</em>) – Integration time per FFT sample</li>
+<li><strong>duration</strong> (<em>float</em>) – Total observing duration [sec]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="plot-rfi">
+<h2>plot_rfi<a class="headerlink" href="#plot-rfi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="plot_rfi">
+<code class="descname">plot_rfi</code><span class="sig-paren">(</span><em>rfi_parameters</em>, <em>data='rfi_data'</em>, <em>dB=True</em>, <em>plot_file='plot.png'</em><span class="sig-paren">)</span><a class="headerlink" href="#plot_rfi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots wideband RFI survey spectrum.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rfi_parameters</strong> (<em>dict</em>) – Identical to obs_parameters, but also including ‘f_lo’: f_lo</li>
+<li><strong>data</strong> (<em>string</em>) – Survey data directory containing individual observations</li>
+<li><strong>dB</strong> (<em>bool</em>) – Display data in decibel scaling</li>
+<li><strong>plot_file</strong> (<em>string</em>) – Output plot filename</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="monitor-rfi">
+<h2>monitor_rfi<a class="headerlink" href="#monitor-rfi" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="monitor_rfi">
+<code class="descname">monitor_rfi</code><span class="sig-paren">(</span><em>f_lo</em>, <em>f_hi</em>, <em>obs_parameters</em>, <em>data='rfi_data'</em><span class="sig-paren">)</span><a class="headerlink" href="#monitor_rfi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begin data acquisition (wideband RFI survey).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>obs_parameters</strong> (<em>dict</em>) – Observation parameters (identical to parameters used to acquire data)</li>
+<li><strong>f_lo</strong> (<em>float</em>) – Start frequency [Hz]</li>
+<li><strong>f_hi</strong> (<em>float</em>) – End frequency [Hz]</li>
+<li><strong>data</strong> (<em>string</em>) – Survey data directory to output individual observations to</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Arguments for <code class="docutils literal notranslate"><span class="pre">obs_parameters</span></code>:</p>
+<dl class="attribute">
+<dt>
+<code class="descname">obs_parameters</code></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dev_args</strong> (<em>string</em>) – Device arguments (gr-osmosdr)</li>
+<li><strong>rf_gain</strong> (<em>float</em>) – RF gain</li>
+<li><strong>if_gain</strong> (<em>float</em>) – IF gain</li>
+<li><strong>bb_gain</strong> (<em>float</em>) – Baseband gain</li>
+<li><strong>frequency</strong> (<em>float</em>) – Center frequency [Hz]</li>
+<li><strong>bandwidth</strong> (<em>float</em>) – Instantaneous bandwidth [Hz]</li>
+<li><strong>channels</strong> (<em>int</em>) – Number of frequency channels (FFT size)</li>
+<li><strong>t_sample</strong> (<em>float</em>) – Integration time per FFT sample</li>
+<li><strong>duration</strong> (<em>float</em>) – Total observing duration [sec]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference</a><ul>
+<li><a class="reference internal" href="#simulate">simulate</a></li>
+<li><a class="reference internal" href="#predict">predict</a></li>
+<li><a class="reference internal" href="#equatorial">equatorial</a></li>
+<li><a class="reference internal" href="#galactic">galactic</a></li>
+<li><a class="reference internal" href="#frequency">frequency</a></li>
+<li><a class="reference internal" href="#wavelength">wavelength</a></li>
+<li><a class="reference internal" href="#gain">gain</a></li>
+<li><a class="reference internal" href="#a-e">A_e</a></li>
+<li><a class="reference internal" href="#beamwidth">beamwidth</a></li>
+<li><a class="reference internal" href="#nf">NF</a></li>
+<li><a class="reference internal" href="#t-noise">T_noise</a></li>
+<li><a class="reference internal" href="#g-t">G_T</a></li>
+<li><a class="reference internal" href="#sefd">SEFD</a></li>
+<li><a class="reference internal" href="#snr">snr</a></li>
+<li><a class="reference internal" href="#map-hi">map_hi</a></li>
+<li><a class="reference internal" href="#observe">observe</a></li>
+<li><a class="reference internal" href="#plot">plot</a></li>
+<li><a class="reference internal" href="#plot-rfi">plot_rfi</a></li>
+<li><a class="reference internal" href="#monitor-rfi">monitor_rfi</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="previous chapter">Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="license.html"
+                        title="next chapter">License</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/reference.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Apostolos Spanakis-Misirlis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>

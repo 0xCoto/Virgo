@@ -1,0 +1,186 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Usage &#8212; Virgo 3.6.4 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-import">
+<h2>Module import<a class="headerlink" href="#module-import" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Virgo</span></code> can be imported and used as a module (traditional method):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load package</span>
+<span class="kn">import</span> <span class="nn">virgo</span>
+
+<span class="c1"># Example functions</span>
+<span class="n">virgo</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">virgo</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="script-method">
+<h2>Script method<a class="headerlink" href="#script-method" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively, it can be called directly as a Python script using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python virgo.py <span class="o">[</span>arguments<span class="o">]</span>
+</pre></div>
+</div>
+<p>The latter method is typically preferred for quick hardware-verification tests etc.,
+although using <code class="docutils literal notranslate"><span class="pre">Virgo</span></code> as a module offers much more versatility.</p>
+<p>You can view the full list of arguments by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python virgo.py -h
+</pre></div>
+</div>
+<p>The following parameters are more thoroughly described in section <strong>Functions</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: virgo.py [-h] [-da DEV_ARGS] [-rf RF_GAIN] [-if IF_GAIN] [-bb BB_GAIN]
+                -f FREQUENCY -b BANDWIDTH -c CHANNELS -t T_SAMPLE
+                [-d DURATION] [-s START_IN] [-o OBS_FILE] [-C CAL_FILE] [-db]
+                [-n N] [-m M] [-r F_REST] [-W WATERFALL_FITS] [-S SPECTRA_CSV]
+                [-P POWER_CSV] [-p PLOT_FILE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -da DEV_ARGS, --dev_args DEV_ARGS
+                        SDR Device Arguments (osmocom Source)
+  -rf RF_GAIN, --rf_gain RF_GAIN
+                        SDR RF Gain (dB)
+  -if IF_GAIN, --if_gain IF_GAIN
+                        SDR IF Gain (dB)
+  -bb BB_GAIN, --bb_gain BB_GAIN
+                        SDR BB Gain (dB)
+  -f FREQUENCY, --frequency FREQUENCY
+                        Center Frequency (Hz)
+  -b BANDWIDTH, --bandwidth BANDWIDTH
+                        Bandwidth (Hz)
+  -c CHANNELS, --channels CHANNELS
+                        Number of Channels (FFT Size)
+  -t T_SAMPLE, --t_sample T_SAMPLE
+                        FFT Sample Time (s)
+  -d DURATION, --duration DURATION
+                        Observing Duration (s)
+  -s START_IN, --start_in START_IN
+                        Schedule Observation (s)
+  -o OBS_FILE, --obs_file OBS_FILE
+                        Observation Filename
+  -C CAL_FILE, --cal_file CAL_FILE
+                        Calibration Filename
+  -db, --db             Use dB-scaled Power values
+  -n N, --median_frequency N
+                        Median Factor (Frequency Domain)
+  -m M, --median_time M
+                        Median Factor (Time Domain)
+  -r F_REST, --rest_frequency F_REST
+                        Spectral Line Rest Frequency (Hz)
+  -W WATERFALL_FITS, --waterfall_fits WATERFALL_FITS
+                        Filename for FITS Waterfall File
+  -S SPECTRA_CSV, --spectra_csv SPECTRA_CSV
+                        Filename for Spectra csv File
+  -P POWER_CSV, --power_csv POWER_CSV
+                        Filename for Spectra csv File
+  -p PLOT_FILE, --plot_file PLOT_FILE
+                        Plot Filename
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#module-import">Module import</a></li>
+<li><a class="reference internal" href="#script-method">Script method</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Examples</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Virgo 3.6.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Apostolos Spanakis-Misirlis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+    </div>
+  </body>
+</html>
