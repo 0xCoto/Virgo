@@ -18,11 +18,11 @@ Module import
 Script method
 ^^^^^^^^^^^^^
 
-Alternatively, it can be called directly as a Python script using:
+Alternatively, it can be called directly from the command line using:
 
 .. code-block:: bash
 
-    python virgo.py [arguments]
+    virgo [arguments]
 
 The latter method is typically preferred for quick hardware-verification tests etc.,
 although using ``Virgo`` as a module offers much more versatility.
