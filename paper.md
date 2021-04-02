@@ -63,7 +63,9 @@ build a small-aperture antenna connected to a low-noise amplifier followed by an
 and with the help of `Virgo`, obtain data to map out the galactic distribution of
 neutral hydrogen and/or derive the rotation curve of the Milky Way. An example
 observation of the 21-cm hydrogen line acquired and processed with `Virgo` is shown
-in \autoref{fig:example}.
+in \autoref{fig:example}. The package's versatility also provides a fast solution for
+researchers wishing to rapidly deploy low-cost radio telescopes with commercial hardware.
+
 
 ![Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus ($\alpha = 20^{\mathrm{h}}$, $\delta = 40^{\circ}$, $l = 77^{\circ}$, $b = 3^{\circ}$), observed by the TLM-18 Telescope in New Jersey, U.S. with `Virgo`. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.\label{fig:example}](example.pdf)
 
@@ -137,9 +139,9 @@ applications invloving the acquisition and/or processing of telescope data.
 
 # Example Usage
 
-`Virgo` can either be called directly as a Python script using e.g.,
+`Virgo` can either be called directly from the command line using e.g.,
 
-`python virgo.py -rf 10 -if 20 -bb 20 -f 1420e6 -b 5e6 -c 2048 -t 1 -d 60 -s 10 -n 20 -m 35 -r 1420.4057517667e6 -C calibration.dat -W obs.fits`,
+`virgo -rf 10 -if 20 -bb 20 -f 1420e6 -b 5e6 -c 2048 -t 1 -d 60 -s 10 -n 20 -m 35 -r 1420.4057517667e6 -C calibration.dat -W obs.fits`,
 
 or imported and used as a package:
 ```python
