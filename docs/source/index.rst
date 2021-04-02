@@ -98,7 +98,7 @@ Key Features
 - - Radiometer equation (S:N estimation)
 - Built-in tool for conducting rapid RFI surveys
 - Argument-parsing support
-- Works directly via ``python virgo.py``, or as a module (see Usage)
+- Works directly from the command line ``virgo -h``, or as a Python module (see **Usage**)
 
 Contents
 ---------
