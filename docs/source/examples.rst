@@ -72,8 +72,8 @@ Example source prediction
     *Fig: Example prediction of the position of the Cygnus A radio galaxy (3C 405) in the celestial
     sphere of the observer obtained via* ``virgo.predict()``.
 
-Example source prediction
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Example HI profile retrieval
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: https://camo.githubusercontent.com/263822450db159b0d1012b4b7cb60a642457eed276f394c7e4130a30d5e01c15/68747470733a2f2f692e696d6775722e636f6d2f4848536b444a4d2e706e67
     :align: center
