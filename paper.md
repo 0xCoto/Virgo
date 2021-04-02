@@ -63,7 +63,7 @@ build a small-aperture antenna connected to a low-noise amplifier followed by an
 and with the help of `Virgo`, obtain data to map out the galactic distribution of
 neutral hydrogen and/or derive the rotation curve of the Milky Way. An example
 observation of the 21-cm hydrogen line acquired and processed with `Virgo` is shown
-in \autoref{fig:example}. The package's versatility also provides a fast solution for
+in \autoref{fig:example}. The package's versatility also provides a convenient solution for
 researchers wishing to rapidly deploy low-cost radio telescopes with commercial hardware.
 
 
