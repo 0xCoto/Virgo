@@ -65,7 +65,7 @@ A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.
 - - Radiometer equation (S:N estimation)
 - Built-in tool for conducting rapid RFI surveys
 - Argument-parsing support
-- Works directly via command-line (`virgo`), or as a module (see below)
+- Works directly from the command line (`virgo -h`), or as a Python module
 
 ---
 
