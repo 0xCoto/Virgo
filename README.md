@@ -121,6 +121,11 @@ pip install astro-virgo
 ## Documentation
 To learn how to use Virgo, please read through the documentation **[here](https://virgo.readthedocs.io/en/latest/)**.
 
+If you believe something is not clarified in the documentation page, you are encouraged to **[create an issue](https://github.com/0xCoto/Virgo/issues/new)** (or send me an [e-mail](mailto:0xcoto@protonmail.com) and I'll be happy to help.
+
+## Contributing
+If you wish to contribute to the package (either with code, ideas or further documentation), please read through the **[Contributor Guidelines](https://github.com/0xCoto/Virgo/blob/master/docs/contributing.md)**.
+
 ## Credits
 **Virgo** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
 
