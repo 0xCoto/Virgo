@@ -15,7 +15,13 @@
 ## About Virgo
 **Virgo** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio](https://wiki.gnuradio.org) (GR) that is conveniently applicable to any radio telescope working with a GR-supported software-defined radio (SDR). In addition to data acquisition, Virgo also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)**, a **time series (power vs time)** and a **total power distribution** plot.
 
-A list of GR-supported SDRs can be found [here](https://wiki.gnuradio.org/index.php/Hardware).
+Lastly, an important set of utilities is provided to observers, making the package for a great tool for planning (radio) observations, estimating the system sensitivity of an instrument, and many more.
+
+## Statement of Need
+
+Designed to be used by students, educators and amateurs in the field of radio astronomy, Virgo has already been adopted by a number of small and large-aperture radio telescopes, permitting both spectral and continuum observations with great success. These instruments include the ISEC TLM-18 (18m), the ACRO RT-320 (3.2m), the JRT (1.9m), and the PICTOR Telescope (1.5m), among others.
+
+Although the hardware aspect of a radio telescope is generally handled by newcomers with relative ease, the skill set needed to integrate a complete software pipeline to support observations is not something most users are equipped with. Virgo tackles this problem by providing non-experts with a tool to collect and interpret data from radio telescopes, without requiring expertise in digital signal processing and software engineering. An example use case is classroom experiments in which students build a small-aperture antenna connected to a low-noise amplifier followed by an SDR, and with the help of Virgo, obtain data to map out the galactic distribution of neutral hydrogen and/or derive the rotation curve of the Milky Way.
 
 ### Key Features
 
