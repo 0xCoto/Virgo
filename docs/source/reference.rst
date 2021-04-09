@@ -66,7 +66,7 @@ galactic
 
    Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).
 
-   :param ra: Right ascension [deg]
+   :param ra: Right ascension [hr]
    :type ra: float
    :param dec: Declination [deg]
    :type dec: float
@@ -202,7 +202,7 @@ map_hi
 
    Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
 
-   :param ra: Right ascension [deg]
+   :param ra: Right ascension [hr]
    :type ra: float
    :param dec: Declination [deg]
    :type dec: float
