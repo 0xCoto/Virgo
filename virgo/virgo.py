@@ -247,7 +247,7 @@ def galactic(ra, dec):
 	Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).
 	
 	Args:
-		ra: float. Right ascension [deg]
+		ra: float. Right ascension [hr]
 		dec: float. Declination [deg]
 	'''
 	from astropy.time import Time
@@ -428,7 +428,7 @@ def map_hi(ra=None, dec=None, plot_file=''):
 	Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
 	
 	Args:
-		ra: float. Right ascension [deg]
+		ra: float. Right ascension [hr]
 		dec: float. Declination [deg]
 		plot_file: string. Output plot filename
 	'''
