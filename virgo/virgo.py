@@ -812,15 +812,15 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		if cal_file != '':
 			np.savetxt(spectra_csv, np.concatenate((frequency.reshape(channels, 1),
                        avg_spectrum.reshape(channels, 1), avg_spectrum_cal.reshape(channels, 1),
-                       spectrum.reshape(channels, 1)), axis=1), delimiter=',', fmt='%1.3f')
+                       spectrum.reshape(channels, 1)), axis=1), delimiter=',', fmt='%1.6f')
 		else:
 			np.savetxt(spectra_csv, np.concatenate((frequency.reshape(channels, 1),
-                       avg_spectrum.reshape(channels, 1)), axis=1), delimiter=',', fmt='%1.3f')
+                       avg_spectrum.reshape(channels, 1)), axis=1), delimiter=',', fmt='%1.6f')
 
 	# Write Time Series to file (csv)
 	if power_csv != '':
 		np.savetxt(power_csv, np.concatenate((t.reshape(subs, 1), power.reshape(subs, 1)),
-                   axis=1), delimiter=',', fmt='%1.3f')
+                   axis=1), delimiter=',', fmt='%1.6f')
 
 	# Initialize plot
 	if cal_file != '':
