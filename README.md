@@ -118,6 +118,14 @@ The red dot indicates the position of the telescope's beam in the sky.
 ## Installation
 To use **Virgo**, make sure **[Python](https://www.python.org/)** and **[GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR)** (with **[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki)**) are installed on your machine.
 
+For Debian/Ubuntu and derivates, the installation is straightforward:
+
+```
+sudo apt install gnuradio gr-osmosdr
+```
+
+**Note:** The `GNU Radio` and `gr-osmosdr` dependencies are only required for **acquiring data with the necessary hardware** (software-defined radio). They are not required for planning observations, analyzing data, running calculations or any other functionalities provided by the package. For more information, please refer to the [Dependencies section](https://virgo.readthedocs.io/en/latest/installation.html#dependencies).
+
 Once Python and GNU Radio are installed on your system, run
 
 ```
