@@ -42,6 +42,14 @@ from `PyPI <https://pypi.org/project/astro-virgo/>`_ using ``pip``:
 
    pip install astro-virgo
 
+Alternatively, you may clone the repository and install the package in an offline manner:
+
+.. code-block:: bash
+
+   git clone https://github.com/0xCoto/Virgo.git
+   cd Virgo
+   pip install .
+
 By obtaining ``Virgo``, the following packages are installed *automatically*:
 
 * `numpy <https://numpy.org/>`_
