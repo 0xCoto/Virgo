@@ -8,7 +8,7 @@ simulate
 
 .. function:: simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file='')
 
-   Simulate 21 cm profiles based on the LAB HI Survey.
+   Simulate 21 cm profiles based on the LAB HI Survey (Output: NoneType).
 
    :param l: Target galactic longitude [deg]
    :type l: float
@@ -26,7 +26,7 @@ predict
 
 .. function:: predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 
-   Plots source Alt/Az given the observer's Earth coordinates.
+   Plots source Alt/Az given the observer's Earth coordinates. (Output: NoneType)
 
    :param lat: Observer latitude [deg]
    :type lat: float
@@ -46,7 +46,7 @@ equatorial
 
 .. function:: equatorial(alt, az, lat, lon, height=0)
 
-   Takes observer's location and Alt/Az as input and returns RA/Dec as a tuple.
+   Takes observer's location and Alt/Az as input and returns RA/Dec. (Output: tuple)
 
    :param alt: Altitude [deg]
    :type alt: float
@@ -64,7 +64,7 @@ galactic
 
 .. function:: galactic(ra, dec)
 
-   Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).
+   Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude. (Output: tuple)
 
    :param ra: Right ascension [hr]
    :type ra: float
@@ -76,7 +76,7 @@ frequency
 
 .. function:: frequency(wavelength)
 
-   Transform wavelength to frequency.
+   Transform wavelength to frequency. (Output: float)
 
    :param wavelength: Wavelength [m]
    :type wavelength: float
@@ -86,7 +86,7 @@ wavelength
 
 .. function:: wavelength(frequency)
 
-   Transform frequency to wavelength.
+   Transform frequency to wavelength. (Output: float)
 
    :param frequency: Wave frequency [Hz]
    :type frequency: float
@@ -96,7 +96,7 @@ gain
 
 .. function:: gain(D, f, e=0.7, u='dBi')
 
-   Estimate parabolic antenna gain.
+   Estimate parabolic antenna gain. (Output: float)
 
    :param D: Antenna diameter [m]
    :type D: float
@@ -112,7 +112,7 @@ A_e
 
 .. function:: A_e(gain, f)
 
-   Transform antenna gain to effective aperture [m^2].
+   Transform antenna gain to effective aperture [m^2]. (Output: float)
 
    :param gain: Antenna gain [dBi]
    :type gain: float
@@ -124,7 +124,7 @@ beamwidth
 
 .. function:: beamwidth(D, f)
 
-   Estimate parabolic antenna half-power beamwidth (FWHM).
+   Estimate parabolic antenna half-power beamwidth (FWHM). (Output: float)
 
    :param D: Antenna diameter [m]
    :type D: float
@@ -136,7 +136,7 @@ NF
 
 .. function:: NF(T_noise, T_ref=290)
 
-   Convert noise temperature to noise figure [dB].
+   Convert noise temperature to noise figure [dB]. (Output: float)
 
    :param T_noise: Noise temperature [K]
    :type T_noise: float
@@ -148,7 +148,7 @@ T_noise
 
 .. function:: T_noise(NF, T_ref=290)
 
-   Convert noise figure to noise temperature [K].
+   Convert noise figure to noise temperature [K]. (Output: float)
 
    :param NF: Noise figure [dB]
    :type NF: float
@@ -160,7 +160,7 @@ G_T
 
 .. function:: G_T(gain, T_sys)
 
-   Compute antenna gain-to-noise-temperature (G/T).
+   Compute antenna gain-to-noise-temperature (G/T). (Output: float)
 
    :param gain: Antenna gain [dBi]
    :type gain: float
@@ -172,7 +172,7 @@ SEFD
 
 .. function:: SEFD(A_e, T_sys)
 
-   Compute system equivalent flux density [Jy].
+   Compute system equivalent flux density [Jy]. (Output: float)
 
    :param A_e: Effective antenna aperture [m^2]
    :type A_e: float
@@ -184,7 +184,7 @@ snr
 
 .. function:: snr(S, sefd, t, bw)
 
-   Estimate the obtained signal-to-noise ratio of an observation (radiometer equation).
+   Estimate the obtained signal-to-noise ratio of an observation (radiometer equation). (Output: float)
 
    :param S: Source flux density [Jy]
    :type S: float
@@ -200,7 +200,7 @@ map_hi
 
 .. function:: map_hi(ra=None, dec=None, plot_file='')
 
-   Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
+   Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to. (Output: NoneType)
 
    :param ra: Right ascension [hr]
    :type ra: float
@@ -214,7 +214,7 @@ observe
 
 .. function:: observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0)
 
-   Begin data acquisition (requires SDR connected to the machine).
+   Begin data acquisition (requires SDR connected to the machine). (Output: NoneType)
 
    :param obs_parameters: Observation parameters
    :type obs_parameters: dict
@@ -253,7 +253,7 @@ plot
 
 .. function:: plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0, obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png')
 
-   Process, analyze and plot data.
+   Process, analyze and plot data. (Output: NoneType)
 
    :param obs_parameters: Observation parameters
    :type obs_parameters: dict
@@ -316,7 +316,7 @@ plot_rfi
 
 .. function:: plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png')
 
-   Plots wideband RFI survey spectrum.
+   Plots wideband RFI survey spectrum. (Output: NoneType)
 
    :param rfi_parameters: Identical to obs_parameters, but also including 'f_lo': f_lo
    :type rfi_parameters: dict
@@ -332,7 +332,7 @@ monitor_rfi
 
 .. function:: monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data')
 
-   Begin data acquisition (wideband RFI survey).
+   Begin data acquisition (wideband RFI survey). (Output: NoneType)
 
    :param obs_parameters: Observation parameters (identical to parameters used to acquire data)
    :type obs_parameters: dict
