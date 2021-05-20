@@ -63,7 +63,7 @@ equatorial
    :param height: Observer elevation [m]
    :type height: float
 
-   Output: *tuple* of *floats* (**ra** [hr], **dec** [deg])
+   Output: Equatorial coordinates (*tuple* of *floats*) - (**ra** [hr], **dec** [deg])
 
 galactic
 """"""""
@@ -77,7 +77,7 @@ galactic
    :param dec: Declination [deg]
    :type dec: float
 
-   Output: *tuple* of *floats* (**l** [deg], **b** [deg])
+   Output: Galactic coordinates (*tuple* of *floats*) - (**l** [deg], **b** [deg])
 
 frequency
 """""""""
@@ -89,7 +89,7 @@ frequency
    :param wavelength: Wavelength [m]
    :type wavelength: float
 
-   Output: *float* [Hz]
+   Output: Frequency (*float*) [Hz]
 
 wavelength
 """"""""""
@@ -101,7 +101,7 @@ wavelength
    :param frequency: Wave frequency [Hz]
    :type frequency: float
 
-   Output: *float* [Hz]
+   Output: Wavelength (*float*) [m]
 
 gain
 """"
@@ -119,7 +119,7 @@ gain
    :param u: Output gain unit ('dBi', 'linear' or 'K/Jy')
    :type u: string
 
-   Output: *float* [dBi, i or K/Jy depending on **u**]
+   Output: Antenna gain (*float*) [dBi, i or K/Jy depending on **u**]
 
 A_e
 """
@@ -133,7 +133,7 @@ A_e
    :param f: Frequency [Hz]
    :type f: float
 
-   Output: *float* [m^2]
+   Output: Effective antenna aperture (*float*) [m^2]
 
 beamwidth
 """""""""
@@ -147,7 +147,7 @@ beamwidth
    :param f: Frequency [Hz]
    :type f: float
 
-   Output: *float* [deg]
+   Output: Antenna half-power (3 dB) beamwidth (*float*) [deg]
 
 NF
 ""
@@ -161,7 +161,7 @@ NF
    :param T_ref: Reference temperature [K]
    :type T_ref: float
 
-   Output: *float* [dB]
+   Output: Noise figure (*float*) [dB]
 
 T_noise
 """""""
@@ -175,7 +175,7 @@ T_noise
    :param T_ref: Reference temperature [K]
    :type T_ref: float
 
-   Output: *float* [K]
+   Output: Noise temperature (*float*) [K]
 
 G_T
 """
@@ -189,7 +189,7 @@ G_T
    :param T_sys: System noise temperature [K]
    :type T_sys: float
 
-   Output: *float* [dB/K]
+   Output: Antenna gain-to-noise-temperature (*float*) [dB/K]
 
 SEFD
 """"
@@ -203,7 +203,7 @@ SEFD
    :param T_sys: System noise temperature [K]
    :type T_sys: float
 
-   Output: *float* [Jy]
+   Output: SEFD value (*float*) [Jy]
 
 snr
 """
@@ -221,7 +221,7 @@ snr
    :param bw: Acquisition bandwidth [Hz]
    :type bw: float
 
-   Output: *float* [dimensionless]
+   Output: Signal-to-noise ratio (*float*) [dimensionless]
 
 map_hi
 """"""
