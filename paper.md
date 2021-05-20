@@ -45,11 +45,11 @@ data from radio telescopes. It is an easy-to-use open-source spectrometer and
 radiometer based on the GNU Radio framework (https://www.gnuradio.org), and is conveniently
 applicable to any radio telescope working with a GNU Radio-supported software-defined
 radio (SDR; a radio receiver architecture where some conventional hardware-based
-steps are replicated in software, @Dillinger:2003). Although basic in-house acquisition
-solutions have been independently attempted by newcomers composing their own software for
-simple observations, they are nowhere near as close in terms of installation, ease of use,
-cross-platform support, functionality, reproducibility, maintenance and documentation that
-this package has to offer.
+steps are replicated in software, @Dillinger:2003). Although in-house acquisition
+solutions have been independently created by many, composing their own software
+for simple observations, these are not comparable in terms of installation count,
+ease of use, cross-platform support, functionality, reproducibility, maintenance
+and level of documentation that this package has to offer.
 
 Designed to be used by students, educators and amateurs in the field of radio
 astronomy, `Virgo` has already been adopted by a number of small and
