@@ -21,7 +21,7 @@ simulate
    :param v_max: Maximum radial velocity (xlim) [km/s]
    :type v_max: float
 
-   Output: NoneType
+   Output: *NoneType*
 
 predict
 """""""
@@ -43,7 +43,7 @@ predict
    :param plot_file: Output plot filename
    :type plot_file: string
 
-   Output: NoneType
+   Output: *NoneType*
 
 equatorial
 """"""""""
@@ -63,7 +63,7 @@ equatorial
    :param height: Observer elevation [m]
    :type height: float
 
-   Output: tuple of floats (ra [hr], dec [deg])
+   Output: *tuple* of *floats* (**ra** [hr], **dec** [deg])
 
 galactic
 """"""""
@@ -77,34 +77,38 @@ galactic
    :param dec: Declination [deg]
    :type dec: float
 
-   Output: tuple of floats (l [deg], b [deg])
+   Output: *tuple* of *floats* (**l** [deg], **b** [deg])
 
 frequency
 """""""""
 
 .. function:: frequency(wavelength)
 
-   Transform wavelength to frequency. (Output: float)
+   Transform wavelength to frequency.
 
    :param wavelength: Wavelength [m]
    :type wavelength: float
+
+   Output: *float* [Hz]
 
 wavelength
 """"""""""
 
 .. function:: wavelength(frequency)
 
-   Transform frequency to wavelength. (Output: float)
+   Transform frequency to wavelength.
 
    :param frequency: Wave frequency [Hz]
    :type frequency: float
+
+   Output: *float* [Hz]
 
 gain
 """"
 
 .. function:: gain(D, f, e=0.7, u='dBi')
 
-   Estimate parabolic antenna gain. (Output: float)
+   Estimate parabolic antenna gain.
 
    :param D: Antenna diameter [m]
    :type D: float
@@ -115,84 +119,98 @@ gain
    :param u: Output gain unit ('dBi', 'linear' or 'K/Jy')
    :type u: string
 
+   Output: *float* [dBi, i or K/Jy depending on **u**]
+
 A_e
 """
 
 .. function:: A_e(gain, f)
 
-   Transform antenna gain to effective aperture [m^2]. (Output: float)
+   Transform antenna gain to effective aperture.
 
    :param gain: Antenna gain [dBi]
    :type gain: float
    :param f: Frequency [Hz]
    :type f: float
+
+   Output: *float* [m^2]
 
 beamwidth
 """""""""
 
 .. function:: beamwidth(D, f)
 
-   Estimate parabolic antenna half-power beamwidth (FWHM). (Output: float)
+   Estimate parabolic antenna half-power beamwidth (FWHM).
 
    :param D: Antenna diameter [m]
    :type D: float
    :param f: Frequency [Hz]
    :type f: float
 
+   Output: *float* [deg]
+
 NF
 ""
 
 .. function:: NF(T_noise, T_ref=290)
 
-   Convert noise temperature to noise figure [dB]. (Output: float)
+   Convert noise temperature to noise figure.
 
    :param T_noise: Noise temperature [K]
    :type T_noise: float
    :param T_ref: Reference temperature [K]
    :type T_ref: float
 
+   Output: *float* [dB]
+
 T_noise
 """""""
 
 .. function:: T_noise(NF, T_ref=290)
 
-   Convert noise figure to noise temperature [K]. (Output: float)
+   Convert noise figure to noise temperature.
 
    :param NF: Noise figure [dB]
    :type NF: float
    :param T_ref: Reference temperature [K]
    :type T_ref: float
 
+   Output: *float* [K]
+
 G_T
 """
 
 .. function:: G_T(gain, T_sys)
 
-   Compute antenna gain-to-noise-temperature (G/T). (Output: float)
+   Compute antenna gain-to-noise-temperature (G/T).
 
    :param gain: Antenna gain [dBi]
    :type gain: float
    :param T_sys: System noise temperature [K]
    :type T_sys: float
 
+   Output: *float* [dB/K]
+
 SEFD
 """"
 
 .. function:: SEFD(A_e, T_sys)
 
-   Compute system equivalent flux density [Jy]. (Output: float)
+   Compute system equivalent flux density.
 
    :param A_e: Effective antenna aperture [m^2]
    :type A_e: float
    :param T_sys: System noise temperature [K]
    :type T_sys: float
 
+   Output: *float* [Jy]
+
 snr
 """
 
 .. function:: snr(S, sefd, t, bw)
 
-   Estimate the obtained signal-to-noise ratio of an observation (radiometer equation). (Output: float)
+   Estimate the obtained signal-to-noise ratio of an observation (radiometer equation).
 
    :param S: Source flux density [Jy]
    :type S: float
@@ -203,12 +221,14 @@ snr
    :param bw: Acquisition bandwidth [Hz]
    :type bw: float
 
+   Output: *float* [dimensionless]
+
 map_hi
 """"""
 
 .. function:: map_hi(ra=None, dec=None, plot_file='')
 
-   Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to. (Output: NoneType)
+   Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
 
    :param ra: Right ascension [hr]
    :type ra: float
@@ -217,12 +237,14 @@ map_hi
    :param plot_file: Output plot filename
    :type plot_file: string
 
+   Output: *NoneType*
+
 observe
 """""""
 
 .. function:: observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0)
 
-   Begin data acquisition (requires SDR connected to the machine). (Output: NoneType)
+   Begin data acquisition (requires SDR connected to the machine).
 
    :param obs_parameters: Observation parameters
    :type obs_parameters: dict
@@ -255,6 +277,8 @@ Arguments for ``obs_parameters``:
    :type t_sample: float
    :param duration: Total observing duration [sec]
    :type duration: float
+
+   Output: *NoneType*
 
 plot
 """"
@@ -319,6 +343,8 @@ Arguments for ``obs_parameters``:
    :param duration: Total observing duration [sec]
    :type duration: float
 
+   Output: *NoneType*
+
 plot_rfi
 """"""""
 
@@ -334,6 +360,8 @@ plot_rfi
    :type dB: bool
    :param plot_file: Output plot filename
    :type plot_file: string
+
+   Output: *NoneType*
 
 monitor_rfi
 """""""""""
@@ -374,7 +402,7 @@ Arguments for ``obs_parameters``:
    :param duration: Total observing duration [sec]
    :type duration: float
 
-
+   Output: *NoneType*
 
 
 
