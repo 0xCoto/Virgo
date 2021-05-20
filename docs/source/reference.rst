@@ -8,7 +8,7 @@ simulate
 
 .. function:: simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file='')
 
-   Simulate 21 cm profiles based on the LAB HI Survey (Output: NoneType).
+   Simulate 21 cm profiles based on the LAB HI Survey.
 
    :param l: Target galactic longitude [deg]
    :type l: float
@@ -21,12 +21,14 @@ simulate
    :param v_max: Maximum radial velocity (xlim) [km/s]
    :type v_max: float
 
+   Output: NoneType
+
 predict
 """""""
 
 .. function:: predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 
-   Plots source Alt/Az given the observer's Earth coordinates. (Output: NoneType)
+   Plots source Alt/Az given the observer's Earth coordinates.
 
    :param lat: Observer latitude [deg]
    :type lat: float
@@ -41,12 +43,14 @@ predict
    :param plot_file: Output plot filename
    :type plot_file: string
 
+   Output: NoneType
+
 equatorial
 """"""""""
 
 .. function:: equatorial(alt, az, lat, lon, height=0)
 
-   Takes observer's location and Alt/Az as input and returns RA/Dec. (Output: tuple)
+   Takes observer's location and Alt/Az as input and returns RA/Dec.
 
    :param alt: Altitude [deg]
    :type alt: float
@@ -59,17 +63,21 @@ equatorial
    :param height: Observer elevation [m]
    :type height: float
 
+   Output: tuple of floats (ra [hr], dec [deg])
+
 galactic
 """"""""
 
 .. function:: galactic(ra, dec)
 
-   Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude. (Output: tuple)
+   Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude.
 
    :param ra: Right ascension [hr]
    :type ra: float
    :param dec: Declination [deg]
    :type dec: float
+
+   Output: tuple of floats (l [deg], b [deg])
 
 frequency
 """""""""
