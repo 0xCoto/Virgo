@@ -32,7 +32,7 @@ using a low-cost RTL-SDR receiver:
 
     # Analyze data, mitigate RFI and export the data as a CSV file
     virgo.plot(obs_parameters=obs, n=20, m=35, f_rest=1420.4057517667e6,
-               obs_file='observation.dat', rfi=[(1419.2e6, 1419.3e6), (1420.8e6, 1419.9e6)],
+               obs_file='observation.dat', rfi=[(1419.2e6, 1419.3e6), (1420.8e6, 1420.9e6)],
                dB=True, spectra_csv='spectrum.csv', plot_file='plot.png')
 
 The above script will plot the position of the supernova remnant Cassiopeia A
