@@ -11,7 +11,7 @@ import warnings
 def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 	'''
 	Simulate 21 cm profiles based on the LAB HI Survey.
-	
+
 	Args:
 		l: float. Target galactic longitude [deg]
 		b: float. Target galactic latitude [deg]
@@ -109,7 +109,7 @@ def simulate(l, b, beamwidth=0.6, v_min=-400, v_max=400, plot_file=''):
 def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file=''):
 	'''
 	Plots source Alt/Az given the observer's Earth coordinates.
-	
+
 	Args:
 		lat: float. Observer latitude [deg]
 		lon: float. Obesrver longitude [deg]
@@ -211,7 +211,7 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 def equatorial(alt, az, lat, lon, height=0):
 	'''
 	Takes observer's location and Alt/Az as input and returns RA/Dec as a tuple.
-	
+
 	Args:
 		alt: float. Altitude [deg]
 		az: float. Azimuth [deg]
@@ -245,7 +245,7 @@ def equatorial(alt, az, lat, lon, height=0):
 def galactic(ra, dec):
 	'''
 	Converts RA/Dec. to galactic coordinates, returning galactic longitude and latitude (tuple).
-	
+
 	Args:
 		ra: float. Right ascension [hr]
 		dec: float. Declination [deg]
@@ -267,7 +267,7 @@ def galactic(ra, dec):
 def frequency(wavelength):
 	'''
 	Transform wavelength to frequency.
-	
+
 	Args:
 		wavelength: float. Wavelength [m]
 	'''
@@ -282,7 +282,7 @@ def frequency(wavelength):
 def wavelength(frequency):
 	'''
 	Transform frequency to wavelength.
-	
+
 	Args:
 		frequency: float. Wave frequency [Hz]
 	'''
@@ -297,7 +297,7 @@ def wavelength(frequency):
 def gain(D, f, e=0.7, u='dBi'):
 	'''
 	Estimate parabolic antenna gain.
-	
+
 	Args:
 		D: float. Antenna diameter [m]
 		f: float. Frequency [Hz]
@@ -330,7 +330,7 @@ def gain(D, f, e=0.7, u='dBi'):
 def A_e(gain, f):
 	'''
 	Transform antenna gain to effective aperture [m^2].
-	
+
 	Args:
 		gain: float. Antenna gain [dBi]
 		f: float. Frequency [Hz]
@@ -343,7 +343,7 @@ def A_e(gain, f):
 def beamwidth(D, f):
 	'''
 	Estimate parabolic antenna half-power beamwidth (FWHM).
-	
+
 	Args:
 		D: float. Antenna diameter [m]
 		f: float. Frequency [Hz]
@@ -356,7 +356,7 @@ def beamwidth(D, f):
 def NF(T_noise, T_ref=290):
 	'''
 	Convert noise temperature to noise figure [dB].
-	
+
 	Args:
 		T_noise: float. Noise temperature [K]
 		T_ref: float. Reference temperature [K]
@@ -369,7 +369,7 @@ def NF(T_noise, T_ref=290):
 def T_noise(NF, T_ref=290):
 	'''
 	Convert noise figure to noise temperature [K].
-	
+
 	Args:
 		NF: float. Noise figure [dB]
 		T_ref: float. Reference temperature [K]
@@ -382,7 +382,7 @@ def T_noise(NF, T_ref=290):
 def G_T(gain, T_sys):
 	'''
 	Compute antenna gain-to-noise-temperature (G/T).
-	
+
 	Args:
 		gain: float. Antenna gain [dBi]
 		T_sys: float. System noise temperature [K]
@@ -395,7 +395,7 @@ def G_T(gain, T_sys):
 def SEFD(A_e, T_sys):
 	'''
 	Compute system equivalent flux density [Jy].
-	
+
 	Args:
 		A_e: float. Effective antenna aperture [m^2]
 		T_sys: float. System noise temperature [K]
@@ -411,7 +411,7 @@ def SEFD(A_e, T_sys):
 def snr(S, sefd, t, bw):
 	'''
 	Estimate the obtained signal-to-noise ratio of an observation (radiometer equation).
-	
+
 	Args:
 		S: float. Source flux density [Jy]
 		sefd: float. Instrument's system equivalent flux density [Jy]
@@ -426,7 +426,7 @@ def snr(S, sefd, t, bw):
 def map_hi(ra=None, dec=None, plot_file=''):
 	'''
 	Plots the all-sky 21 cm map (LAB HI survey). Setting RA/Dec (optional args) will add a red dot indicating where the telescope is pointing to.
-	
+
 	Args:
 		ra: float. Right ascension [hr]
 		dec: float. Declination [deg]
@@ -488,7 +488,7 @@ def map_hi(ra=None, dec=None, plot_file=''):
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
 	'''
 	Begin data acquisition (requires SDR connected to the machine).
-	
+
 	Args:
 		obs_parameters: dict. Observation parameters
 			dev_args: string. Device arguments (gr-osmosdr)
@@ -567,11 +567,11 @@ channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
 duration='''+str(duration))
 
-def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0,
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[], xlim=[0,0], ylim=[0,0], dm=0,
 	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	'''
 	Process, analyze and plot data.
-	
+
 	Args:
 		obs_parameters: dict. Observation parameters (identical to parameters used to acquire data)
 			dev_args: string. Device arguments (gr-osmosdr)
@@ -588,7 +588,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		f_rest: float. Spectral line reference frequency used for radial velocity (Doppler shift) calculations [Hz]
 		slope_correction: bool. Correct slope in poorly-calibrated spectra using linear regression
 		dB: bool. Display data in decibel scaling
-		rfi: list. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
+		rfi: list of tuples. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
 		xlim: list. x-axis limits ([low_frequency, high_frequency]) [Hz]
 		ylim: list. y-axis limits ([start_time, end_time]) [Hz]
 		dm: float. Dispersion measure for dedispersion [pc/cm^3]
@@ -684,14 +684,18 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	waterfall = waterfall[3:, :]
 
 	# Mask RFI-contaminated channels
-	if rfi != [0,0]:
-		# Frequency to channel transformation
-		rfi_lo = channels*(rfi[0] - (frequency - bandwidth/2))/bandwidth
-		rfi_hi = channels*(rfi[1] - (frequency - bandwidth/2))/bandwidth
+	if rfi != []:
 
-		# Blank channels
-		for i in range(int(rfi_lo), int(rfi_hi)):
-			waterfall[:, i] = np.nan
+		for j in range(len(rfi)):
+
+			# Frequency to channel transformation
+			current_rfi = rfi[j]
+			rfi_lo = channels*(current_rfi[0] - (frequency - bandwidth/2))/bandwidth
+			rfi_hi = channels*(current_rfi[1] - (frequency - bandwidth/2))/bandwidth
+
+			# Blank channels
+			for i in range(int(rfi_lo), int(rfi_hi)):
+				waterfall[:, i] = np.nan
 
 	if cal_file != '':
 		waterfall_cal = offset*np.fromfile(cal_file, dtype='float32').reshape(-1, channels)/bins
@@ -700,10 +704,18 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		waterfall_cal = waterfall_cal[3:, :]
 
 		# Mask RFI-contaminated channels
-		if rfi != [0,0]:
-			# Blank channels
-			for i in range(int(rfi_lo), int(rfi_hi)):
-				waterfall_cal[:, i] = np.nan
+		if rfi != []:
+
+			for j in range(len(rfi)):
+
+				# Frequency to channel transformation
+				current_rfi = rfi[j]
+				rfi_lo = channels*(current_rfi[0] - (frequency - bandwidth/2))/bandwidth
+				rfi_hi = channels*(current_rfi[1] - (frequency - bandwidth/2))/bandwidth
+
+				# Blank channels
+				for i in range(int(rfi_lo), int(rfi_hi)):
+					waterfall_cal[:, i] = np.nan
 
 	# Compute average spectra
 	with warnings.catch_warnings():
@@ -971,7 +983,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 def plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png'):
 	'''
 	Plots wideband RFI survey spectrum.
-	
+
 	Args:
 		rfi_parameters: dict. Identical to obs_parameters, but also including 'f_lo': f_lo
 		data: string. Survey data directory containing individual observations
@@ -1066,7 +1078,7 @@ xycoords='axes points', size=32, ha='left', va='top', color='brown')
 def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 	'''
 	Begin data acquisition (wideband RFI survey).
-	
+
 	Args:
 		f_lo: float. Start frequency [Hz]
 		f_hi: float. End frequency [Hz]

@@ -10,7 +10,7 @@ using a low-cost RTL-SDR receiver:
 .. code-block:: python
 
     import virgo
-    
+
     # Define observation parameters
     obs = {
         'dev_args': '',
@@ -23,16 +23,16 @@ using a low-cost RTL-SDR receiver:
         't_sample': 1,
         'duration': 60
     }
-    
+
     # Check source position
     virgo.predict(lat=39.8, lon=-74.9, source='Cas A', date='2020-12-26')
-    
+
     # Begin data acquisition
     virgo.observe(obs_parameters=obs, obs_file='observation.dat')
-    
+
     # Analyze data, mitigate RFI and export the data as a CSV file
     virgo.plot(obs_parameters=obs, n=20, m=35, f_rest=1420.4057517667e6,
-               obs_file='observation.dat', rfi=[1419.2e6, 1419.3e6],
+               obs_file='observation.dat', rfi=[(1419.2e6, 1419.3e6), (1420.8e6, 1420.9e6)],
                dB=True, spectra_csv='spectrum.csv', plot_file='plot.png')
 
 The above script will plot the position of the supernova remnant Cassiopeia A
@@ -41,7 +41,7 @@ receiver to the given observing parameters and acquire data.
 
 Once the observation is complete (60 sec in this case), the data will be
 automatically processed and analyzed, applying a median filter to both the time
-series and the frequency domain, and masking a channel range, ultimately supressing
+series and the frequency domain, and masking a channel range, ultimately suppressing
 radio-frequency interference. In this example, dB scaling is used, enabling
 the plot to support a wide dynamic range.
 
@@ -55,7 +55,7 @@ Example observation
 .. figure:: https://camo.githubusercontent.com/56847be7590a8f4f3bbeb507b6a2f09f002b4a0b717a60abfd99a292dafa8311/68747470733a2f2f692e696d6775722e636f6d2f524f5050577a612e706e67
     :align: center
     :alt: Example observation
-    
+
     *Fig: Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus
     (α = 20h, δ = 40° , l = 77° , b = 3°), observed by the TLM-18 Telescope in New Jersey, U.S.
     with Virgo. The average spectrum (top left), the calibrated spectrum (top center), the dynamic
@@ -68,7 +68,7 @@ Example source prediction
 .. figure:: https://camo.githubusercontent.com/aa5999c1430f15397f89f47309eab9da55a1bbf3377af94aedd3145281fa49ca/68747470733a2f2f692e696d6775722e636f6d2f6a6e474a4576512e706e67
     :align: center
     :alt: Example source prediction
-    
+
     *Fig: Example prediction of the position of the Cygnus A radio galaxy (3C 405) in the celestial
     sphere of the observer obtained via* ``virgo.predict()``.
 
@@ -78,7 +78,7 @@ Example HI profile retrieval
 .. figure:: https://camo.githubusercontent.com/263822450db159b0d1012b4b7cb60a642457eed276f394c7e4130a30d5e01c15/68747470733a2f2f692e696d6775722e636f6d2f4848536b444a4d2e706e67
     :align: center
     :alt: Example HI profile retrieval
-    
+
     *Fig: Sample HI profile (α = 20h30m, δ = 45°) obtained with the package's* ``virgo.simulate()`` *function.*
 
 Offline experiments
