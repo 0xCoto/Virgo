@@ -283,7 +283,7 @@ Arguments for ``obs_parameters``:
 plot
 """"
 
-.. function:: plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[0,0], xlim=[0,0], ylim=[0,0], dm=0, obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png')
+.. function:: plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[], xlim=[0,0], ylim=[0,0], dm=0, obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png')
 
    Process, analyze and plot data. (Output: NoneType)
 
@@ -299,8 +299,8 @@ plot
    :type slope_correction: bool
    :param dB: Display data in decibel scaling
    :type dB: bool
-   :param rfi: Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
-   :type rfi: list
+   :param rfi: Blank frequency channels contaminated with RFI ([(low_frequency, high_frequency)]) [Hz]
+   :type rfi: list of tuples
    :param xlim: x-axis limits ([low_frequency, high_frequency]) [Hz]
    :type xlim: list
    :param ylim: y-axis limits ([start_time, end_time]) [Hz]
@@ -403,8 +403,3 @@ Arguments for ``obs_parameters``:
    :type duration: float
 
    Output: *NoneType*
-
-
-
-
-
