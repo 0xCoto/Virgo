@@ -500,6 +500,9 @@ def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', sta
 			channels: int: Number of frequency channels (FFT size)
 			t_sample: float: Integration time per FFT sample
 			duration: float: Total observing duration [sec]
+			loc: string: longitude, latitude, and elevation of observation (float, separated by spaces)
+			ra_dec: string: right ascension and declination of observation target (float, separated by space)
+			az_alt: string: azimuth and altitude of observation target (float, separated by space; takes precedence over ra_dec)
 		spectrometer: string. Spectrometer flowchart/pipeline ('WOLA'/'FTF')
 		obs_file: string. Output data filename
 		start_in: float. Schedule observation start [sec]
@@ -524,6 +527,9 @@ def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', sta
 	channels = obs_parameters['channels']
 	t_sample = obs_parameters['t_sample']
 	duration = obs_parameters['duration']
+	loc = obs_parameters['loc']
+	ra_dec = obs_parameters['ra_dec']
+	az_alt = obs_parameters['az_alt']
 
 	# Schedule observation
 	#if start_in != 0:
@@ -565,9 +571,12 @@ frequency='''+str(frequency)+'''
 bandwidth='''+str(bandwidth)+'''
 channels='''+str(channels)+'''
 t_sample='''+str(t_sample)+'''
-duration='''+str(duration))
+duration='''+str(duration)+'''
+loc='''+str(loc)+'''
+ra_dec='''+str(ra_dec)+'''
+az_alt='''+str(az_alt))
 
-def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, rfi=[], xlim=[0,0], ylim=[0,0], dm=0,
+def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False, vlsr=False, cal_ylim=[0,0], rfi=[], xlim=[0,0], ylim=[0,0], dm=0,
 	 obs_file='observation.dat', cal_file='', waterfall_fits='', spectra_csv='', power_csv='', plot_file='plot.png'):
 	'''
 	Process, analyze and plot data.
@@ -583,12 +592,17 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			channels: int: Number of frequency channels (FFT size)
 			t_sample: float: Integration time per FFT sample
 			duration: float: Total observing duration [sec]
+			loc: string: latitude, longitude, and elevation of observation (float, separated by spaces)
+			ra_dec: string: right ascension and declination of observation target (float, separated by space)
+			az_alt: string: azimuth and altitude of observation target (float, separated by space; takes precedence over ra_dec)
 		n: int. Median filter factor (spectrum)
 		m: int. Median filter factor (time series)
 		f_rest: float. Spectral line reference frequency used for radial velocity (Doppler shift) calculations [Hz]
 		slope_correction: bool. Correct slope in poorly-calibrated spectra using linear regression
 		dB: bool. Display data in decibel scaling
-		rfi: list of tuples. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
+		vslr: bool. Display graph in VSLR frame of reference
+		rfi: list. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
+		cal_ylim: list. Calibrated plot y-axis limits ([low, high])
 		xlim: list. x-axis limits ([low_frequency, high_frequency]) [Hz]
 		ylim: list. y-axis limits ([start_time, end_time]) [Hz]
 		dm: float. Dispersion measure for dedispersion [pc/cm^3]
@@ -646,6 +660,9 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		bandwidth = obs_parameters['bandwidth']
 		channels = obs_parameters['channels']
 		t_sample = obs_parameters['t_sample']
+		loc = obs_parameters['loc']
+		ra_dec = obs_parameters['ra_dec']
+		az_alt = obs_parameters['az_alt']
 	else:
 		header_file = '.'.join(obs_file.split('.')[:-1])+'.header'
 
@@ -665,9 +682,43 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 				channels = int(headers[i].strip().split('=')[1])
 			elif 't_sample' in headers[i]:
 				t_sample = float(headers[i].strip().split('=')[1])
+			elif 'loc' in headers[i]:
+				loc = tuple(map(float, headers[i].strip().split('=')[1].split(' ')))
+			elif 'ra_dec' in headers[i]:
+				ra_dec = tuple(map(str, headers[i].split('=')[1].split(' ')))
+			elif 'az_alt' in headers[i]:
+				az_alt = tuple(map(float, headers[i].split('=')[1].split(' ')))
+
+
 
 	# Transform frequency axis limits to MHz
 	xlim = [x / 1e6 for x in xlim]
+
+	# Transform to VLSR
+	if vlsr:
+
+		from astropy import units as u
+		from astropy.coordinates import SpectralCoord, EarthLocation, SkyCoord
+		from astropy.time import Time
+
+		# Adjust for wrong time on Raspberry Pi
+		mjd += .38125
+
+		obs_location = EarthLocation.from_geodetic(loc[0], loc[1], loc[2])
+		obs_time = obs_location.get_itrs(obstime=Time(str(mjd), format='mjd', scale='utc'))
+
+		if az_alt!='':
+				obs_coord = SkyCoord(az=az_alt[0]*u.degree, alt=az_alt[1]*u.degree, frame='altaz', location=obs_location, obstime=Time(str(mjd), format='mjd', scale='utc'))
+				obs_coord = obs_coord.icrs
+				print (obs_coord)
+		else:
+				obs_coord = SkyCoord(ra=ra_dec[0]*u.degree, dec=ra_dec[1]*u.degree, frame='icrs')
+
+
+		#Transform center frequency
+		frequency = SpectralCoord(frequency * u.MHz, observer=obs_time, target=obs_coord)
+		frequency = frequency.with_observer_stationary_relative_to('lsrk')
+		frequency = frequency.quantity.value
 
 	# Define Radial Velocity axis limits
 	left_velocity_edge = -299792.458*(bandwidth-2*frequency+2*f_rest)/(bandwidth-2*frequency)
@@ -785,6 +836,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		for i in range(0, int(subs)):
 			power_clean[i] = np.nanmedian(power_clean[i:i+m])
 
+
 	# Write Waterfall to file (FITS)
 	if waterfall_fits != '':
 		from astropy.io import fits
@@ -877,7 +929,12 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax2.plot(frequency, spectrum, label='Raw Spectrum')
 		if n != 0:
 			ax2.plot(frequency, spectrum_clean, color='orangered', label='Median (n = '+str(n)+')')
+
+		if cal_ylim !=[0,0]:
+			ax2.set_ylim(cal_ylim[0],cal_ylim[1])
+		else:
 			ax2.set_ylim()
+
 		if xlim == [0,0]:
 			ax2.set_xlim(np.min(frequency), np.max(frequency))
 		else:
@@ -885,8 +942,14 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax2.ticklabel_format(useOffset=False)
 		ax2.set_xlabel('Frequency (MHz)')
 		ax2.set_ylabel('Signal-to-Noise Ratio (S/N)')
+
+		if vlsr:
+			cal_title = 'Calibrated Spectrum (VSLR)\n'
+		else:
+			cal_title = 'Calibrated Spectrum\n'
+
 		if f_rest != 0:
-			ax2.set_title('Calibrated Spectrum\n')
+			ax2.set_title(cal_title)
 		else:
 			ax2.set_title('Calibrated Spectrum')
 		if n != 0:
