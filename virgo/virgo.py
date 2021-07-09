@@ -600,8 +600,8 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		f_rest: float. Spectral line reference frequency used for radial velocity (Doppler shift) calculations [Hz]
 		slope_correction: bool. Correct slope in poorly-calibrated spectra using linear regression
 		dB: bool. Display data in decibel scaling
-		vslr: bool. Display graph in VSLR frame of reference
-		rfi: list. Blank frequency channels contaminated with RFI ([low_frequency, high_frequency]) [Hz]
+		vlsr: bool. Display graph in VLSR frame of reference
+		rfi: list of tuples. Blank frequency channels contaminated with RFI ([(low_frequency, high_frequency), ...]) [Hz]
 		cal_ylim: list. Calibrated plot y-axis limits ([low, high])
 		xlim: list. x-axis limits ([low_frequency, high_frequency]) [Hz]
 		ylim: list. y-axis limits ([start_time, end_time]) [Hz]
@@ -944,7 +944,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		ax2.set_ylabel('Signal-to-Noise Ratio (S/N)')
 
 		if vlsr:
-			cal_title = 'Calibrated Spectrum (VSLR)\n'
+			cal_title = r'$Calibrated Spectrum (V_{LSR})$' + '\n'
 		else:
 			cal_title = 'Calibrated Spectrum\n'
 
