@@ -701,9 +701,6 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		from astropy.coordinates import SpectralCoord, EarthLocation, SkyCoord
 		from astropy.time import Time
 
-		# Adjust for wrong time on Raspberry Pi
-		mjd += .38125
-
 		obs_location = EarthLocation.from_geodetic(loc[0], loc[1], loc[2])
 		obs_time = obs_location.get_itrs(obstime=Time(str(mjd), format='mjd', scale='utc'))
 
