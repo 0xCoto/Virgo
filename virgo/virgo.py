@@ -687,17 +687,21 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 			elif 'loc' in headers[i]:
 				loc = tuple(map(float, headers[i].strip().split('=')[1].split(' ')))
 			elif 'ra_dec' in headers[i]:
-				ra_dec = tuple(map(str, headers[i].split('=')[1].split(' ')))
+				if headers[i] != 'ra_dec=':
+					ra_dec = tuple(map(str, headers[i].split('=')[1].split(' ')))
+				else:
+					ra_dec = None
 			elif 'az_alt' in headers[i]:
-				az_alt = tuple(map(float, headers[i].split('=')[1].split(' ')))
-
-
+				if headers[i] != 'az_alt=':
+					az_alt = tuple(map(float, headers[i].split('=')[1].split(' ')))
+				else:
+					az_alt = None
 
 	# Transform frequency axis limits to MHz
 	xlim = [x / 1e6 for x in xlim]
 
 	# Transform to VLSR
-	if vlsr:
+	if vlsr or meta:
 
 		from astropy import units as u
 		from astropy.coordinates import SpectralCoord, EarthLocation, SkyCoord
@@ -706,18 +710,21 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		obs_location = EarthLocation.from_geodetic(loc[0], loc[1], loc[2])
 		obs_time = obs_location.get_itrs(obstime=Time(str(mjd), format='mjd', scale='utc'))
 
-		if az_alt!='':
-				obs_coord = SkyCoord(az=az_alt[0]*u.degree, alt=az_alt[1]*u.degree, frame='altaz', location=obs_location, obstime=Time(str(mjd), format='mjd', scale='utc'))
-				obs_coord = obs_coord.icrs
-				print (obs_coord)
+		if az_alt != None:
+			obs_coord = SkyCoord(az=az_alt[0]*u.degree, alt=az_alt[1]*u.degree, frame='altaz', location=obs_location, obstime=Time(str(mjd), format='mjd', scale='utc'))
+			obs_coord = obs_coord.icrs
+			print (obs_coord)
+		elif ra_dec != None:
+			obs_coord = SkyCoord(ra=ra_dec[0]*u.degree, dec=ra_dec[1]*u.degree, frame='icrs')
 		else:
-				obs_coord = SkyCoord(ra=ra_dec[0]*u.degree, dec=ra_dec[1]*u.degree, frame='icrs')
+			obs_coord = None
 
 
 		#Transform center frequency
-		frequency = SpectralCoord(frequency * u.MHz, observer=obs_time, target=obs_coord)
-		frequency = frequency.with_observer_stationary_relative_to('lsrk')
-		frequency = frequency.quantity.value
+		if obs_coord:
+			frequency = SpectralCoord(frequency * u.MHz, observer=obs_time, target=obs_coord)
+			frequency = frequency.with_observer_stationary_relative_to('lsrk')
+			frequency = frequency.quantity.value
 
 	# Define Radial Velocity axis limits
 	left_velocity_edge = -299792.458*(bandwidth-2*frequency+2*f_rest)/(bandwidth-2*frequency)
@@ -897,8 +904,10 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 		from astropy.coordinates import get_constellation
 
 		epoch = (mjd - 40587) * 86400.0
-		meta_title = 'Date and Time: ' + time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime(epoch)) + '       '
-		meta_title += 'Target: ' + obs_coord.to_string('hmsdms', precision=0) + ' in ' + get_constellation(obs_coord) + '\n'
+		meta_title = 'Date and Time: ' + time.strftime('%Y-%m-%d %H:%M:%S %Z', time.localtime(epoch))
+		if obs_coord:
+			meta_title += '          Target: ' + obs_coord.to_string('hmsdms', precision=0) + ' in ' + get_constellation(obs_coord)
+		meta_title += '\n'
 		plt.suptitle(meta_title, fontsize=18)
 
 	# Plot Average Spectrum
