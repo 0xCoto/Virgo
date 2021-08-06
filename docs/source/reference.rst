@@ -277,6 +277,12 @@ Arguments for ``obs_parameters``:
    :type t_sample: float
    :param duration: Total observing duration [sec]
    :type duration: float
+   :param loc: Latitude, longitude, and elevation of observation
+   :type loc: string
+   :param ra_dec: Right ascension and declination of target
+   :type ra_dec: string
+   :param az_alt: Azimuth and altitude of target
+   :type az_alt: string
 
    Output: *NoneType*
 
@@ -307,6 +313,14 @@ plot
    :type ylim: list
    :param dm: Dispersion measure for dedispersion [pc/cm^3]
    :type dm: float
+   :param vlsr: Display graph in VLSR frame of reference
+   :type vlsr: bool
+   :param meta: Display header with date, time, and target
+   :type meta: bool
+   :param avg_ylim: Averaged plot y-axis limits ([low, high])
+   :type avg_ylim: list
+   :param cal_ylim: Calibrated plot y-axis limits ([low, high])
+   :type cal_ylim: list
    :param obs_file: Input observation filename (generated with virgo.observe)
    :type obs_file: string
    :param cal_file: Input calibration filename (generated with virgo.observe)
@@ -342,6 +356,12 @@ Arguments for ``obs_parameters``:
    :type t_sample: float
    :param duration: Total observing duration [sec]
    :type duration: float
+   :param loc: Latitude, longitude, and elevation of observation
+   :type loc: string
+   :param ra_dec: Right ascension and declination of target
+   :type ra_dec: string
+   :param az_alt: Azimuth and altitude of target
+   :type az_alt: string
 
    Output: *NoneType*
 
@@ -401,5 +421,11 @@ Arguments for ``obs_parameters``:
    :type t_sample: float
    :param duration: Total observing duration [sec]
    :type duration: float
+   :param loc: Latitude, longitude, and elevation of observation
+   :type loc: string
+   :param ra_dec: Right ascension and declination of target
+   :type ra_dec: string
+   :param az_alt: Azimuth and altitude of target
+   :type az_alt: string
 
    Output: *NoneType*
