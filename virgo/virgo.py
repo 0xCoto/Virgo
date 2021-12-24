@@ -1287,7 +1287,10 @@ def main():
     'bandwidth': args.bandwidth,
     'channels': args.channels,
     't_sample': args.t_sample,
-    'duration': args.duration
+    'duration': args.duration,
+    'loc': '',
+    'ra_dec': '',
+    'az_alt': ''
 	}
 
 	# Acquire data from SDR
