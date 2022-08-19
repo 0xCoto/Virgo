@@ -207,6 +207,7 @@ def predict(lat, lon, height=0, source='', date='', plot_sun=True, plot_file='')
 	else:
 		plt.show()
 	plt.clf()
+	plt.close()
 
 def equatorial(alt, az, lat, lon, height=0):
 	'''
@@ -484,6 +485,7 @@ def map_hi(ra=None, dec=None, plot_file=''):
 		plt.tight_layout()
 		plt.show()
 	plt.clf()
+	plt.close()
 
 def observe(obs_parameters, spectrometer='wola', obs_file='observation.dat', start_in=0):
 	'''
@@ -1066,6 +1068,7 @@ def plot(obs_parameters='', n=0, m=0, f_rest=0, slope_correction=False, dB=False
 	plt.tight_layout()
 	plt.savefig(plot_file)
 	plt.clf()
+	plt.close()
 
 def plot_rfi(rfi_parameters, data='rfi_data', dB=True, plot_file='plot.png'):
 	'''
@@ -1164,6 +1167,7 @@ xycoords='axes points', size=32, ha='left', va='top', color='brown')
 	plt.tight_layout()
 	plt.savefig(plot_file)
 	plt.clf()
+	plt.close()
 
 def monitor_rfi(f_lo, f_hi, obs_parameters, data='rfi_data'):
 	'''
