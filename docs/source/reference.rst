@@ -20,6 +20,8 @@ simulate
    :type v_min: float
    :param v_max: Maximum radial velocity (xlim) [km/s]
    :type v_max: float
+   :param plot_file: Output plot filename
+   :type plot_file: string
 
    Output: *NoneType*
 
@@ -36,8 +38,10 @@ predict
    :type lon: float
    :param height: Observer elevation [m]
    :type height: float
-   :param source: Date in YYYY-MM-DD format. If no date is given, it defaults to today's system date.
+   :param source: Source object name to predict.
    :type source: string
+   :param date: Date in YYYY-MM-DD format. If no date is given, it defaults to today's system date.
+   :type date: string
    :param plot_sun: Also plot Sun position for reference
    :type plot_sun: bool
    :param plot_file: Output plot filename
